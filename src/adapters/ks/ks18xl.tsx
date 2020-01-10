@@ -1,7 +1,7 @@
-import { BleAPI } from '../../container';
-import { createAdapter } from '../base';
+import { BleAPI } from '../../providers';
+import { createAdapter } from '../api';
 
-export const adapter = createAdapter('KingSong 18-XL', (_bleApi: BleAPI) => {
+export const ks18xl = createAdapter('KingSong 18-XL', (_bleApi: BleAPI) => {
   const connect = () => {
     console.log('do connect');
   };

@@ -1,16 +1,33 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { ScrollView } from 'react-native';
 import { TNavigatorProps } from '../../../App';
+import { List } from 'react-native-paper';
+import { adapters, createAdapter } from '../../adapters';
+import { useBle } from '../../providers';
 
 export const Connect = ({ route }: TNavigatorProps<'Connect'>) => {
+  const bleApi = useBle();
   const {
     params: { device },
   } = route;
 
-  console.log('Connecting to', device.name);
+  const handlePress = (adapter: ReturnType<typeof createAdapter>) => {
+    const { connect } = adapter(device, bleApi);
+
+    connect();
+  };
+
   return (
-    <>
-      <Text>Home</Text>
-    </>
+    <ScrollView>
+      <List.Section>
+        {adapters.map(adapter => (
+          <List.Item
+            key={adapter.adapterName}
+            title={adapter.adapterName}
+            onPress={() => handlePress(adapter)}
+          />
+        ))}
+      </List.Section>
+    </ScrollView>
   );
 };
