@@ -1,20 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ScrollView } from 'react-native';
 import { TNavigatorProps } from '../../../App';
 import { List } from 'react-native-paper';
 import { adapters, createAdapter } from '../../adapters';
-import { useBle } from '../../providers';
+import { useBle, useAdapter } from '../../providers';
 
-export const Connect = ({ route }: TNavigatorProps<'Connect'>) => {
+export const Connect = ({ route, navigation }: TNavigatorProps<'Connect'>) => {
+  const [loading, setLoading] = useState(false);
   const bleApi = useBle();
+  const { setAdapter } = useAdapter();
   const {
     params: { device },
   } = route;
 
-  const handlePress = (adapter: ReturnType<typeof createAdapter>) => {
-    const { connect } = adapter(device, bleApi);
+  const handlePress = async (
+    adapterFactory: ReturnType<typeof createAdapter>,
+  ) => {
+    setLoading(true);
 
-    connect();
+    const adapter = adapterFactory(device, bleApi);
+
+    setAdapter(adapter);
+
+    await adapter.connect();
+
+    navigation.navigate('Home');
   };
 
   return (
@@ -24,7 +34,10 @@ export const Connect = ({ route }: TNavigatorProps<'Connect'>) => {
           <List.Item
             key={adapter.adapterName}
             title={adapter.adapterName}
-            onPress={() => handlePress(adapter)}
+            onPress={() => {
+              handlePress(adapter);
+            }}
+            disabled={loading}
           />
         ))}
       </List.Section>

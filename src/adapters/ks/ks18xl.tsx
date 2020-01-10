@@ -1,8 +1,7 @@
-import { BleAPI } from '../../providers';
 import { createAdapter } from '../api';
 
-export const ks18xl = createAdapter('KingSong 18-XL', (_bleApi: BleAPI) => {
-  const connect = () => {
+export const ks18xl = createAdapter('KingSong 18-XL', (_device, _bleApi) => {
+  const connect = async () => {
     console.log('do connect');
   };
 
