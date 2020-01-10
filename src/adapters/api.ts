@@ -5,7 +5,7 @@ type TAdapter = (
   device: BleDevice,
   bleApi: BleAPI,
 ) => {
-  connect: () => void;
+  connect: () => Promise<any>;
 };
 
 export const createAdapter = (name: string, adapter: TAdapter) => {

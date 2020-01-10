@@ -8,9 +8,11 @@ import * as routes from './src/route';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { Device } from 'react-native-ble-plx';
 import { BleProvider } from './src/providers';
+import { AdapterProvider } from './src/providers/adapter';
 
 type TStack = {
-  Search: {};
+  Search: undefined | {}; // because Search is initialRoute
+  Home: undefined;
   Connect: { device: Device };
 };
 
@@ -26,11 +28,14 @@ function App() {
     <NavigationNativeContainer>
       <PaperProvider>
         <BleProvider>
-          {/* Add logic for remembered devices */}
-          <Stack.Navigator initialRouteName="Search">
-            <Stack.Screen name="Search" component={routes.Search} />
-            <Stack.Screen name="Connect" component={routes.Connect} />
-          </Stack.Navigator>
+          <AdapterProvider>
+            {/* Add logic for remembered devices */}
+            <Stack.Navigator initialRouteName="Search">
+              <Stack.Screen name="Search" component={routes.Search} />
+              <Stack.Screen name="Connect" component={routes.Connect} />
+              <Stack.Screen name="Home" component={routes.Home} />
+            </Stack.Navigator>
+          </AdapterProvider>
         </BleProvider>
       </PaperProvider>
     </NavigationNativeContainer>
