@@ -7,7 +7,7 @@ import {
 import * as routes from './src/route';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { Device } from 'react-native-ble-plx';
-import { BleProvider } from './src/container';
+import { BleProvider } from './src/providers';
 
 type TStack = {
   Search: {};

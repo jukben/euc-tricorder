@@ -4,7 +4,7 @@ import { List } from 'react-native-paper';
 import { BleManager, Device } from 'react-native-ble-plx';
 import { ExtractParameterType } from '../../types';
 import { TNavigatorProps } from '../../../App';
-import { useBle } from '../../container';
+import { useBle } from '../../providers';
 
 export const Search = ({ navigation }: TNavigatorProps<'Search'>) => {
   const { manager } = useBle();
@@ -43,20 +43,18 @@ export const Search = ({ navigation }: TNavigatorProps<'Search'>) => {
   };
 
   return (
-    <>
-      <ScrollView>
-        <List.Section>
-          {devices
-            .filter(device => device.name)
-            .map(device => (
-              <List.Item
-                key={device.id}
-                title={device.name}
-                onPress={() => handlePress(device)}
-              />
-            ))}
-        </List.Section>
-      </ScrollView>
-    </>
+    <ScrollView>
+      <List.Section>
+        {devices
+          .filter(device => device.name)
+          .map(device => (
+            <List.Item
+              key={device.id}
+              title={device.name}
+              onPress={() => handlePress(device)}
+            />
+          ))}
+      </List.Section>
+    </ScrollView>
   );
 };
