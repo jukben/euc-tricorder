@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Text } from 'react-native';
-import { useAdapter } from '../../providers';
+import { useAdapter } from '../../../providers';
 
 export const Speedometer = () => {
   const [speed, setSpeed] = useState(0);

@@ -1,12 +1,13 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, ActivityIndicator } from 'react-native';
 import { List } from 'react-native-paper';
 import { BleManager, Device } from 'react-native-ble-plx';
-import { ExtractParameterType } from '../../types';
-import { TNavigatorProps } from '../../../App';
-import { useBle } from '../../providers';
+import { ExtractParameterType } from '../../../types';
+import { useBle } from '../../../providers';
+import { NavigatorProps } from '../';
 
-export const Search = ({ navigation }: TNavigatorProps<'Search'>) => {
+export const Search = ({ navigation }: NavigatorProps<'Search'>) => {
+  const [loading, setLoading] = useState(true);
   const { manager } = useBle();
   const DevicesMapRef = useRef<Map<Device['id'], Device>>(new Map());
   const [devices, setDevices] = useState<Array<Device>>([]);
@@ -15,6 +16,10 @@ export const Search = ({ navigation }: TNavigatorProps<'Search'>) => {
     manager.onStateChange(newState => {
       if (newState === 'PoweredOn') {
         manager.startDeviceScan(null, null, handleListener);
+        setLoading(false);
+      } else {
+        manager.stopDeviceScan();
+        setLoading(true);
       }
     });
   }, [manager]);
@@ -39,11 +44,12 @@ export const Search = ({ navigation }: TNavigatorProps<'Search'>) => {
   };
 
   const handlePress = (device: Device) => {
-    navigation.navigate('Connect', { device });
+    navigation.navigate('PickAdapter', { device });
   };
 
   return (
     <ScrollView>
+      {loading && <ActivityIndicator />}
       <List.Section>
         {devices
           .filter(device => device.name)

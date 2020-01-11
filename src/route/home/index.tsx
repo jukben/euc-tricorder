@@ -1,19 +1,24 @@
 import React from 'react';
-import { AdapterProvider } from '../../providers';
-import { TNavigatorProps } from '../../../App';
-import { ErrorBoundary } from './error-boundary';
-import { Monitor } from './monitor';
+import { Text, SafeAreaView } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-export const Home = ({ navigation, route }: TNavigatorProps<'Home'>) => {
-  const {
-    params: { adapter },
-  } = route;
+import { Device } from './device';
 
+const Tab = createBottomTabNavigator();
+
+export const Home = () => {
   return (
-    <AdapterProvider value={adapter}>
-      <ErrorBoundary>
-        <Monitor />
-      </ErrorBoundary>
-    </AdapterProvider>
+    <Tab.Navigator initialRouteName={'Device'}>
+      <Tab.Screen
+        name="Device"
+        component={Device}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Icon name={'speedometer'} color={color} size={size} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
   );
 };

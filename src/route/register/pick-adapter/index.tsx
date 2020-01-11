@@ -1,27 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ScrollView } from 'react-native';
-import { TNavigatorProps } from '../../../App';
 import { List } from 'react-native-paper';
-import { adapters, AdapterFactory } from '../../adapters';
-import { useBle } from '../../providers';
 
-export const Connect = ({ route, navigation }: TNavigatorProps<'Connect'>) => {
-  const [loading, setLoading] = useState(false);
+import { NavigatorProps } from '..';
+import { adapters, AdapterFactory } from '../../../adapters';
+import { useBle, useAdapter } from '../../../providers';
+
+export const PickAdapter = ({
+  route,
+  navigation,
+}: NavigatorProps<'PickAdapter'>) => {
+  const { setAdapter } = useAdapter();
   const bleApi = useBle();
   const {
     params: { device },
   } = route;
 
   const handlePress = async (adapterFactory: AdapterFactory) => {
-    setLoading(true);
-
     const adapter = adapterFactory(device, bleApi);
+    setAdapter(adapter);
 
-    // navigation.reset({
-    //   index: 0,
-    //   routes: [{ name: 'Home', params: { adapter } }],
-    // });
-    navigation.navigate('Home', { adapter });
+    navigation.navigate('Connect');
   };
 
   return (
@@ -34,7 +33,6 @@ export const Connect = ({ route, navigation }: TNavigatorProps<'Connect'>) => {
             onPress={() => {
               handlePress(adapter);
             }}
-            disabled={loading}
           />
         ))}
       </List.Section>

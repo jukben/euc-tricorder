@@ -42,7 +42,11 @@ export const ks18xl = createAdapter(NAME, device => {
     }
   };
 
-  const connect: AdapterService['connect'] = async onDisconnect => {
+  const handleDisconnect = () => {
+    console.log('disconnect...');
+  };
+
+  const connect: AdapterService['connect'] = async () => {
     await device.connect();
 
     await device.discoverAllServicesAndCharacteristics();
@@ -55,7 +59,8 @@ export const ks18xl = createAdapter(NAME, device => {
       KS_COMMANDS.REQUEST_NAME,
     );
 
-    onDisconnectSubscription = device.onDisconnected(onDisconnect);
+    onDisconnectSubscription = device.onDisconnected(handleDisconnect);
+
     monitorSubscription = device.monitorCharacteristicForService(
       KS_SERVICE,
       KS_CHAR,
@@ -78,7 +83,16 @@ export const ks18xl = createAdapter(NAME, device => {
   const removeListener: AdapterService['removeListener'] = id =>
     delete listeners[id];
 
+  const getName = () => device.name || NAME;
+
+  const getAdapterName = () => NAME;
+
+  const getId = () => device.id;
+
   return {
+    getId,
+    getName,
+    getAdapterName,
     connect,
     disconnect,
     isConnected,
