@@ -2,29 +2,26 @@ import React, { useState } from 'react';
 import { ScrollView } from 'react-native';
 import { TNavigatorProps } from '../../../App';
 import { List } from 'react-native-paper';
-import { adapters, createAdapter } from '../../adapters';
-import { useBle, useAdapter } from '../../providers';
+import { adapters, AdapterFactory } from '../../adapters';
+import { useBle } from '../../providers';
 
 export const Connect = ({ route, navigation }: TNavigatorProps<'Connect'>) => {
   const [loading, setLoading] = useState(false);
   const bleApi = useBle();
-  const { setAdapter } = useAdapter();
   const {
     params: { device },
   } = route;
 
-  const handlePress = async (
-    adapterFactory: ReturnType<typeof createAdapter>,
-  ) => {
+  const handlePress = async (adapterFactory: AdapterFactory) => {
     setLoading(true);
 
     const adapter = adapterFactory(device, bleApi);
 
-    setAdapter(adapter);
-
-    await adapter.connect();
-
-    navigation.navigate('Home');
+    // navigation.reset({
+    //   index: 0,
+    //   routes: [{ name: 'Home', params: { adapter } }],
+    // });
+    navigation.navigate('Home', { adapter });
   };
 
   return (

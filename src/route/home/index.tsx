@@ -1,11 +1,19 @@
 import React from 'react';
-import { Text } from 'react-native';
-import { useAdapter } from '../../providers';
+import { AdapterProvider } from '../../providers';
+import { TNavigatorProps } from '../../../App';
+import { ErrorBoundary } from './error-boundary';
+import { Monitor } from './monitor';
 
-export const Home = () => {
-  const { adapter } = useAdapter();
+export const Home = ({ navigation, route }: TNavigatorProps<'Home'>) => {
+  const {
+    params: { adapter },
+  } = route;
 
-  console.log(adapter);
-
-  return <Text>Home</Text>;
+  return (
+    <AdapterProvider value={adapter}>
+      <ErrorBoundary>
+        <Monitor />
+      </ErrorBoundary>
+    </AdapterProvider>
+  );
 };

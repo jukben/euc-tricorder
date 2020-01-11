@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react';
-import { createAdapter } from '../adapters';
+import React, { useState, useContext, ReactChild } from 'react';
+import { AdapterFactory } from '../adapters';
 
-type TAdapter = ReturnType<ReturnType<typeof createAdapter>>;
+type TAdapter = ReturnType<AdapterFactory>;
 
 type AdapterAPI = {
   adapter: TAdapter | null;
@@ -20,8 +20,14 @@ export const useAdapter = () => {
   return adapter;
 };
 
-export const AdapterProvider: React.FC = ({ children }) => {
-  const [adapter, setAdapter] = useState<AdapterAPI['adapter']>(null);
+export const AdapterProvider = ({
+  children,
+  value = null,
+}: {
+  children: ReactChild | Array<ReactChild>;
+  value: AdapterAPI['adapter'];
+}) => {
+  const [adapter, setAdapter] = useState<AdapterAPI['adapter']>(value);
 
   const api = { adapter, setAdapter };
 
