@@ -25,7 +25,7 @@ export const AdapterProvider = ({
   value = null,
 }: {
   children: ReactChild | Array<ReactChild>;
-  value: AdapterAPI['adapter'];
+  value?: AdapterAPI['adapter'];
 }) => {
   const [adapter, setAdapter] = useState<AdapterAPI['adapter']>(value);
 

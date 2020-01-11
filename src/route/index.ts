@@ -1,3 +1,2 @@
-export * from './connect';
-export * from './search';
+export * from './register';
 export * from './home';

@@ -9,11 +9,16 @@ export type DeviceData = {
   battery: number;
 };
 
+export type AdapterID = string;
+
 type Adapter = (
   device: BleDevice,
   bleApi: BleAPI,
 ) => {
-  connect: (onDisconnect: () => void) => Promise<unknown>;
+  getId: () => AdapterID;
+  getAdapterName: () => string;
+  getName: () => string;
+  connect: () => Promise<unknown>;
   disconnect: () => Promise<unknown>;
   isConnected: () => Promise<boolean>;
   addListener: (listener: (deviceData: DeviceData) => void) => number;
@@ -23,7 +28,8 @@ type Adapter = (
 export type AdapterFactory = ReturnType<typeof createAdapter>;
 export type AdapterService = ReturnType<AdapterFactory>;
 
-export const createAdapter = (name: string, adapter: Adapter) => {
+// TODO add validity of Adapter's shape API
+export const createAdapter = (name: AdapterID, adapter: Adapter) => {
   const adapterFactory = (...args: Parameters<Adapter>) => adapter(...args);
 
   adapterFactory.adapterName = name;

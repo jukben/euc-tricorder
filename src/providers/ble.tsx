@@ -18,13 +18,18 @@ export const BleProvider: React.FC = ({ children }) => {
       restoreStateIdentifier: 'eucmonitor',
     }),
   );
+
   const [state, setState] = useState<State>('Unknown' as State);
 
   useEffect(() => {
     bleManagerRef.current.onStateChange(newState => {
+      if (newState === state) {
+        return;
+      }
+
       setState(newState);
     });
-  }, []);
+  }, [state]);
 
   const api = useMemo(() => ({ manager: bleManagerRef.current, state }), [
     state,
