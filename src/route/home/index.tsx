@@ -5,20 +5,21 @@ import {
 } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import { useAdapter, useBle } from '../../providers';
-import { getDevice } from '../../utils';
+import { useAdapter, useBle, useSettings } from '../../providers';
 import { adapters } from '../../adapters';
+
+import { CustomNavigatorProps } from '../../types';
+import { CrossroadNavigatorProps } from '../../Crossroad';
 
 import { Device } from './device';
 import { Settings } from './settings';
-import { CustomNavigatorProps } from '../../types';
 
 type Stack = {
   Device: {};
   Settings: {};
 };
 
-export type NavigatorProps<P extends keyof Stack> = CustomNavigatorProps<
+export type HomeNavigatorProps<P extends keyof Stack> = CustomNavigatorProps<
   BottomTabNavigationProp<Stack>,
   Stack,
   P
@@ -26,48 +27,66 @@ export type NavigatorProps<P extends keyof Stack> = CustomNavigatorProps<
 
 const Tab = createBottomTabNavigator<Stack>();
 
-export const Home = () => {
+export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
   const { setAdapter, adapter } = useAdapter();
+  const { removeSettingsForKey } = useSettings();
   const bleApi = useBle();
 
-  const autoConnect = useCallback(async () => {
-    console.log('autoconnect');
-    const device = await getDevice();
+  const {
+    params: { device },
+  } = route;
 
-    if (!device) {
-      console.error('device not remembered');
-      return;
-    }
+  const handleDisconnect = useCallback(() => {
+    setAdapter(null);
+  }, [setAdapter]);
 
-    console.log(device.id, device.adapter);
-
-    const adapterFactory = adapters.find(a => a.adapterName === device.adapter);
-
-    if (!adapterFactory) {
-      // TODO clean the remembered device
-      console.error('adapter not found remembered');
-      return;
-    }
-
-    bleApi.manager.startDeviceScan(null, null, (error, bleDevice) => {
-      if (error) {
-        console.error(error);
+  useEffect(() => {
+    console.log('attempt to auto-connect');
+    if (bleApi.state === 'PoweredOn' && !adapter) {
+      if (!device) {
+        console.error("device hasn't been provided to this screen");
         return;
       }
 
-      if (bleDevice && bleDevice.id === device.id) {
-        setAdapter(adapterFactory(bleDevice, bleApi));
-        bleApi.manager.stopDeviceScan();
-      }
-    });
-  }, [bleApi, setAdapter]);
+      console.log('auto-connect');
 
-  useEffect(() => {
-    console.log(bleApi.state, adapter);
-    if (bleApi.state === 'PoweredOn' && !adapter) {
-      autoConnect();
+      const adapterFactory = adapters.find(
+        a => a.adapterName === device.adapter,
+      );
+
+      if (!adapterFactory) {
+        console.error('remembered adapter not found');
+        removeSettingsForKey('device');
+        return;
+      }
+
+      bleApi.manager.startDeviceScan(null, null, (error, bleDevice) => {
+        if (error) {
+          console.error(error);
+          return;
+        }
+
+        if (bleDevice && bleDevice.id === device.id) {
+          const configuredAdapter = adapterFactory(bleDevice, bleApi);
+
+          setAdapter(configuredAdapter);
+
+          configuredAdapter.connect(handleDisconnect);
+
+          bleApi.manager.stopDeviceScan();
+        }
+      });
     }
-  }, [bleApi, autoConnect, adapter]);
+
+    return () => bleApi.manager.stopDeviceScan();
+  }, [
+    adapter,
+    bleApi,
+    setAdapter,
+    handleDisconnect,
+    device,
+    removeSettingsForKey,
+  ]);
 
   return (
     <Tab.Navigator initialRouteName={'Device'}>

@@ -2,9 +2,8 @@ import React, { useEffect, useCallback, useReducer } from 'react';
 import { Text } from 'react-native';
 import { ActivityIndicator } from 'react-native-paper';
 
-import { useAdapter } from '../../../providers';
-import { rememberDevice } from '../../../utils';
-import { NavigatorProps } from '..';
+import { useAdapter, useSettings } from '../../../providers';
+import { RegisterNavigatorProps } from '..';
 
 type State = { phase: 'loading' } | { phase: 'error' } | { phase: 'connected' };
 type Action = { type: 'failure' } | { type: 'connected' };
@@ -20,9 +19,10 @@ function reducer(state: State, action: Action): State {
   }
 }
 
-export const Connect = ({ navigation }: NavigatorProps<'Connect'>) => {
+export const Connect = ({ navigation }: RegisterNavigatorProps<'Connect'>) => {
   const [state, dispatch] = useReducer(reducer, { phase: 'loading' });
-  const { adapter } = useAdapter();
+  const { adapter, setAdapter } = useAdapter();
+  const { setSettingsForKey } = useSettings();
   const { phase } = state;
 
   const connect = useCallback(async () => {
@@ -32,7 +32,9 @@ export const Connect = ({ navigation }: NavigatorProps<'Connect'>) => {
 
     if (!(await adapter.isConnected())) {
       try {
-        await adapter.connect();
+        await adapter.connect(() => {
+          setAdapter(null);
+        });
         dispatch({ type: 'connected' });
       } catch (e) {
         console.error(e);
@@ -41,19 +43,23 @@ export const Connect = ({ navigation }: NavigatorProps<'Connect'>) => {
     } else {
       dispatch({ type: 'connected' });
     }
-  }, [adapter]);
+  }, [adapter, setAdapter]);
 
   useEffect(() => {
-    console.log('useEffect');
     connect();
   }, [connect]);
 
   useEffect(() => {
     if (phase === 'connected' && adapter) {
-      rememberDevice(adapter);
-      navigation.navigate('Home');
+      const device = {
+        id: adapter.getId(),
+        adapter: adapter.getAdapterName(),
+      };
+
+      setSettingsForKey('device', device);
+      navigation.navigate('Home', { device });
     }
-  }, [phase, adapter, navigation]);
+  }, [phase, adapter, setSettingsForKey, navigation]);
 
   return (
     <>

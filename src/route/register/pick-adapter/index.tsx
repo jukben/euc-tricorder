@@ -2,14 +2,14 @@ import React from 'react';
 import { ScrollView } from 'react-native';
 import { List } from 'react-native-paper';
 
-import { NavigatorProps } from '..';
+import { RegisterNavigatorProps } from '..';
 import { adapters, AdapterFactory } from '../../../adapters';
 import { useBle, useAdapter } from '../../../providers';
 
 export const PickAdapter = ({
   route,
   navigation,
-}: NavigatorProps<'PickAdapter'>) => {
+}: RegisterNavigatorProps<'PickAdapter'>) => {
   const { setAdapter } = useAdapter();
   const bleApi = useBle();
   const {

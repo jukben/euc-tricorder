@@ -17,11 +17,9 @@ type Stack = {
   PickAdapter: { device: Device };
 } & RootStack;
 
-export type NavigatorProps<P extends keyof Stack> = CustomNavigatorProps<
-  StackNavigationProp<Stack>,
-  Stack,
-  P
->;
+export type RegisterNavigatorProps<
+  P extends keyof Stack
+> = CustomNavigatorProps<StackNavigationProp<Stack>, Stack, P>;
 
 const Stack = createStackNavigator<Stack>();
 

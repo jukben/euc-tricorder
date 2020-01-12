@@ -1,21 +1,24 @@
 import React, { useEffect, useReducer, useCallback } from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import {
+  createStackNavigator,
+  StackNavigationProp,
+} from '@react-navigation/stack';
 import * as routes from './route';
 import { ActivityIndicator } from 'react-native-paper';
 import { CustomNavigatorProps } from './types';
 import { SafeAreaView } from 'react-native';
 import { useSettings, TSettings } from './providers/settings';
-import { useBle } from './providers';
 
 export type Stack = {
   Register: {};
-  Home: {};
+  Home: {
+    device: TSettings['device'];
+  };
 };
 
-export type NavigatorProps<P extends keyof Stack> = CustomNavigatorProps<
-  Stack,
-  P
->;
+export type CrossroadNavigatorProps<
+  P extends keyof Stack
+> = CustomNavigatorProps<StackNavigationProp<Stack>, Stack, P>;
 
 const Root = createStackNavigator<Stack>();
 
@@ -48,33 +51,33 @@ function reducer(state: State, action: Action): State {
 
 export const Crossroad: React.FC = () => {
   const { getSettingsForKey } = useSettings();
-  const { manager } = useBle();
   const [state, dispatch] = useReducer(reducer, { phase: 'loading' });
 
   const getDeviceToJoin = useCallback(async () => {
     const rememberedDevice = await getSettingsForKey('device');
-    setTimeout(
-      () => dispatch({ type: 'loaded', device: rememberedDevice }),
-      1000,
-    );
+    dispatch({ type: 'loaded', device: rememberedDevice });
   }, [getSettingsForKey]);
 
   useEffect(() => {
     getDeviceToJoin();
   }, [getDeviceToJoin]);
 
-  const { phase } = state;
-
-  return phase === 'loading' ? (
+  return state.phase === 'loading' ? (
     <SafeAreaView>
       <ActivityIndicator />
     </SafeAreaView>
   ) : (
     <Root.Navigator
-      initialRouteName={phase === 'auto-connect' ? 'Home' : 'Register'}
+      initialRouteName={state.phase === 'auto-connect' ? 'Home' : 'Register'}
       screenOptions={{ headerShown: false }}>
+      <Root.Screen
+        name="Home"
+        component={routes.Home}
+        initialParams={{
+          device: state.phase === 'auto-connect' ? state.device : undefined,
+        }}
+      />
       <Root.Screen name="Register" component={routes.Register} />
-      <Root.Screen name="Home" component={routes.Home} />
     </Root.Navigator>
   );
 };
