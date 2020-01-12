@@ -4,9 +4,9 @@ import { List } from 'react-native-paper';
 import { BleManager, Device } from 'react-native-ble-plx';
 import { ExtractParameterType } from '../../../types';
 import { useBle } from '../../../providers';
-import { NavigatorProps } from '../';
+import { RegisterNavigatorProps } from '../';
 
-export const Search = ({ navigation }: NavigatorProps<'Search'>) => {
+export const Search = ({ navigation }: RegisterNavigatorProps<'Search'>) => {
   const { manager } = useBle();
   const DevicesMapRef = useRef<Map<Device['id'], Device>>(new Map());
   const [devices, setDevices] = useState<Array<Device>>([]);

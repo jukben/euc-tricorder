@@ -18,7 +18,7 @@ type Adapter = (
   getId: () => AdapterID;
   getAdapterName: () => string;
   getName: () => string;
-  connect: () => Promise<unknown>;
+  connect: (onDisconnect?: () => void) => Promise<unknown>;
   disconnect: () => Promise<unknown>;
   isConnected: () => Promise<boolean>;
   addListener: (listener: (deviceData: DeviceData) => void) => number;

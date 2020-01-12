@@ -1,3 +1,3 @@
 export * from './ble';
 export * from './adapter';
-// export * from './settings';
+export * from './settings';

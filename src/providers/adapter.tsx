@@ -1,10 +1,10 @@
 import React, { useState, useContext, ReactChild } from 'react';
 import { AdapterFactory } from '../adapters';
 
-type TAdapter = ReturnType<AdapterFactory>;
+type TAdapter = ReturnType<AdapterFactory> | null;
 
 type AdapterAPI = {
-  adapter: TAdapter | null;
+  adapter: TAdapter;
   setAdapter: (adapter: TAdapter) => void;
 };
 

@@ -1,30 +1,23 @@
-import React, { useEffect } from 'react';
-import { Text, SafeAreaView } from 'react-native';
+import React from 'react';
+import { SafeAreaView, ActivityIndicator } from 'react-native';
+import styled from 'styled-components/native';
+
+import { Metrics } from './metrics';
+
 import { useAdapter } from '../../../providers';
-import { Speedometer } from './speedometer';
-import { Thermometer } from './thermometer';
+
+const Container = styled.View`
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+`;
 
 export const Device = () => {
   const { adapter } = useAdapter();
 
-  console.log('adapter in monitor', adapter);
-
-  useEffect(() => {
-    if (adapter) {
-      adapter.connect();
-    }
-  }, [adapter]);
-
   return (
     <SafeAreaView>
-      {adapter ? (
-        <>
-          <Speedometer />
-          <Thermometer />
-        </>
-      ) : (
-        <Text>Loading...</Text>
-      )}
+      <Container>{adapter ? <Metrics /> : <ActivityIndicator />}</Container>
     </SafeAreaView>
   );
 };

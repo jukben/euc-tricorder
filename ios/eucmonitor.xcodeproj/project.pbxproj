@@ -167,7 +167,6 @@
 			children = (
 			);
 			name = Resources;
-			path = "";
 			sourceTree = "<group>";
 		};
 		CD959242C95CD2F0E6118F20 /* Pods */ = {
