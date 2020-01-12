@@ -1,4 +1,4 @@
-import React, { useState, useContext, ReactChild } from 'react';
+import React, { useState, useContext, ReactChild, useMemo } from 'react';
 import { AdapterFactory } from '../adapters';
 
 type TAdapter = ReturnType<AdapterFactory> | null;
@@ -29,7 +29,7 @@ export const AdapterProvider = ({
 }) => {
   const [adapter, setAdapter] = useState<AdapterAPI['adapter']>(value);
 
-  const api = { adapter, setAdapter };
+  const api = useMemo(() => ({ adapter, setAdapter }), [adapter, setAdapter]);
 
   return (
     <AdapterContext.Provider value={api}>{children}</AdapterContext.Provider>

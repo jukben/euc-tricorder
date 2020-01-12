@@ -7,15 +7,17 @@ import { useBle } from '../../../providers';
 import { RegisterNavigatorProps } from '../';
 
 export const Search = ({ navigation }: RegisterNavigatorProps<'Search'>) => {
-  const { manager } = useBle();
+  const { manager, state } = useBle();
   const DevicesMapRef = useRef<Map<Device['id'], Device>>(new Map());
   const [devices, setDevices] = useState<Array<Device>>([]);
 
   useEffect(() => {
-    manager.startDeviceScan(null, null, handleListener);
+    if (state === 'PoweredOn') {
+      manager.startDeviceScan(null, null, handleListener);
+    }
 
     return () => manager.stopDeviceScan();
-  }, [manager]);
+  }, [manager, state]);
 
   const handleListener: ExtractParameterType<
     BleManager['startDeviceScan'],
