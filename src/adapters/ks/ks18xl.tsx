@@ -47,6 +47,11 @@ export const ks18xl = createAdapter(NAME, device => {
   };
 
   const connect: AdapterService['connect'] = async () => {
+    if (await isConnected()) {
+      console.log('already connected');
+      return;
+    }
+
     await device.connect();
 
     await device.discoverAllServicesAndCharacteristics();

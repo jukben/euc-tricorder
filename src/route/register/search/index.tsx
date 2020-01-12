@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { ScrollView, ActivityIndicator } from 'react-native';
+import { ScrollView } from 'react-native';
 import { List } from 'react-native-paper';
 import { BleManager, Device } from 'react-native-ble-plx';
 import { ExtractParameterType } from '../../../types';
@@ -7,21 +7,14 @@ import { useBle } from '../../../providers';
 import { NavigatorProps } from '../';
 
 export const Search = ({ navigation }: NavigatorProps<'Search'>) => {
-  const [loading, setLoading] = useState(true);
   const { manager } = useBle();
   const DevicesMapRef = useRef<Map<Device['id'], Device>>(new Map());
   const [devices, setDevices] = useState<Array<Device>>([]);
 
   useEffect(() => {
-    manager.onStateChange(newState => {
-      if (newState === 'PoweredOn') {
-        manager.startDeviceScan(null, null, handleListener);
-        setLoading(false);
-      } else {
-        manager.stopDeviceScan();
-        setLoading(true);
-      }
-    });
+    manager.startDeviceScan(null, null, handleListener);
+
+    return () => manager.stopDeviceScan();
   }, [manager]);
 
   const handleListener: ExtractParameterType<
@@ -49,7 +42,6 @@ export const Search = ({ navigation }: NavigatorProps<'Search'>) => {
 
   return (
     <ScrollView>
-      {loading && <ActivityIndicator />}
       <List.Section>
         {devices
           .filter(device => device.name)

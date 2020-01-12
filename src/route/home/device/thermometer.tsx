@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Text } from 'react-native';
 import { useAdapter } from '../../../providers';
 
-export const Speedometer = () => {
-  const [speed, setSpeed] = useState(0);
+export const Thermometer = () => {
+  const [temperature, setTemperature] = useState<string | null>(null);
 
   const { adapter } = useAdapter();
 
@@ -12,12 +12,12 @@ export const Speedometer = () => {
       return;
     }
 
-    const id = adapter.addListener(({ speed: s }) => {
-      setSpeed(s);
+    const id = adapter.addListener(({ temperature: t }) => {
+      setTemperature(t);
     });
 
     return () => adapter.removeListener(id);
   }, [adapter]);
 
-  return <Text>Speedometer: {speed}</Text>;
+  return <Text>temperature: {temperature ? temperature : '?'}</Text>;
 };

@@ -1,29 +1,30 @@
 import React, { useEffect } from 'react';
-import { View, Text } from 'react-native';
+import { Text, SafeAreaView } from 'react-native';
+import { useAdapter } from '../../../providers';
 import { Speedometer } from './speedometer';
-import { useAdapter, useBle } from '../../../providers';
-import { getDevice } from '../../../utils';
+import { Thermometer } from './thermometer';
 
 export const Device = () => {
-  const { adapter, setAdapter } = useAdapter();
-  const bleApi = useBle();
+  const { adapter } = useAdapter();
 
-  const autoConnect = async () => {
-    const device = await getDevice();
-    if (!device) {
-      console.error('device not remembered');
-    }
-
-    console.log('pripojit k device');
-  };
+  console.log('adapter in monitor', adapter);
 
   useEffect(() => {
-    autoConnect();
-  }, []);
+    if (adapter) {
+      adapter.connect();
+    }
+  }, [adapter]);
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Speedometer />
-    </View>
+    <SafeAreaView>
+      {adapter ? (
+        <>
+          <Speedometer />
+          <Thermometer />
+        </>
+      ) : (
+        <Text>Loading...</Text>
+      )}
+    </SafeAreaView>
   );
 };
