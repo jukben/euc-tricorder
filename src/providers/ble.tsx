@@ -24,13 +24,15 @@ export const BleProvider: React.FC = ({ children }) => {
   const [state, setState] = useState<State>('Unknown' as State);
 
   useEffect(() => {
-    bleManagerRef.current.onStateChange(newState => {
+    const subscription = bleManagerRef.current.onStateChange(newState => {
       if (newState === state) {
         return;
       }
 
       setState(newState);
     });
+
+    return () => subscription.remove();
   }, [state]);
 
   const api = useMemo(() => ({ manager: bleManagerRef.current, state }), [

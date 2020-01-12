@@ -1,9 +1,16 @@
 import React, { useEffect, useCallback, useReducer } from 'react';
-import { Text } from 'react-native';
-import { ActivityIndicator } from 'react-native-paper';
+import { Text, ActivityIndicator } from 'react-native';
 
 import { useAdapter, useSettings } from '../../../providers';
 import { RegisterNavigatorProps } from '..';
+import styled from 'styled-components/native';
+
+const Container = styled.View`
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 type State = { phase: 'loading' } | { phase: 'error' } | { phase: 'connected' };
 type Action = { type: 'failure' } | { type: 'connected' };
@@ -30,18 +37,14 @@ export const Connect = ({ navigation }: RegisterNavigatorProps<'Connect'>) => {
       return;
     }
 
-    if (!(await adapter.isConnected())) {
-      try {
-        await adapter.connect(() => {
-          setAdapter(null);
-        });
-        dispatch({ type: 'connected' });
-      } catch (e) {
-        console.error(e);
-        dispatch({ type: 'failure' });
-      }
-    } else {
+    try {
+      await adapter.connect(() => {
+        setAdapter(null);
+      });
       dispatch({ type: 'connected' });
+    } catch (e) {
+      console.error(e);
+      dispatch({ type: 'failure' });
     }
   }, [adapter, setAdapter]);
 
@@ -62,16 +65,12 @@ export const Connect = ({ navigation }: RegisterNavigatorProps<'Connect'>) => {
   }, [phase, adapter, setSettingsForKey, navigation]);
 
   return (
-    <>
+    <Container>
+      {phase === 'loading' && <ActivityIndicator />}
       {phase === 'connected' && adapter && (
         <Text>{adapter.getName() || 'Device'} is successfully registered!</Text>
       )}
-      {phase === 'loading' && <ActivityIndicator />}
-      {phase === 'error' && (
-        <Text>
-          Device couldn't be connected. Have you picked the correct adapter?
-        </Text>
-      )}
-    </>
+      {phase === 'error' && <Text>Device couldn't be connected!</Text>}
+    </Container>
   );
 };

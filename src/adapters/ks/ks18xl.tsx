@@ -53,17 +53,22 @@ export const ks18xl = createAdapter(NAME, device => {
       return;
     }
 
-    await device.connect();
+    try {
+      await device.connect();
 
-    await device.discoverAllServicesAndCharacteristics();
+      await device.discoverAllServicesAndCharacteristics();
 
-    await device.readCharacteristicForService(KS_SERVICE, KS_CHAR);
+      await device.readCharacteristicForService(KS_SERVICE, KS_CHAR);
 
-    await device.writeCharacteristicWithoutResponseForService(
-      KS_SERVICE,
-      KS_CHAR,
-      KS_COMMANDS.REQUEST_NAME,
-    );
+      await device.writeCharacteristicWithoutResponseForService(
+        KS_SERVICE,
+        KS_CHAR,
+        KS_COMMANDS.REQUEST_NAME,
+      );
+    } catch (e) {
+      await device.cancelConnection();
+      throw e;
+    }
 
     onDisconnectSubscription = device.onDisconnected(
       handleDisconnect(onDisconnect),

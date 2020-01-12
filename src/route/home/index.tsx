@@ -69,9 +69,9 @@ export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
         if (bleDevice && bleDevice.id === device.id) {
           const configuredAdapter = adapterFactory(bleDevice, bleApi);
 
-          setAdapter(configuredAdapter);
-
           configuredAdapter.connect(handleDisconnect);
+
+          setAdapter(configuredAdapter);
 
           bleApi.manager.stopDeviceScan();
         }
