@@ -10,10 +10,11 @@ import { PickAdapter } from './pick-adapter';
 import { Connect } from './connect';
 import { Stack as RootStack } from '../../Crossroad';
 import { CustomNavigatorProps } from '../../types';
+import { AdapterService } from '../../adapters';
 
 type Stack = {
   Search: {};
-  Connect: {};
+  Connect: { adapter: AdapterService };
   PickAdapter: { device: Device };
 } & RootStack;
 

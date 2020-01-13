@@ -17,7 +17,7 @@ export const BleProvider: React.FC = ({ children }) => {
     new BleManager({
       restoreStateIdentifier: 'eucmonitor',
       restoreStateFunction: restoredState =>
-        restoredState && console.log('restored state', restoredState),
+        restoredState && console.log('restored state tu', restoredState),
     }),
   );
 

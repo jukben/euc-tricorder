@@ -8,6 +8,8 @@ import * as routes from './route';
 import { CustomNavigatorProps } from './types';
 import { ActivityIndicator } from 'react-native';
 import { useSettings, TSettings } from './providers/settings';
+import PushNotificationIOS from '@react-native-community/push-notification-ios';
+import Tts from 'react-native-tts';
 
 const Container = styled.View`
   flex: 1;
@@ -69,6 +71,8 @@ export const Crossroad: React.FC = () => {
   }, [getSettingsForKey]);
 
   useEffect(() => {
+    PushNotificationIOS.requestPermissions();
+    Tts.setDucking(true);
     getDeviceToJoin();
   }, [getDeviceToJoin]);
 

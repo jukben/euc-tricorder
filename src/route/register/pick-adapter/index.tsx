@@ -4,13 +4,12 @@ import { List } from 'react-native-paper';
 
 import { RegisterNavigatorProps } from '..';
 import { adapters, AdapterFactory } from '../../../adapters';
-import { useBle, useAdapter } from '../../../providers';
+import { useBle } from '../../../providers';
 
 export const PickAdapter = ({
   route,
   navigation,
 }: RegisterNavigatorProps<'PickAdapter'>) => {
-  const { setAdapter } = useAdapter();
   const bleApi = useBle();
   const {
     params: { device },
@@ -18,9 +17,8 @@ export const PickAdapter = ({
 
   const handlePress = async (adapterFactory: AdapterFactory) => {
     const adapter = adapterFactory(device, bleApi);
-    setAdapter(adapter);
 
-    navigation.navigate('Connect');
+    navigation.navigate('Connect', { adapter });
   };
 
   return (

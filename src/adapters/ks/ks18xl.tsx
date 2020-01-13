@@ -23,6 +23,12 @@ export const ks18xl = createAdapter(NAME, device => {
   let onDisconnectSubscription: BleSubscription | null = null;
   let listeners: Array<Listener> = [];
 
+  const unsubscribe = () => {
+    monitorSubscription && monitorSubscription.remove();
+    onDisconnectSubscription && onDisconnectSubscription.remove();
+    listeners = [];
+  };
+
   const handleListening: BleListener = (error, characteristics) => {
     if (error) {
       return;
@@ -43,8 +49,19 @@ export const ks18xl = createAdapter(NAME, device => {
   };
 
   const handleDisconnect = (onDisconnect?: () => void) => () => {
-    console.log('disconnect...');
+    console.log('disconnect');
+    unsubscribe();
     onDisconnect && onDisconnect();
+  };
+
+  const testServicesAndCharacteristics = async () => {
+    await device.connect();
+
+    await device.discoverAllServicesAndCharacteristics();
+
+    await device.readCharacteristicForService(KS_SERVICE, KS_CHAR);
+
+    await device.cancelConnection();
   };
 
   const connect: AdapterService['connect'] = async onDisconnect => {
@@ -82,10 +99,8 @@ export const ks18xl = createAdapter(NAME, device => {
   };
 
   const disconnect: AdapterService['disconnect'] = async () => {
-    monitorSubscription && monitorSubscription.remove();
-    onDisconnectSubscription && onDisconnectSubscription.remove();
+    unsubscribe();
     await device.cancelConnection();
-    listeners = [];
   };
 
   const isConnected = () => device.isConnected();
@@ -106,6 +121,7 @@ export const ks18xl = createAdapter(NAME, device => {
     getId,
     getName,
     getAdapterName,
+    testServicesAndCharacteristics,
     connect,
     disconnect,
     isConnected,
