@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* eucmonitorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* eucmonitorTests.m */; };
+		00E356F31AD99517003FC87E /* euctricoderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* euctricoderTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		62D884F51B3C0F2F7AF405F6 /* libPods-eucmonitorTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E629A434A01CCF2B87A6F61A /* libPods-eucmonitorTests.a */; };
-		79D7901023C670AE00709011 /* bridge-me.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D7900F23C670AE00709011 /* bridge-me.swift */; };
-		79D7901123C670AE00709011 /* bridge-me.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D7900F23C670AE00709011 /* bridge-me.swift */; };
-		7B618845C6D2C3269B7E066B /* libPods-eucmonitor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 34A635C90919146E3D97BB86 /* libPods-eucmonitor.a */; };
+		67AC8FA6B68C95C365B9922D /* libPods-euctricoderTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4EF4D02D220EC8AB8325F5 /* libPods-euctricoderTests.a */; };
+		772726EC389903A9291AA6B6 /* libPods-euctricoder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1FBB3760B902F4D649A447 /* libPods-euctricoder.a */; };
+		79F96E5023CD006000AFAE6E /* bridge-me.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F96E4F23CD006000AFAE6E /* bridge-me.swift */; };
+		79F96E5123CD006000AFAE6E /* bridge-me.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F96E4F23CD006000AFAE6E /* bridge-me.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,42 +24,33 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = eucmonitor;
+			remoteInfo = euctricoder;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* eucmonitorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = eucmonitorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* euctricoderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = euctricoderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* eucmonitorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = eucmonitorTests.m; sourceTree = "<group>"; };
-		122F5C8176EE2C05B91F0DAF /* Pods-eucmonitorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eucmonitorTests.release.xcconfig"; path = "Target Support Files/Pods-eucmonitorTests/Pods-eucmonitorTests.release.xcconfig"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* eucmonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eucmonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = eucmonitor/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = eucmonitor/AppDelegate.m; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* euctricoderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = euctricoderTests.m; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* euctricoder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = euctricoder.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = euctricoder/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = euctricoder/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = eucmonitor/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = eucmonitor/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = eucmonitor/main.m; sourceTree = "<group>"; };
-		34A635C90919146E3D97BB86 /* libPods-eucmonitor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-eucmonitor.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		37028D3DBDD98BDEAD02BF24 /* Pods-eucmonitor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eucmonitor.debug.xcconfig"; path = "Target Support Files/Pods-eucmonitor/Pods-eucmonitor.debug.xcconfig"; sourceTree = "<group>"; };
-		53BCB929D7DAA720F70B5701 /* Pods-eucmonitor-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eucmonitor-tvOS.release.xcconfig"; path = "Target Support Files/Pods-eucmonitor-tvOS/Pods-eucmonitor-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		62A368325D06E3BD7707FC06 /* libPods-eucmonitor-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-eucmonitor-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		65338D1A587118F5A5C4C658 /* Pods-eucmonitor-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eucmonitor-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-eucmonitor-tvOSTests/Pods-eucmonitor-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		65DC90CA66FCAD71EE6097FB /* Pods-eucmonitor-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eucmonitor-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-eucmonitor-tvOS/Pods-eucmonitor-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		79199F1823CBC3E300524E7C /* eucmonitor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = eucmonitor.entitlements; path = eucmonitor/eucmonitor.entitlements; sourceTree = "<group>"; };
-		79D7900B23C670AD00709011 /* eucmonitor-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "eucmonitor-Bridging-Header.h"; sourceTree = "<group>"; };
-		79D7900C23C670AD00709011 /* eucmonitorTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "eucmonitorTests-Bridging-Header.h"; sourceTree = "<group>"; };
-		79D7900D23C670AD00709011 /* eucmonitor-tvOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "eucmonitor-tvOS-Bridging-Header.h"; sourceTree = "<group>"; };
-		79D7900E23C670AD00709011 /* eucmonitor-tvOSTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "eucmonitor-tvOSTests-Bridging-Header.h"; sourceTree = "<group>"; };
-		79D7900F23C670AE00709011 /* bridge-me.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "bridge-me.swift"; sourceTree = "<group>"; };
-		7CBDD7E24CE3585F048A73A6 /* libPods-eucmonitor-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-eucmonitor-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		81878C704F8118E58DE31E0A /* Pods-eucmonitor-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eucmonitor-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-eucmonitor-tvOSTests/Pods-eucmonitor-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		DD5BAD3A5078392EED1767DB /* Pods-eucmonitorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eucmonitorTests.debug.xcconfig"; path = "Target Support Files/Pods-eucmonitorTests/Pods-eucmonitorTests.debug.xcconfig"; sourceTree = "<group>"; };
-		E629A434A01CCF2B87A6F61A /* libPods-eucmonitorTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-eucmonitorTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = euctricoder/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = euctricoder/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = euctricoder/main.m; sourceTree = "<group>"; };
+		3D1FBB3760B902F4D649A447 /* libPods-euctricoder.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-euctricoder.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		56FFBFD6606653E7E1FDE737 /* Pods-euctricoderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-euctricoderTests.release.xcconfig"; path = "Target Support Files/Pods-euctricoderTests/Pods-euctricoderTests.release.xcconfig"; sourceTree = "<group>"; };
+		7491974F9FD7B71CFC28281D /* Pods-euctricoderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-euctricoderTests.debug.xcconfig"; path = "Target Support Files/Pods-euctricoderTests/Pods-euctricoderTests.debug.xcconfig"; sourceTree = "<group>"; };
+		79F96E4B23CD006000AFAE6E /* euctricoder-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "euctricoder-Bridging-Header.h"; sourceTree = "<group>"; };
+		79F96E4C23CD006000AFAE6E /* euctricoderTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "euctricoderTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		79F96E4F23CD006000AFAE6E /* bridge-me.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "bridge-me.swift"; sourceTree = "<group>"; };
+		8B298032D9639415997BF4B2 /* Pods-euctricoder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-euctricoder.release.xcconfig"; path = "Target Support Files/Pods-euctricoder/Pods-euctricoder.release.xcconfig"; sourceTree = "<group>"; };
+		9E4EF4D02D220EC8AB8325F5 /* libPods-euctricoderTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-euctricoderTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA7596EEEC770A933DEC1C7A /* Pods-euctricoder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-euctricoder.debug.xcconfig"; path = "Target Support Files/Pods-euctricoder/Pods-euctricoder.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		F953A23B78A48A98E3C670DF /* Pods-eucmonitor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eucmonitor.release.xcconfig"; path = "Target Support Files/Pods-eucmonitor/Pods-eucmonitor.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62D884F51B3C0F2F7AF405F6 /* libPods-eucmonitorTests.a in Frameworks */,
+				67AC8FA6B68C95C365B9922D /* libPods-euctricoderTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,20 +66,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B618845C6D2C3269B7E066B /* libPods-eucmonitor.a in Frameworks */,
+				772726EC389903A9291AA6B6 /* libPods-euctricoder.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* eucmonitorTests */ = {
+		00E356EF1AD99517003FC87E /* euctricoderTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* eucmonitorTests.m */,
+				00E356F21AD99517003FC87E /* euctricoderTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = eucmonitorTests;
+			path = euctricoderTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -99,10 +90,9 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* eucmonitor */ = {
+		13B07FAE1A68108700A75B9A /* euctricoder */ = {
 			isa = PBXGroup;
 			children = (
-				79199F1823CBC3E300524E7C /* eucmonitor.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -111,7 +101,7 @@
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = eucmonitor;
+			name = euctricoder;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -119,10 +109,8 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				34A635C90919146E3D97BB86 /* libPods-eucmonitor.a */,
-				7CBDD7E24CE3585F048A73A6 /* libPods-eucmonitor-tvOS.a */,
-				62A368325D06E3BD7707FC06 /* libPods-eucmonitor-tvOSTests.a */,
-				E629A434A01CCF2B87A6F61A /* libPods-eucmonitorTests.a */,
+				3D1FBB3760B902F4D649A447 /* libPods-euctricoder.a */,
+				9E4EF4D02D220EC8AB8325F5 /* libPods-euctricoderTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -137,18 +125,15 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				79D7900F23C670AE00709011 /* bridge-me.swift */,
-				13B07FAE1A68108700A75B9A /* eucmonitor */,
+				79F96E4F23CD006000AFAE6E /* bridge-me.swift */,
+				13B07FAE1A68108700A75B9A /* euctricoder */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* eucmonitorTests */,
+				00E356EF1AD99517003FC87E /* euctricoderTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				CD959242C95CD2F0E6118F20 /* Pods */,
-				79D7900B23C670AD00709011 /* eucmonitor-Bridging-Header.h */,
-				79D7900C23C670AD00709011 /* eucmonitorTests-Bridging-Header.h */,
-				79D7900D23C670AD00709011 /* eucmonitor-tvOS-Bridging-Header.h */,
-				79D7900E23C670AD00709011 /* eucmonitor-tvOSTests-Bridging-Header.h */,
-				96451A3DC7A64FB2AAE102A8 /* Resources */,
+				9DF024BDF526183F5A68026C /* Pods */,
+				79F96E4B23CD006000AFAE6E /* euctricoder-Bridging-Header.h */,
+				79F96E4C23CD006000AFAE6E /* euctricoderTests-Bridging-Header.h */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -158,30 +143,19 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* eucmonitor.app */,
-				00E356EE1AD99517003FC87E /* eucmonitorTests.xctest */,
+				13B07F961A680F5B00A75B9A /* euctricoder.app */,
+				00E356EE1AD99517003FC87E /* euctricoderTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		96451A3DC7A64FB2AAE102A8 /* Resources */ = {
+		9DF024BDF526183F5A68026C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		CD959242C95CD2F0E6118F20 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				37028D3DBDD98BDEAD02BF24 /* Pods-eucmonitor.debug.xcconfig */,
-				F953A23B78A48A98E3C670DF /* Pods-eucmonitor.release.xcconfig */,
-				65DC90CA66FCAD71EE6097FB /* Pods-eucmonitor-tvOS.debug.xcconfig */,
-				53BCB929D7DAA720F70B5701 /* Pods-eucmonitor-tvOS.release.xcconfig */,
-				81878C704F8118E58DE31E0A /* Pods-eucmonitor-tvOSTests.debug.xcconfig */,
-				65338D1A587118F5A5C4C658 /* Pods-eucmonitor-tvOSTests.release.xcconfig */,
-				DD5BAD3A5078392EED1767DB /* Pods-eucmonitorTests.debug.xcconfig */,
-				122F5C8176EE2C05B91F0DAF /* Pods-eucmonitorTests.release.xcconfig */,
+				AA7596EEEC770A933DEC1C7A /* Pods-euctricoder.debug.xcconfig */,
+				8B298032D9639415997BF4B2 /* Pods-euctricoder.release.xcconfig */,
+				7491974F9FD7B71CFC28281D /* Pods-euctricoderTests.debug.xcconfig */,
+				56FFBFD6606653E7E1FDE737 /* Pods-euctricoderTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -189,11 +163,11 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* eucmonitorTests */ = {
+		00E356ED1AD99517003FC87E /* euctricoderTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "eucmonitorTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "euctricoderTests" */;
 			buildPhases = (
-				4D778DEA295384C5DB727AE3 /* [CP] Check Pods Manifest.lock */,
+				770514029E3610EC090E332E /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
@@ -203,30 +177,30 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = eucmonitorTests;
-			productName = eucmonitorTests;
-			productReference = 00E356EE1AD99517003FC87E /* eucmonitorTests.xctest */;
+			name = euctricoderTests;
+			productName = euctricoderTests;
+			productReference = 00E356EE1AD99517003FC87E /* euctricoderTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* eucmonitor */ = {
+		13B07F861A680F5B00A75B9A /* euctricoder */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "eucmonitor" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "euctricoder" */;
 			buildPhases = (
-				BC43A6117845229B2AE0085C /* [CP] Check Pods Manifest.lock */,
+				850ADA48FDFAD2650508765E /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				9C99ADFFBAC5A4A50C30C9D3 /* [CP] Copy Pods Resources */,
+				5CF94A100FFB2E71559ABBEA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = eucmonitor;
-			productName = eucmonitor;
-			productReference = 13B07F961A680F5B00A75B9A /* eucmonitor.app */;
+			name = euctricoder;
+			productName = euctricoder;
+			productReference = 13B07F961A680F5B00A75B9A /* euctricoder.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -235,7 +209,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 940;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -250,7 +224,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "eucmonitor" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "euctricoder" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -264,8 +238,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* eucmonitor */,
-				00E356ED1AD99517003FC87E /* eucmonitorTests */,
+				13B07F861A680F5B00A75B9A /* euctricoder */,
+				00E356ED1AD99517003FC87E /* euctricoderTests */,
 			);
 		};
 /* End PBXProject section */
@@ -304,35 +278,13 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		4D778DEA295384C5DB727AE3 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-eucmonitorTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9C99ADFFBAC5A4A50C30C9D3 /* [CP] Copy Pods Resources */ = {
+		5CF94A100FFB2E71559ABBEA /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-eucmonitor/Pods-eucmonitor-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-euctricoder/Pods-euctricoder-resources.sh",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
@@ -371,10 +323,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-eucmonitor/Pods-eucmonitor-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-euctricoder/Pods-euctricoder-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BC43A6117845229B2AE0085C /* [CP] Check Pods Manifest.lock */ = {
+		770514029E3610EC090E332E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -389,7 +341,29 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-eucmonitor-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-euctricoderTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		850ADA48FDFAD2650508765E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-euctricoder-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -422,8 +396,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79D7901123C670AE00709011 /* bridge-me.swift in Sources */,
-				00E356F31AD99517003FC87E /* eucmonitorTests.m in Sources */,
+				79F96E5123CD006000AFAE6E /* bridge-me.swift in Sources */,
+				00E356F31AD99517003FC87E /* euctricoderTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,7 +405,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79D7901023C670AE00709011 /* bridge-me.swift in Sources */,
+				79F96E5023CD006000AFAE6E /* bridge-me.swift in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
@@ -442,7 +416,7 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* eucmonitor */;
+			target = 13B07F861A680F5B00A75B9A /* euctricoder */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -454,7 +428,7 @@
 				13B07FB21A68108700A75B9A /* Base */,
 			);
 			name = LaunchScreen.xib;
-			path = eucmonitor;
+			path = euctricoder;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -462,7 +436,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DD5BAD3A5078392EED1767DB /* Pods-eucmonitorTests.debug.xcconfig */;
+			baseConfigurationReference = 7491974F9FD7B71CFC28281D /* Pods-euctricoderTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -472,7 +446,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = eucmonitorTests/Info.plist;
+				INFOPLIST_FILE = euctricoderTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -482,23 +456,23 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "eucmonitorTests-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "euctricoderTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/eucmonitor.app/eucmonitor";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/euctricoder.app/euctricoder";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 122F5C8176EE2C05B91F0DAF /* Pods-eucmonitorTests.release.xcconfig */;
+			baseConfigurationReference = 56FFBFD6606653E7E1FDE737 /* Pods-euctricoderTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = U2HL3HZ5TZ;
-				INFOPLIST_FILE = eucmonitorTests/Info.plist;
+				INFOPLIST_FILE = euctricoderTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -508,32 +482,31 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "eucmonitorTests-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "euctricoderTests-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/eucmonitor.app/eucmonitor";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/euctricoder.app/euctricoder";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 37028D3DBDD98BDEAD02BF24 /* Pods-eucmonitor.debug.xcconfig */;
+			baseConfigurationReference = AA7596EEEC770A933DEC1C7A /* Pods-euctricoder.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = eucmonitor/eucmonitor.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = U2HL3HZ5TZ;
-				INFOPLIST_FILE = eucmonitor/Info.plist;
+				INFOPLIST_FILE = euctricoder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = eucmonitor;
-				SWIFT_OBJC_BRIDGING_HEADER = "eucmonitor-Bridging-Header.h";
+				PRODUCT_BUNDLE_IDENTIFIER = org.jukben.euctricoder;
+				PRODUCT_NAME = euctricoder;
+				SWIFT_OBJC_BRIDGING_HEADER = "euctricoder-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -542,23 +515,22 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F953A23B78A48A98E3C670DF /* Pods-eucmonitor.release.xcconfig */;
+			baseConfigurationReference = 8B298032D9639415997BF4B2 /* Pods-euctricoder.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = eucmonitor/eucmonitor.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = U2HL3HZ5TZ;
-				INFOPLIST_FILE = eucmonitor/Info.plist;
+				INFOPLIST_FILE = euctricoder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = eucmonitor;
-				SWIFT_OBJC_BRIDGING_HEADER = "eucmonitor-Bridging-Header.h";
+				PRODUCT_BUNDLE_IDENTIFIER = org.jukben.euctricoder;
+				PRODUCT_NAME = euctricoder;
+				SWIFT_OBJC_BRIDGING_HEADER = "euctricoder-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -666,7 +638,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "eucmonitorTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "euctricoderTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -675,7 +647,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "eucmonitor" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "euctricoder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -684,7 +656,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "eucmonitor" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "euctricoder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
