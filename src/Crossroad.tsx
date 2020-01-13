@@ -3,11 +3,18 @@ import {
   createStackNavigator,
   StackNavigationProp,
 } from '@react-navigation/stack';
+import styled from 'styled-components/native';
 import * as routes from './route';
-import { ActivityIndicator } from 'react-native-paper';
 import { CustomNavigatorProps } from './types';
-import { SafeAreaView } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 import { useSettings, TSettings } from './providers/settings';
+
+const Container = styled.View`
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 export type Stack = {
   Register: {};
@@ -55,7 +62,10 @@ export const Crossroad: React.FC = () => {
 
   const getDeviceToJoin = useCallback(async () => {
     const rememberedDevice = await getSettingsForKey('device');
-    dispatch({ type: 'loaded', device: rememberedDevice });
+    setTimeout(
+      () => dispatch({ type: 'loaded', device: rememberedDevice }),
+      1000,
+    );
   }, [getSettingsForKey]);
 
   useEffect(() => {
@@ -63,9 +73,9 @@ export const Crossroad: React.FC = () => {
   }, [getDeviceToJoin]);
 
   return state.phase === 'loading' ? (
-    <SafeAreaView>
+    <Container>
       <ActivityIndicator />
-    </SafeAreaView>
+    </Container>
   ) : (
     <Root.Navigator
       initialRouteName={state.phase === 'auto-connect' ? 'Home' : 'Register'}

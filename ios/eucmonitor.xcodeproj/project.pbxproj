@@ -47,6 +47,7 @@
 		62A368325D06E3BD7707FC06 /* libPods-eucmonitor-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-eucmonitor-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65338D1A587118F5A5C4C658 /* Pods-eucmonitor-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eucmonitor-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-eucmonitor-tvOSTests/Pods-eucmonitor-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		65DC90CA66FCAD71EE6097FB /* Pods-eucmonitor-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eucmonitor-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-eucmonitor-tvOS/Pods-eucmonitor-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		79199F1823CBC3E300524E7C /* eucmonitor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = eucmonitor.entitlements; path = eucmonitor/eucmonitor.entitlements; sourceTree = "<group>"; };
 		79D7900B23C670AD00709011 /* eucmonitor-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "eucmonitor-Bridging-Header.h"; sourceTree = "<group>"; };
 		79D7900C23C670AD00709011 /* eucmonitorTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "eucmonitorTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		79D7900D23C670AD00709011 /* eucmonitor-tvOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "eucmonitor-tvOS-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -101,6 +102,7 @@
 		13B07FAE1A68108700A75B9A /* eucmonitor */ = {
 			isa = PBXGroup;
 			children = (
+				79199F1823CBC3E300524E7C /* eucmonitor.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -518,6 +520,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = eucmonitor/eucmonitor.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = U2HL3HZ5TZ;
@@ -543,6 +546,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = eucmonitor/eucmonitor.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = U2HL3HZ5TZ;
 				INFOPLIST_FILE = eucmonitor/Info.plist;
