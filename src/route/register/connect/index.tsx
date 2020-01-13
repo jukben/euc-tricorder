@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback, useReducer } from 'react';
 import { Text, ActivityIndicator } from 'react-native';
 
-import { useAdapter, useSettings } from '../../../providers';
+import { useSettings } from '../../../providers';
 import { RegisterNavigatorProps } from '..';
 import styled from 'styled-components/native';
 
@@ -26,27 +26,26 @@ function reducer(state: State, action: Action): State {
   }
 }
 
-export const Connect = ({ navigation }: RegisterNavigatorProps<'Connect'>) => {
+export const Connect = ({
+  navigation,
+  route,
+}: RegisterNavigatorProps<'Connect'>) => {
   const [state, dispatch] = useReducer(reducer, { phase: 'loading' });
-  const { adapter, setAdapter } = useAdapter();
   const { setSettingsForKey } = useSettings();
   const { phase } = state;
+  const {
+    params: { adapter },
+  } = route;
 
   const connect = useCallback(async () => {
-    if (!adapter) {
-      return;
-    }
-
     try {
-      await adapter.connect(() => {
-        setAdapter(null);
-      });
+      await adapter.testServicesAndCharacteristics();
       dispatch({ type: 'connected' });
     } catch (e) {
       console.error(e);
       dispatch({ type: 'failure' });
     }
-  }, [adapter, setAdapter]);
+  }, [adapter]);
 
   useEffect(() => {
     connect();

@@ -3,6 +3,9 @@ import {
   createBottomTabNavigator,
   BottomTabNavigationProp,
 } from '@react-navigation/bottom-tabs';
+import Tts from 'react-native-tts';
+import PushNotificationIOS from '@react-native-community/push-notification-ios';
+
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { useAdapter, useBle, useSettings } from '../../providers';
@@ -37,6 +40,10 @@ export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
   } = route;
 
   const handleDisconnect = useCallback(() => {
+    PushNotificationIOS.presentLocalNotification({
+      alertBody: 'Disconnected from the device',
+      alertAction: 'view',
+    });
     setAdapter(null);
   }, [setAdapter]);
 

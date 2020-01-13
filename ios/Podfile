@@ -43,13 +43,3 @@ target 'euctricoder' do
 
   use_native_modules!
 end
-
-target 'euctricoder-tvOS' do
-  # Pods for euctricoder-tvOS
-
-  target 'euctricoder-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-end

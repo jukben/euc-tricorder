@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Tts from 'react-native-tts';
 import { useAdapter } from '../../../providers';
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -23,6 +24,7 @@ const Text = styled.Text`
 
 export const Metrics = () => {
   const [data, setData] = useState<DeviceData | null>(null);
+  const [maxSpeed, setMaxSpeed] = useState(0);
 
   const { adapter } = useAdapter();
 
@@ -33,10 +35,22 @@ export const Metrics = () => {
 
     const id = adapter.addListener(d => {
       setData(d);
+
+      if (d.speed > maxSpeed) {
+        setMaxSpeed(d.speed);
+      }
     });
 
     return () => adapter.removeListener(id);
-  }, [adapter]);
+  }, [adapter, maxSpeed]);
+
+  // useEffect(() => {
+  //   const timerId = setTimeout(() => {
+  //     Tts.speak(`speed: ${maxSpeed}`);
+  //   }, 5000);
+
+  //   return () => clearTimeout(timerId);
+  // }, [maxSpeed]);
 
   if (!data) {
     return null;
@@ -56,7 +70,9 @@ export const Metrics = () => {
       </Row>
       <Row>
         <Icon name="speedometer" size={40} />
-        <Text>{speed} km/h</Text>
+        <Text>
+          {speed} ({maxSpeed}) km/h
+        </Text>
       </Row>
       <Row>
         <Icon name="alert" size={40} />
