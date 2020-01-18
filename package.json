@@ -7,7 +7,8 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "storybook": "start-storybook -p 7007"
   },
   "dependencies": {
     "@react-native-community/async-storage": "1.7.1",
@@ -38,12 +39,19 @@
     "@babel/runtime": "7.7.7",
     "@react-native-community/eslint-config": "0.0.6",
     "@react-native-community/eslint-plugin": "1.0.0",
+    "@storybook/addon-actions": "^5.3.6",
+    "@storybook/addon-links": "^5.3.6",
+    "@storybook/addons": "^5.3.6",
+    "@storybook/react-native": "^5.3.6",
+    "@storybook/react-native-server": "^5.3.6",
     "@types/react-native-vector-icons": "6.4.5",
     "@types/styled-components": "4.4.2",
     "babel-jest": "24.9.0",
+    "babel-loader": "^8.0.6",
     "eslint": "6.8.0",
     "jest": "24.9.0",
     "metro-react-native-babel-preset": "0.56.4",
+    "react-dom": "16.9.0",
     "react-test-renderer": "16.9.0",
     "styled-components": "4.4.1"
   },

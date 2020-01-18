@@ -4,9 +4,14 @@ import { Provider as PaperProvider } from 'react-native-paper';
 import { BleProvider, AdapterProvider } from './providers';
 import { SettingsProvider } from './providers/settings';
 import { Crossroad } from './Crossroad';
+import { default as Storybook } from '../storybook';
+
+const STORYBOOK = false;
 
 export const App = () => {
-  return (
+  return STORYBOOK ? (
+    <Storybook />
+  ) : (
     <NavigationNativeContainer>
       <PaperProvider>
         <SettingsProvider>
