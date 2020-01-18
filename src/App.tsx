@@ -5,8 +5,9 @@ import { BleProvider, AdapterProvider } from './providers';
 import { SettingsProvider } from './providers/settings';
 import { Crossroad } from './Crossroad';
 import { default as Storybook } from '../storybook';
+import Config from 'react-native-config';
 
-const STORYBOOK = false;
+const STORYBOOK = Boolean(Config.STORYBOOK);
 
 export const App = () => {
   return STORYBOOK ? (
