@@ -7,7 +7,8 @@ import { Crossroad } from './Crossroad';
 import { default as Storybook } from '../storybook';
 import Config from 'react-native-config';
 
-const STORYBOOK = Boolean(Config.STORYBOOK);
+const STORYBOOK = Config.STORYBOOK === 'true';
+console.log(Config);
 
 export const App = () => {
   return STORYBOOK ? (
