@@ -1906,7 +1906,7 @@
     color "^3.1.2"
     react-native-iphone-x-helper "^1.2.1"
 
-"@storybook/addon-actions@^5.3.6":
+"@storybook/addon-actions@5.3.6":
   version "5.3.6"
   resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-5.3.6.tgz#5e7ab3c80628101b2c5c278a5ac68ce07e704e86"
   integrity sha512-qNn7OIjOrcc7e1C3M2HtmC+fBjbeOYtAH1PKr15u4BgmP2ad22v8IuNcuEE7P7Lk0fJ22VFzWWxU5euYvvI/jQ==
@@ -1926,7 +1926,7 @@
     react-inspector "^4.0.0"
     uuid "^3.3.2"
 
-"@storybook/addon-links@^5.3.6":
+"@storybook/addon-links@5.3.6":
   version "5.3.6"
   resolved "https://registry.yarnpkg.com/@storybook/addon-links/-/addon-links-5.3.6.tgz#c74342e53df08ae250e25e8697b9e0e3e176c5bf"
   integrity sha512-oCXo6Tgb2sCwyjpkTGYRlmjFbCiqFozqCtxd7hQ1ON2wDns4Xr25Ik+F4Wv1a4d1xihGCb/g5KuOTaqXTf1TqA==
@@ -1942,7 +1942,7 @@
     qs "^6.6.0"
     ts-dedent "^1.1.0"
 
-"@storybook/addons@5.3.6", "@storybook/addons@^5.3.6":
+"@storybook/addons@5.3.6":
   version "5.3.6"
   resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-5.3.6.tgz#93c5492f09b54cee4885192a0fa79465aa91751f"
   integrity sha512-WXsIWOO9/0ydl0C2cGwGd6qrd4L49SoXLNiErDxmjIgLXOVicylCC3JRsExcBOlvmcfPpQniBDNFTXnl6NUldw==
@@ -2169,7 +2169,7 @@
     pretty-hrtime "^1.0.3"
     regenerator-runtime "^0.13.3"
 
-"@storybook/react-native-server@^5.3.6":
+"@storybook/react-native-server@5.3.6":
   version "5.3.6"
   resolved "https://registry.yarnpkg.com/@storybook/react-native-server/-/react-native-server-5.3.6.tgz#321cd0db59ea3286d2f8408c5ff09a742488a218"
   integrity sha512-BkDOzVG1hzTkkZF4YdtccHwgr/7Fdr6/me9xK88jQlVNBtcSSBEQBCe/VcBApbiztNrK4fZPnlu028xjSoMGKw==
@@ -2189,7 +2189,7 @@
     webpack "^4.33.0"
     ws "^7.1.2"
 
-"@storybook/react-native@^5.3.6":
+"@storybook/react-native@5.3.6":
   version "5.3.6"
   resolved "https://registry.yarnpkg.com/@storybook/react-native/-/react-native-5.3.6.tgz#f458416b80ddfb5cfa8ce5b4130d590b463413ab"
   integrity sha512-47nu+4maN+ZwF6o830H5SsUlYdM4fsf3AYK4wL74spPQ/bfz6AwD+Y/JEJz3lfLZBjL0LkRpUxKMv2uP1tL25Q==
@@ -3229,7 +3229,7 @@ babel-jest@24.9.0, babel-jest@^24.9.0:
     chalk "^2.4.2"
     slash "^2.0.0"
 
-babel-loader@^8.0.6:
+babel-loader@8.0.6:
   version "8.0.6"
   resolved "https://registry.yarnpkg.com/babel-loader/-/babel-loader-8.0.6.tgz#e33bdb6f362b03f4bb141a0c21ab87c501b70dfb"
   integrity sha512-4BmWKtBOBm13uoUwd08UwjZlaw3O9GWf456R9j+5YykFZ6LUIjIKLc0zEZf+hauxPOJs96C8k6FvYD09vWzhYw==

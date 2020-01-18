@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* euctricoderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* euctricoderTests.m */; };
+		00E356F31AD99517003FC87E /* euctricorderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* euctricorderTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		67AC8FA6B68C95C365B9922D /* libPods-euctricoderTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4EF4D02D220EC8AB8325F5 /* libPods-euctricoderTests.a */; };
-		772726EC389903A9291AA6B6 /* libPods-euctricoder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1FBB3760B902F4D649A447 /* libPods-euctricoder.a */; };
+		67AC8FA6B68C95C365B9922D /* libPods-euctricorderTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4EF4D02D220EC8AB8325F5 /* libPods-euctricorderTests.a */; };
+		772726EC389903A9291AA6B6 /* libPods-euctricorder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1FBB3760B902F4D649A447 /* libPods-euctricorder.a */; };
 		79F96E5023CD006000AFAE6E /* bridge-me.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F96E4F23CD006000AFAE6E /* bridge-me.swift */; };
 		79F96E5123CD006000AFAE6E /* bridge-me.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F96E4F23CD006000AFAE6E /* bridge-me.swift */; };
 /* End PBXBuildFile section */
@@ -24,31 +24,31 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = euctricoder;
+			remoteInfo = euctricorder;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* euctricoderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = euctricoderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* euctricorderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = euctricorderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* euctricoderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = euctricoderTests.m; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* euctricoder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = euctricoder.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = euctricoder/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = euctricoder/AppDelegate.m; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* euctricorderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = euctricorderTests.m; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* euctricorder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = euctricorder.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = euctricorder/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = euctricorder/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = euctricoder/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = euctricoder/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = euctricoder/main.m; sourceTree = "<group>"; };
-		3D1FBB3760B902F4D649A447 /* libPods-euctricoder.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-euctricoder.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		56FFBFD6606653E7E1FDE737 /* Pods-euctricoderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-euctricoderTests.release.xcconfig"; path = "Target Support Files/Pods-euctricoderTests/Pods-euctricoderTests.release.xcconfig"; sourceTree = "<group>"; };
-		7491974F9FD7B71CFC28281D /* Pods-euctricoderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-euctricoderTests.debug.xcconfig"; path = "Target Support Files/Pods-euctricoderTests/Pods-euctricoderTests.debug.xcconfig"; sourceTree = "<group>"; };
-		79F96E4B23CD006000AFAE6E /* euctricoder-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "euctricoder-Bridging-Header.h"; sourceTree = "<group>"; };
-		79F96E4C23CD006000AFAE6E /* euctricoderTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "euctricoderTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = euctricorder/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = euctricorder/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = euctricorder/main.m; sourceTree = "<group>"; };
+		3D1FBB3760B902F4D649A447 /* libPods-euctricorder.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-euctricorder.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		56FFBFD6606653E7E1FDE737 /* Pods-euctricorderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-euctricorderTests.release.xcconfig"; path = "Target Support Files/Pods-euctricorderTests/Pods-euctricorderTests.release.xcconfig"; sourceTree = "<group>"; };
+		7491974F9FD7B71CFC28281D /* Pods-euctricorderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-euctricorderTests.debug.xcconfig"; path = "Target Support Files/Pods-euctricorderTests/Pods-euctricorderTests.debug.xcconfig"; sourceTree = "<group>"; };
+		79F96E4B23CD006000AFAE6E /* euctricorder-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "euctricorder-Bridging-Header.h"; sourceTree = "<group>"; };
+		79F96E4C23CD006000AFAE6E /* euctricorderTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "euctricorderTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		79F96E4F23CD006000AFAE6E /* bridge-me.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "bridge-me.swift"; sourceTree = "<group>"; };
-		8B298032D9639415997BF4B2 /* Pods-euctricoder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-euctricoder.release.xcconfig"; path = "Target Support Files/Pods-euctricoder/Pods-euctricoder.release.xcconfig"; sourceTree = "<group>"; };
-		9E4EF4D02D220EC8AB8325F5 /* libPods-euctricoderTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-euctricoderTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA7596EEEC770A933DEC1C7A /* Pods-euctricoder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-euctricoder.debug.xcconfig"; path = "Target Support Files/Pods-euctricoder/Pods-euctricoder.debug.xcconfig"; sourceTree = "<group>"; };
+		8B298032D9639415997BF4B2 /* Pods-euctricorder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-euctricorder.release.xcconfig"; path = "Target Support Files/Pods-euctricorder/Pods-euctricorder.release.xcconfig"; sourceTree = "<group>"; };
+		9E4EF4D02D220EC8AB8325F5 /* libPods-euctricorderTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-euctricorderTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA7596EEEC770A933DEC1C7A /* Pods-euctricorder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-euctricorder.debug.xcconfig"; path = "Target Support Files/Pods-euctricorder/Pods-euctricorder.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
@@ -58,7 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67AC8FA6B68C95C365B9922D /* libPods-euctricoderTests.a in Frameworks */,
+				67AC8FA6B68C95C365B9922D /* libPods-euctricorderTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,20 +66,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				772726EC389903A9291AA6B6 /* libPods-euctricoder.a in Frameworks */,
+				772726EC389903A9291AA6B6 /* libPods-euctricorder.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* euctricoderTests */ = {
+		00E356EF1AD99517003FC87E /* euctricorderTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* euctricoderTests.m */,
+				00E356F21AD99517003FC87E /* euctricorderTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = euctricoderTests;
+			path = euctricorderTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -90,7 +90,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* euctricoder */ = {
+		13B07FAE1A68108700A75B9A /* euctricorder */ = {
 			isa = PBXGroup;
 			children = (
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -101,7 +101,7 @@
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = euctricoder;
+			name = euctricorder;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -109,8 +109,8 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				3D1FBB3760B902F4D649A447 /* libPods-euctricoder.a */,
-				9E4EF4D02D220EC8AB8325F5 /* libPods-euctricoderTests.a */,
+				3D1FBB3760B902F4D649A447 /* libPods-euctricorder.a */,
+				9E4EF4D02D220EC8AB8325F5 /* libPods-euctricorderTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -126,14 +126,14 @@
 			isa = PBXGroup;
 			children = (
 				79F96E4F23CD006000AFAE6E /* bridge-me.swift */,
-				13B07FAE1A68108700A75B9A /* euctricoder */,
+				13B07FAE1A68108700A75B9A /* euctricorder */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* euctricoderTests */,
+				00E356EF1AD99517003FC87E /* euctricorderTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				9DF024BDF526183F5A68026C /* Pods */,
-				79F96E4B23CD006000AFAE6E /* euctricoder-Bridging-Header.h */,
-				79F96E4C23CD006000AFAE6E /* euctricoderTests-Bridging-Header.h */,
+				79F96E4B23CD006000AFAE6E /* euctricorder-Bridging-Header.h */,
+				79F96E4C23CD006000AFAE6E /* euctricorderTests-Bridging-Header.h */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -143,8 +143,8 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* euctricoder.app */,
-				00E356EE1AD99517003FC87E /* euctricoderTests.xctest */,
+				13B07F961A680F5B00A75B9A /* euctricorder.app */,
+				00E356EE1AD99517003FC87E /* euctricorderTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -152,10 +152,10 @@
 		9DF024BDF526183F5A68026C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				AA7596EEEC770A933DEC1C7A /* Pods-euctricoder.debug.xcconfig */,
-				8B298032D9639415997BF4B2 /* Pods-euctricoder.release.xcconfig */,
-				7491974F9FD7B71CFC28281D /* Pods-euctricoderTests.debug.xcconfig */,
-				56FFBFD6606653E7E1FDE737 /* Pods-euctricoderTests.release.xcconfig */,
+				AA7596EEEC770A933DEC1C7A /* Pods-euctricorder.debug.xcconfig */,
+				8B298032D9639415997BF4B2 /* Pods-euctricorder.release.xcconfig */,
+				7491974F9FD7B71CFC28281D /* Pods-euctricorderTests.debug.xcconfig */,
+				56FFBFD6606653E7E1FDE737 /* Pods-euctricorderTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -163,9 +163,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* euctricoderTests */ = {
+		00E356ED1AD99517003FC87E /* euctricorderTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "euctricoderTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "euctricorderTests" */;
 			buildPhases = (
 				770514029E3610EC090E332E /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -177,14 +177,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = euctricoderTests;
-			productName = euctricoderTests;
-			productReference = 00E356EE1AD99517003FC87E /* euctricoderTests.xctest */;
+			name = euctricorderTests;
+			productName = euctricorderTests;
+			productReference = 00E356EE1AD99517003FC87E /* euctricorderTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* euctricoder */ = {
+		13B07F861A680F5B00A75B9A /* euctricorder */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "euctricoder" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "euctricorder" */;
 			buildPhases = (
 				850ADA48FDFAD2650508765E /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -198,9 +198,9 @@
 			);
 			dependencies = (
 			);
-			name = euctricoder;
-			productName = euctricoder;
-			productReference = 13B07F961A680F5B00A75B9A /* euctricoder.app */;
+			name = euctricorder;
+			productName = euctricorder;
+			productReference = 13B07F961A680F5B00A75B9A /* euctricorder.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -224,7 +224,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "euctricoder" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "euctricorder" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -238,8 +238,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* euctricoder */,
-				00E356ED1AD99517003FC87E /* euctricoderTests */,
+				13B07F861A680F5B00A75B9A /* euctricorder */,
+				00E356ED1AD99517003FC87E /* euctricorderTests */,
 			);
 		};
 /* End PBXProject section */
@@ -284,7 +284,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-euctricoder/Pods-euctricoder-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-euctricorder/Pods-euctricorder-resources.sh",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
@@ -323,7 +323,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-euctricoder/Pods-euctricoder-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-euctricorder/Pods-euctricorder-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		770514029E3610EC090E332E /* [CP] Check Pods Manifest.lock */ = {
@@ -341,7 +341,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-euctricoderTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-euctricorderTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -363,7 +363,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-euctricoder-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-euctricorder-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -397,7 +397,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				79F96E5123CD006000AFAE6E /* bridge-me.swift in Sources */,
-				00E356F31AD99517003FC87E /* euctricoderTests.m in Sources */,
+				00E356F31AD99517003FC87E /* euctricorderTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,7 +416,7 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* euctricoder */;
+			target = 13B07F861A680F5B00A75B9A /* euctricorder */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -428,7 +428,7 @@
 				13B07FB21A68108700A75B9A /* Base */,
 			);
 			name = LaunchScreen.xib;
-			path = euctricoder;
+			path = euctricorder;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -436,7 +436,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7491974F9FD7B71CFC28281D /* Pods-euctricoderTests.debug.xcconfig */;
+			baseConfigurationReference = 7491974F9FD7B71CFC28281D /* Pods-euctricorderTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -446,7 +446,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = euctricoderTests/Info.plist;
+				INFOPLIST_FILE = euctricorderTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -456,23 +456,23 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "euctricoderTests-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "euctricorderTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/euctricoder.app/euctricoder";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/euctricorder.app/euctricorder";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 56FFBFD6606653E7E1FDE737 /* Pods-euctricoderTests.release.xcconfig */;
+			baseConfigurationReference = 56FFBFD6606653E7E1FDE737 /* Pods-euctricorderTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = U2HL3HZ5TZ;
-				INFOPLIST_FILE = euctricoderTests/Info.plist;
+				INFOPLIST_FILE = euctricorderTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -482,31 +482,31 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "euctricoderTests-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "euctricorderTests-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/euctricoder.app/euctricoder";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/euctricorder.app/euctricorder";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AA7596EEEC770A933DEC1C7A /* Pods-euctricoder.debug.xcconfig */;
+			baseConfigurationReference = AA7596EEEC770A933DEC1C7A /* Pods-euctricorder.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = U2HL3HZ5TZ;
-				INFOPLIST_FILE = euctricoder/Info.plist;
+				INFOPLIST_FILE = euctricorder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.jukben.euctricoder;
-				PRODUCT_NAME = euctricoder;
-				SWIFT_OBJC_BRIDGING_HEADER = "euctricoder-Bridging-Header.h";
+				PRODUCT_BUNDLE_IDENTIFIER = org.jukben.euctricorder;
+				PRODUCT_NAME = euctricorder;
+				SWIFT_OBJC_BRIDGING_HEADER = "euctricorder-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -515,22 +515,22 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8B298032D9639415997BF4B2 /* Pods-euctricoder.release.xcconfig */;
+			baseConfigurationReference = 8B298032D9639415997BF4B2 /* Pods-euctricorder.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = U2HL3HZ5TZ;
-				INFOPLIST_FILE = euctricoder/Info.plist;
+				INFOPLIST_FILE = euctricorder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.jukben.euctricoder;
-				PRODUCT_NAME = euctricoder;
-				SWIFT_OBJC_BRIDGING_HEADER = "euctricoder-Bridging-Header.h";
+				PRODUCT_BUNDLE_IDENTIFIER = org.jukben.euctricorder;
+				PRODUCT_NAME = euctricorder;
+				SWIFT_OBJC_BRIDGING_HEADER = "euctricorder-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -638,7 +638,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "euctricoderTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "euctricorderTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -647,7 +647,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "euctricoder" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "euctricorder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -656,7 +656,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "euctricoder" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "euctricorder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
