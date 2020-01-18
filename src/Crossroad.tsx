@@ -62,19 +62,18 @@ export const Crossroad: React.FC = () => {
   const { getSettingsForKey } = useSettings();
   const [state, dispatch] = useReducer(reducer, { phase: 'loading' });
 
-  const getDeviceToJoin = useCallback(async () => {
-    const rememberedDevice = await getSettingsForKey('device');
-    setTimeout(
-      () => dispatch({ type: 'loaded', device: rememberedDevice }),
-      1000,
-    );
-  }, [getSettingsForKey]);
-
   useEffect(() => {
     PushNotificationIOS.requestPermissions();
     Tts.setDucking(true);
-    getDeviceToJoin();
-  }, [getDeviceToJoin]);
+    Tts.setIgnoreSilentSwitch('ignore');
+
+    const timeoutId = setTimeout(async () => {
+      const rememberedDevice = await getSettingsForKey('device');
+      dispatch({ type: 'loaded', device: rememberedDevice });
+    }, 1000);
+
+    return () => clearTimeout(timeoutId);
+  }, [getSettingsForKey]);
 
   return state.phase === 'loading' ? (
     <Container>

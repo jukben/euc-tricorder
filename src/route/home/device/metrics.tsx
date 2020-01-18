@@ -1,9 +1,12 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Vibration } from 'react-native';
+
 import Tts from 'react-native-tts';
 import { useAdapter } from '../../../providers';
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { DeviceData } from '../../../adapters';
+import { useAlarm } from './alarm.hook';
 
 const Container = styled.View`
   flex: 1;
@@ -22,67 +25,20 @@ const Text = styled.Text`
   font-size: 40px;
 `;
 
-const useThrottle = <T extends unknown>({
-  callback,
-  value,
-  threshold = 5000,
-}: {
-  callback: (value: T) => void;
-  value: T;
-  threshold?: number;
-}) => {
-  const oldDate = useRef(Date.now());
-
-  useEffect(() => {
-    const curr = Date.now();
-    if (curr - oldDate.current > threshold) {
-      callback(value);
-      oldDate.current = Date.now();
-    }
-  }, [value, callback, threshold]);
-};
-
-const useAlarm = <T extends unknown>({
-  what,
-  when,
-  action,
-}: {
-  what: T;
-  when: number;
-  action: (value: T) => void;
-}) => {
-  const [paused, setPause] = useState(false);
-
-  const callback = useCallback(
-    value => {
-      if (paused && value < when) {
-        return;
-      }
-
-      action(value);
-      setPause(false);
-    },
-    [paused, action, when],
-  );
-
-  useEffect(() => {
-    let id: number;
-    if (paused) {
-      id = setTimeout(() => setPause(false), 5000);
-    }
-
-    return () => {
-      if (id) {
-        clearInterval(id);
-      }
-    };
-  }, [paused]);
-
-  useThrottle<T>({ callback: callback, value: what });
+const voiceInfo = (what: number) => {
+  Tts.speak(`Speed: ${what}`);
+  Vibration.vibrate(1000);
 };
 
 export const Metrics = () => {
-  const [data, setData] = useState<DeviceData | null>(null);
+  const [data, setData] = useState<DeviceData>({
+    speed: 0,
+    battery: 0,
+    current: 0,
+    temperature: 0,
+    voltage: 0,
+  });
+
   const [maxSpeed, setMaxSpeed] = useState(0);
 
   const { adapter } = useAdapter();
@@ -103,9 +59,9 @@ export const Metrics = () => {
     return () => adapter.removeListener(id);
   }, [adapter, maxSpeed]);
 
-  if (!data) {
-    return null;
-  }
+  useAlarm({ what: data.speed, when: 30, action: voiceInfo });
+
+  useAlarm({ what: data.speed, when: 40, action: voiceInfo });
 
   const { battery, speed, temperature, voltage } = data;
 
