@@ -1,5 +1,5 @@
-import { BleAPI } from '../providers';
 import { Device as BleDevice } from 'react-native-ble-plx';
+import { defaultAdapter } from './default-adapter';
 
 export type DeviceData = {
   speed: number;
@@ -11,12 +11,19 @@ export type DeviceData = {
 
 export type AdapterID = string;
 
-type Adapter = (
-  device: BleDevice,
-  bleApi: BleAPI,
-) => {
+export type AdapterApi = {
+  bleConfiguration: {
+    service: string;
+    characteristic: string;
+  };
+  getData: (buffer: ArrayBuffer) => DeviceData | null; // or null? Does it make sense?
+  afterConnect?: (device: BleDevice) => void | Promise<void>;
+};
+
+export type AdapterFactory = ReturnType<typeof createAdapter>;
+
+export type AdapterService = {
   getId: () => AdapterID;
-  getAdapterName: () => string;
   getName: () => string;
   testServicesAndCharacteristics: () => Promise<unknown>;
   connect: (onDisconnect?: () => void) => Promise<unknown>;
@@ -26,12 +33,9 @@ type Adapter = (
   removeListener: (id: number) => void;
 };
 
-export type AdapterFactory = ReturnType<typeof createAdapter>;
-export type AdapterService = ReturnType<AdapterFactory>;
-
-// TODO add validity of Adapter's shape API
-export const createAdapter = (name: AdapterID, adapter: Adapter) => {
-  const adapterFactory = (...args: Parameters<Adapter>) => adapter(...args);
+export const createAdapter = (name: AdapterID, configuration: AdapterApi) => {
+  const adapterFactory = (device: BleDevice) =>
+    defaultAdapter({ device, name }, configuration);
 
   adapterFactory.adapterName = name;
 

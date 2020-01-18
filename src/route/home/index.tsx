@@ -3,7 +3,6 @@ import {
   createBottomTabNavigator,
   BottomTabNavigationProp,
 } from '@react-navigation/bottom-tabs';
-import Tts from 'react-native-tts';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -56,7 +55,6 @@ export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
       }
 
       console.log('auto-connect');
-
       const adapterFactory = adapters.find(
         a => a.adapterName === device.adapter,
       );
@@ -74,7 +72,7 @@ export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
         }
 
         if (bleDevice && bleDevice.id === device.id) {
-          const configuredAdapter = adapterFactory(bleDevice, bleApi);
+          const configuredAdapter = adapterFactory(bleDevice);
 
           configuredAdapter.connect(handleDisconnect);
 
