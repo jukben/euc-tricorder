@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Tts from 'react-native-tts';
 import { useAdapter } from '../../../providers';
 import styled from 'styled-components/native';
@@ -22,6 +22,65 @@ const Text = styled.Text`
   font-size: 40px;
 `;
 
+const useThrottle = <T extends unknown>({
+  callback,
+  value,
+  threshold = 5000,
+}: {
+  callback: (value: T) => void;
+  value: T;
+  threshold?: number;
+}) => {
+  const oldDate = useRef(Date.now());
+
+  useEffect(() => {
+    const curr = Date.now();
+    if (curr - oldDate.current > threshold) {
+      callback(value);
+      oldDate.current = Date.now();
+    }
+  }, [value, callback, threshold]);
+};
+
+const useAlarm = <T extends unknown>({
+  what,
+  when,
+  action,
+}: {
+  what: T;
+  when: number;
+  action: (value: T) => void;
+}) => {
+  const [paused, setPause] = useState(false);
+
+  const callback = useCallback(
+    value => {
+      if (paused && value < when) {
+        return;
+      }
+
+      action(value);
+      setPause(false);
+    },
+    [paused, action, when],
+  );
+
+  useEffect(() => {
+    let id: number;
+    if (paused) {
+      id = setTimeout(() => setPause(false), 5000);
+    }
+
+    return () => {
+      if (id) {
+        clearInterval(id);
+      }
+    };
+  }, [paused]);
+
+  useThrottle<T>({ callback: callback, value: what });
+};
+
 export const Metrics = () => {
   const [data, setData] = useState<DeviceData | null>(null);
   const [maxSpeed, setMaxSpeed] = useState(0);
@@ -43,14 +102,6 @@ export const Metrics = () => {
 
     return () => adapter.removeListener(id);
   }, [adapter, maxSpeed]);
-
-  // useEffect(() => {
-  //   const timerId = setTimeout(() => {
-  //     Tts.speak(`speed: ${maxSpeed}`);
-  //   }, 5000);
-
-  //   return () => clearTimeout(timerId);
-  // }, [maxSpeed]);
 
   if (!data) {
     return null;
