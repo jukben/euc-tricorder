@@ -14,6 +14,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		67AC8FA6B68C95C365B9922D /* libPods-euctricorderTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4EF4D02D220EC8AB8325F5 /* libPods-euctricorderTests.a */; };
 		772726EC389903A9291AA6B6 /* libPods-euctricorder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1FBB3760B902F4D649A447 /* libPods-euctricorder.a */; };
+		798260C523D466920067C3C2 /* PebbleClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 798260C423D466920067C3C2 /* PebbleClient.m */; };
 		79F96E5023CD006000AFAE6E /* bridge-me.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F96E4F23CD006000AFAE6E /* bridge-me.swift */; };
 		79F96E5123CD006000AFAE6E /* bridge-me.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F96E4F23CD006000AFAE6E /* bridge-me.swift */; };
 /* End PBXBuildFile section */
@@ -33,7 +34,7 @@
 		00E356EE1AD99517003FC87E /* euctricorderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = euctricorderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* euctricorderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = euctricorderTests.m; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* euctricorder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = euctricorder.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* EUC Tricorder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EUC Tricorder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = euctricorder/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = euctricorder/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -43,6 +44,8 @@
 		3D1FBB3760B902F4D649A447 /* libPods-euctricorder.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-euctricorder.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		56FFBFD6606653E7E1FDE737 /* Pods-euctricorderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-euctricorderTests.release.xcconfig"; path = "Target Support Files/Pods-euctricorderTests/Pods-euctricorderTests.release.xcconfig"; sourceTree = "<group>"; };
 		7491974F9FD7B71CFC28281D /* Pods-euctricorderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-euctricorderTests.debug.xcconfig"; path = "Target Support Files/Pods-euctricorderTests/Pods-euctricorderTests.debug.xcconfig"; sourceTree = "<group>"; };
+		798260C323D466680067C3C2 /* PebbleClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PebbleClient.h; sourceTree = "<group>"; };
+		798260C423D466920067C3C2 /* PebbleClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PebbleClient.m; sourceTree = "<group>"; };
 		79F96E4B23CD006000AFAE6E /* euctricorder-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "euctricorder-Bridging-Header.h"; sourceTree = "<group>"; };
 		79F96E4C23CD006000AFAE6E /* euctricorderTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "euctricorderTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		79F96E4F23CD006000AFAE6E /* bridge-me.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "bridge-me.swift"; sourceTree = "<group>"; };
@@ -125,6 +128,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				798260C423D466920067C3C2 /* PebbleClient.m */,
+				798260C323D466680067C3C2 /* PebbleClient.h */,
 				79F96E4F23CD006000AFAE6E /* bridge-me.swift */,
 				13B07FAE1A68108700A75B9A /* euctricorder */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -143,7 +148,7 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* euctricorder.app */,
+				13B07F961A680F5B00A75B9A /* EUC Tricorder.app */,
 				00E356EE1AD99517003FC87E /* euctricorderTests.xctest */,
 			);
 			name = Products;
@@ -193,6 +198,7 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				5CF94A100FFB2E71559ABBEA /* [CP] Copy Pods Resources */,
+				A7461D812A496FC357097D5E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -200,7 +206,7 @@
 			);
 			name = euctricorder;
 			productName = euctricorder;
-			productReference = 13B07F961A680F5B00A75B9A /* euctricorder.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* EUC Tricorder.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -370,6 +376,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A7461D812A496FC357097D5E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-euctricorder/Pods-euctricorder-frameworks.sh",
+				"${PODS_ROOT}/PebbleKit/PebbleKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PebbleKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-euctricorder/Pods-euctricorder-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -407,6 +431,7 @@
 			files = (
 				79F96E5023CD006000AFAE6E /* bridge-me.swift in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				798260C523D466920067C3C2 /* PebbleClient.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -459,7 +484,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "euctricorderTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/euctricorder.app/euctricorder";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EUC Tricorder.app/EUC Tricorder";
 			};
 			name = Debug;
 		};
@@ -484,7 +509,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "euctricorderTests-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/euctricorder.app/euctricorder";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EUC Tricorder.app/EUC Tricorder";
 			};
 			name = Release;
 		};
@@ -505,7 +530,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.jukben.euctricorder;
-				PRODUCT_NAME = euctricorder;
+				PRODUCT_NAME = "EUC Tricorder";
 				SWIFT_OBJC_BRIDGING_HEADER = "euctricorder-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -529,7 +554,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.jukben.euctricorder;
-				PRODUCT_NAME = euctricorder;
+				PRODUCT_NAME = "EUC Tricorder";
 				SWIFT_OBJC_BRIDGING_HEADER = "euctricorder-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
