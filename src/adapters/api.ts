@@ -25,6 +25,7 @@ export type AdapterFactory = ReturnType<typeof createAdapter>;
 export type AdapterService = {
   getId: () => AdapterID;
   getName: () => string;
+  getAdapterName: () => string;
   testServicesAndCharacteristics: () => Promise<unknown>;
   connect: (onDisconnect?: () => void) => Promise<unknown>;
   disconnect: () => Promise<unknown>;
@@ -34,7 +35,7 @@ export type AdapterService = {
 };
 
 export const createAdapter = (name: AdapterID, configuration: AdapterApi) => {
-  const adapterFactory = (device: BleDevice) =>
+  const adapterFactory = (device: BleDevice): AdapterService =>
     defaultAdapter({ device, name }, configuration);
 
   adapterFactory.adapterName = name;

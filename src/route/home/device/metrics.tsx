@@ -7,6 +7,7 @@ import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { DeviceData } from '../../../adapters';
 import { useAlarm } from './alarm.hook';
+import { sendUpdate } from '../../../pebble-client';
 
 const Container = styled.View`
   flex: 1;
@@ -50,6 +51,8 @@ export const Metrics = () => {
 
     const id = adapter.addListener(d => {
       setData(d);
+
+      sendUpdate(Math.round(d.speed));
 
       if (d.speed > maxSpeed) {
         setMaxSpeed(d.speed);

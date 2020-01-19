@@ -6,9 +6,19 @@
 //
 
 #import "PebbleClient.h"
+#import <React/RCTConvert.h>
 
+// AppMessage keys
 typedef NS_ENUM(NSUInteger, AppMessageKey) {
+    KeyButtonUp = 0,
+    KeyButtonDown
+};
+
+// Game result values
+typedef NS_ENUM(NSUInteger, Data) {
     Speed = 0,
+    Battery,
+    Temperature
 };
 
 @implementation PebbleClient
@@ -35,7 +45,7 @@ RCT_EXPORT_MODULE();
 //}
 
 - (NSArray<NSString *> *)supportedEvents {
-    return @[@"PebbleConnected", @"PebbleConnected"];
+    return @[@"PebbleConnected", @"PebbleDisconnected"];
 }
 
 
@@ -52,6 +62,7 @@ RCT_EXPORT_METHOD(configure:(NSString*)appUUID) {
     NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:appUUID];
     _central = [PBPebbleCentral defaultCentral];
     _central.appUUID = uuid;
+    [_central run];
     _central.delegate = self;
 }
 
@@ -60,20 +71,25 @@ RCT_EXPORT_METHOD(destroy) {
 }
 
 RCT_EXPORT_METHOD(run) {
-    [_central run];
+    //[_central run];
 }
 
-RCT_EXPORT_METHOD(sendUpdate:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+RCT_EXPORT_METHOD(sendUpdate:(NSDictionary *)data:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+  NSNumber *speed = [RCTConvert NSNumber:data[@"speed"]];
+  
   if (!self.connectedWatch){
     NSError *error = [[NSError alloc] initWithDomain:NSPOSIXErrorDomain
     code:errno userInfo:nil];
-     
+
     NSLog(@"Watch is not connected");
     reject(@"not_sent", @"Watch is not connected", error);
   }
+
+  NSMutableDictionary *outgoing = [NSMutableDictionary new];
   
-  NSDictionary *update = @{ @(0):[NSNumber pb_numberWithUint8:42] };
-  [self.connectedWatch appMessagesPushUpdate:update onSent:^(PBWatch *watch, NSDictionary *update, NSError *error) {
+  outgoing[@(Speed)] = [NSNumber pb_numberWithInt8:speed.pb_uint8Value];
+  
+  [self.connectedWatch appMessagesPushUpdate:outgoing onSent:^(PBWatch *watch, NSDictionary *update, NSError *error) {
     if (!error) {
       NSLog(@"Successfully sent message.");
       resolve(@YES);
@@ -93,6 +109,43 @@ RCT_EXPORT_METHOD(sendUpdate:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromis
   // Keep a reference to this watch
   self.connectedWatch = watch;
   [self sendEventWithName:@"PebbleConnected" body:@{@"name": watch.name}];
+  
+  // Keep a weak reference to self to prevent it staying around forever
+  __weak typeof(self) welf = self;
+  
+  // need to send arbitrary data to watch before it can send to us
+  NSNumber *arbitraryNumber = [NSNumber pb_numberWithUint8:0];
+  NSDictionary *update = @{ @(0):arbitraryNumber };
+  [self.connectedWatch appMessagesPushUpdate:update onSent:^(PBWatch *watch,
+                                                    NSDictionary *update, NSError *error) {
+      if (!error) { 
+          NSLog(@"Successfully sent message.");
+      } else {
+          NSLog(@"Error sending message: %@", error);
+      }
+  }];
+
+  
+  // Sign up for AppMessage
+  [self.connectedWatch appMessagesAddReceiveUpdateHandler:^BOOL(PBWatch *watch, NSDictionary *update) {
+      __strong typeof(welf) sself = welf;
+      if (!sself) {
+          // self has been destroyed
+          return NO;
+      }
+      
+      // Process incoming messages
+      if (update[@(KeyButtonUp)]) {
+        NSLog(@"KeyButtonUP");
+      }
+      
+      if (update[@(KeyButtonDown)]) {
+        NSLog(@"KeyButtonDOWN");
+      }
+
+      
+      return YES;
+  }];
 }
 
 - (void)pebbleCentral:(PBPebbleCentral *)central watchDidDisconnect:(PBWatch *)watch {
@@ -100,7 +153,7 @@ RCT_EXPORT_METHOD(sendUpdate:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromis
   // If this was the recently connected watch, forget it
   if ([watch isEqual:self.connectedWatch]) {
     self.connectedWatch = nil;
-    [self sendEventWithName:@"PebbleConnected" body:@{@"name": watch.name}];
+    [self sendEventWithName:@"PebbleDisconnected" body:@{@"name": watch.name}];
   }
 }
 

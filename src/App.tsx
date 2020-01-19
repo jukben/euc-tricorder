@@ -6,18 +6,12 @@ import { SettingsProvider } from './providers/settings';
 import { Crossroad } from './Crossroad';
 import { default as Storybook } from '../storybook';
 import Config from 'react-native-config';
-import { Button, SafeAreaView } from 'react-native';
-import { createClient, sendUpdate } from './pebble-client';
+import { createClient } from './pebble-client';
 
 const STORYBOOK = Config.STORYBOOK === 'true';
 createClient();
 
 export const App = () => {
-  return (
-    <SafeAreaView>
-      <Button title="Press me" onPress={sendUpdate} />
-    </SafeAreaView>
-  );
   return STORYBOOK ? (
     <Storybook />
   ) : (
