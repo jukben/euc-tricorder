@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Vibration } from 'react-native';
 
 import Tts from 'react-native-tts';
@@ -31,6 +31,22 @@ const voiceInfo = (what: number) => {
   Vibration.vibrate(1000);
 };
 
+const updatePebbleSpeed = (speed: number) => {
+  sendUpdate(Math.round(speed));
+};
+
+const useThrottle = ({ callback, threshold = 1000, value }) => {
+  const oldDate = useRef(Date.now());
+
+  useEffect(() => {
+    const curr = Date.now();
+    if (curr - oldDate.current > threshold) {
+      callback(value);
+      oldDate.current = Date.now();
+    }
+  }, [value, callback, threshold]);
+};
+
 export const Metrics = () => {
   const [data, setData] = useState<DeviceData>({
     speed: 0,
@@ -52,8 +68,6 @@ export const Metrics = () => {
     const id = adapter.addListener(d => {
       setData(d);
 
-      sendUpdate(Math.round(d.speed));
-
       if (d.speed > maxSpeed) {
         setMaxSpeed(d.speed);
       }
@@ -65,6 +79,8 @@ export const Metrics = () => {
   useAlarm({ what: data.speed, when: 30, action: voiceInfo });
 
   useAlarm({ what: data.speed, when: 40, action: voiceInfo });
+
+  useThrottle({ callback: updatePebbleSpeed, value: data.speed });
 
   const { battery, speed, temperature, voltage } = data;
 
