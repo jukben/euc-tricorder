@@ -118,7 +118,7 @@ RCT_EXPORT_METHOD(sendUpdate:(NSDictionary *)data:(RCTPromiseResolveBlock)resolv
   NSDictionary *update = @{ @(0):arbitraryNumber };
   [self.connectedWatch appMessagesPushUpdate:update onSent:^(PBWatch *watch,
                                                     NSDictionary *update, NSError *error) {
-      if (!error) { 
+      if (!error) {
           NSLog(@"Successfully sent message.");
       } else {
           NSLog(@"Error sending message: %@", error);
