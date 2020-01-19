@@ -1,0 +1,19 @@
+{
+  "uuid": "281a8f21-594c-4cf2-a049-35a896ee8b27",
+  "shortName": "EUC Tricorder",
+  "longName": "EUC Tricorder",
+  "companyName": "jukben",
+  "versionCode": 1,
+  "versionLabel": "1.0",
+  "watchapp": {
+    "watchface": false
+  },
+  "appKeys": {
+    "dummy": 0
+  },
+  "resources": {
+    "media": []
+  },
+  "targetPlatforms": ["aplite", "basalt", "chalk"],
+  "sdkVersion": "3"
+}

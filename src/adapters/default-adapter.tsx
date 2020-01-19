@@ -114,9 +114,12 @@ export const defaultAdapter = (
 
   const getId = () => device.id;
 
+  const getAdapterName = () => name;
+
   return {
     getId,
     getName,
+    getAdapterName,
     testServicesAndCharacteristics,
     connect,
     disconnect,
