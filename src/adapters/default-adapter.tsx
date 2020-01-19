@@ -1,11 +1,11 @@
-import {
-  Subscription as BleSubscription,
-  Device as BleDevice,
-} from 'react-native-ble-plx';
 import { Buffer } from 'buffer';
-import { AdapterService, AdapterApi, AdapterID } from './api';
+import {
+  Device as BleDevice,
+  Subscription as BleSubscription,
+} from 'react-native-ble-plx';
 
 import { ExtractParameterType } from '../types';
+import { AdapterApi, AdapterID, AdapterService } from './api';
 
 export type BleListener = ExtractParameterType<
   BleDevice['monitorCharacteristicForService'],

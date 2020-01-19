@@ -3,7 +3,7 @@ import { ScrollView } from 'react-native';
 import { List } from 'react-native-paper';
 
 import { RegisterNavigatorProps } from '..';
-import { adapters, AdapterFactory } from '../../../adapters';
+import { AdapterFactory, adapters } from '../../../adapters';
 import { useBle } from '../../../providers';
 
 export const PickAdapter = ({

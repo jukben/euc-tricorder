@@ -1,10 +1,11 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ScrollView } from 'react-native';
-import { List } from 'react-native-paper';
 import { BleManager, Device } from 'react-native-ble-plx';
-import { ExtractParameterType } from '../../../types';
-import { useBle } from '../../../providers';
+import { List } from 'react-native-paper';
+
 import { RegisterNavigatorProps } from '../';
+import { useBle } from '../../../providers';
+import { ExtractParameterType } from '../../../types';
 
 export const Search = ({ navigation }: RegisterNavigatorProps<'Search'>) => {
   const { manager, state } = useBle();

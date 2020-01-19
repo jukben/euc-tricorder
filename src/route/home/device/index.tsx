@@ -1,10 +1,9 @@
 import React from 'react';
-import { SafeAreaView, ActivityIndicator } from 'react-native';
+import { ActivityIndicator, SafeAreaView } from 'react-native';
 import styled from 'styled-components/native';
 
-import { Metrics } from './metrics';
-
 import { useAdapter } from '../../../providers';
+import { Metrics } from './metrics';
 
 const Container = styled.View`
   height: 100%;

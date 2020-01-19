@@ -1,16 +1,16 @@
-import React from 'react';
 import {
   createStackNavigator,
   StackNavigationProp,
 } from '@react-navigation/stack';
+import React from 'react';
 import { Device } from 'react-native-ble-plx';
 
-import { Search } from './search';
-import { PickAdapter } from './pick-adapter';
-import { Connect } from './connect';
+import { AdapterService } from '../../adapters';
 import { Stack as RootStack } from '../../Crossroad';
 import { CustomNavigatorProps } from '../../types';
-import { AdapterService } from '../../adapters';
+import { Connect } from './connect';
+import { PickAdapter } from './pick-adapter';
+import { Search } from './search';
 
 type Stack = {
   Search: {};

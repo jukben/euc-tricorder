@@ -1,4 +1,5 @@
 import { Device as BleDevice } from 'react-native-ble-plx';
+
 import { defaultAdapter } from './default-adapter';
 
 export type DeviceData = {

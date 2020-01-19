@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useContext, useMemo } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import {
+  EventSubscriptionVendor,
   NativeEventEmitter,
   NativeModules,
-  EventSubscriptionVendor,
 } from 'react-native';
 
 type Data = {

@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Vibration } from 'react-native';
-
 import Tts from 'react-native-tts';
-import { useAdapter } from '../../../providers';
-import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import styled from 'styled-components/native';
+
 import { DeviceData } from '../../../adapters';
+import { useAdapter } from '../../../providers';
 import { useAlarm } from './alarm.hook';
 // import { useThrottle } from './throttle.hook';
 

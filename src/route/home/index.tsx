@@ -1,18 +1,15 @@
-import React, { useEffect, useCallback } from 'react';
-import {
-  createBottomTabNavigator,
-  BottomTabNavigationProp,
-} from '@react-navigation/bottom-tabs';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
-
+import {
+  BottomTabNavigationProp,
+  createBottomTabNavigator,
+} from '@react-navigation/bottom-tabs';
+import React, { useCallback, useEffect } from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import { useAdapter, useBle, useSettings } from '../../providers';
 import { adapters } from '../../adapters';
-
-import { CustomNavigatorProps } from '../../types';
 import { CrossroadNavigatorProps } from '../../Crossroad';
-
+import { useAdapter, useBle, useSettings } from '../../providers';
+import { CustomNavigatorProps } from '../../types';
 import { Device } from './device';
 import { Settings } from './settings';
 

@@ -50,6 +50,7 @@
     "babel-jest": "24.9.0",
     "babel-loader": "8.0.6",
     "eslint": "6.8.0",
+    "eslint-plugin-simple-import-sort": "5.0.0",
     "jest": "24.9.0",
     "metro-react-native-babel-preset": "0.56.4",
     "react-dom": "16.9.0",
