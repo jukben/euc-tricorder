@@ -36,6 +36,8 @@ target 'euctricorder' do
 
   pod 'react-native-ble-plx-swift', :path => '../node_modules/react-native-ble-plx'
 
+  pod 'PebbleKit'
+
   target 'euctricorderTests' do
     inherit! :search_paths
     # Pods for testing
