@@ -6,10 +6,8 @@ import { SettingsProvider } from './providers/settings';
 import { Crossroad } from './Crossroad';
 import { default as Storybook } from '../storybook';
 import Config from 'react-native-config';
-import { createClient } from './pebble-client';
 
 const STORYBOOK = Config.STORYBOOK === 'true';
-createClient();
 
 export const App = () => {
   return STORYBOOK ? (
