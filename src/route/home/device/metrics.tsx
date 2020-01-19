@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Vibration } from 'react-native';
 
 import Tts from 'react-native-tts';
@@ -7,7 +7,7 @@ import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { DeviceData } from '../../../adapters';
 import { useAlarm } from './alarm.hook';
-import { sendUpdate } from '../../../pebble-client';
+// import { useThrottle } from './throttle.hook';
 
 const Container = styled.View`
   flex: 1;
@@ -31,21 +31,9 @@ const voiceInfo = (what: number) => {
   Vibration.vibrate(1000);
 };
 
-const updatePebbleSpeed = (speed: number) => {
-  sendUpdate(Math.round(speed));
-};
-
-const useThrottle = ({ callback, threshold = 1000, value }) => {
-  const oldDate = useRef(Date.now());
-
-  useEffect(() => {
-    const curr = Date.now();
-    if (curr - oldDate.current > threshold) {
-      callback(value);
-      oldDate.current = Date.now();
-    }
-  }, [value, callback, threshold]);
-};
+// const updatePebbleSpeed = (speed: number) => {
+//   sendUpdate(Math.round(speed));
+// };
 
 export const Metrics = () => {
   const [data, setData] = useState<DeviceData>({
@@ -80,7 +68,7 @@ export const Metrics = () => {
 
   useAlarm({ what: data.speed, when: 40, action: voiceInfo });
 
-  useThrottle({ callback: updatePebbleSpeed, value: data.speed });
+  // useThrottle({ callback: updatePebbleSpeed, value: data.speed });
 
   const { battery, speed, temperature, voltage } = data;
 
