@@ -1,6 +1,7 @@
 import { Device as BleDevice } from 'react-native-ble-plx';
+
 import { createAdapter } from '../api';
-import { KS_SERVICE, KS_CHAR, KS_COMMANDS } from './constants';
+import { KS_CHAR, KS_COMMANDS, KS_SERVICE } from './constants';
 import { decodeData } from './utils';
 
 const name = 'KingSong 18-XL';

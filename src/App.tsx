@@ -1,11 +1,12 @@
-import React from 'react';
 import { NavigationNativeContainer } from '@react-navigation/native';
-import { Provider as PaperProvider } from 'react-native-paper';
-import { BleProvider, AdapterProvider } from './providers';
-import { SettingsProvider } from './providers/settings';
-import { Crossroad } from './Crossroad';
-import { default as Storybook } from '../storybook';
+import React from 'react';
 import Config from 'react-native-config';
+import { Provider as PaperProvider } from 'react-native-paper';
+
+import { default as Storybook } from '../storybook';
+import { Crossroad } from './Crossroad';
+import { AdapterProvider, BleProvider } from './providers';
+import { SettingsProvider } from './providers/settings';
 
 const STORYBOOK = Config.STORYBOOK === 'true';
 

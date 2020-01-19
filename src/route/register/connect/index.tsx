@@ -1,9 +1,9 @@
-import React, { useEffect, useCallback, useReducer } from 'react';
-import { Text, ActivityIndicator } from 'react-native';
-
-import { useSettings } from '../../../providers';
-import { RegisterNavigatorProps } from '..';
+import React, { useCallback, useEffect, useReducer } from 'react';
+import { ActivityIndicator, Text } from 'react-native';
 import styled from 'styled-components/native';
+
+import { RegisterNavigatorProps } from '..';
+import { useSettings } from '../../../providers';
 
 const Container = styled.View`
   flex: 1;

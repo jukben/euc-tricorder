@@ -1,4 +1,5 @@
-import React, { useState, useContext, ReactChild, useMemo } from 'react';
+import React, { ReactChild, useContext, useMemo, useState } from 'react';
+
 import { AdapterFactory } from '../adapters';
 
 type TAdapter = ReturnType<AdapterFactory> | null;

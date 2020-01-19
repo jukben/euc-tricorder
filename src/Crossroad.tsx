@@ -1,15 +1,16 @@
-import React, { useEffect, useReducer, useCallback } from 'react';
+import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import {
   createStackNavigator,
   StackNavigationProp,
 } from '@react-navigation/stack';
+import React, { useEffect, useReducer } from 'react';
+import { ActivityIndicator } from 'react-native';
+import Tts from 'react-native-tts';
 import styled from 'styled-components/native';
+
+import { TSettings, useSettings } from './providers/settings';
 import * as routes from './route';
 import { CustomNavigatorProps } from './types';
-import { ActivityIndicator } from 'react-native';
-import { useSettings, TSettings } from './providers/settings';
-import PushNotificationIOS from '@react-native-community/push-notification-ios';
-import Tts from 'react-native-tts';
 
 const Container = styled.View`
   flex: 1;

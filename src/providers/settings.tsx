@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
-import { AdapterID } from '../adapters';
 import AsyncStorage from '@react-native-community/async-storage';
+import React, { useContext } from 'react';
+
+import { AdapterID } from '../adapters';
 
 export type TSettings = {
   device?: {
