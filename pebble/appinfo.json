@@ -8,12 +8,6 @@
   "watchapp": {
     "watchface": false
   },
-  "appKeys": {
-    "dummy": 0
-  },
-  "resources": {
-    "media": []
-  },
-  "targetPlatforms": ["aplite", "basalt", "chalk"],
+  "targetPlatforms": ["basalt"],
   "sdkVersion": "3"
 }
