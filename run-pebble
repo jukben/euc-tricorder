@@ -1,4 +1,10 @@
 #!/bin/bash
 
-docker run -it --rm -v $(pwd)/pebble:/pebble/ bboehmke/pebble-dev
+IP=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
 
+docker run -it --rm \
+    --net=host \
+    -e DISPLAY=$IP:0\
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v $(pwd)/pebble:/pebble/ \
+    bboehmke/pebble-dev

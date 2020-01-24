@@ -1,17 +1,40 @@
 #include <pebble.h>
 
-#define KEY_BUTTON_UP 0
-#define KEY_BUTTON_DOWN 1
+// Outcome message keys
+#define OUTBOX_KEY_BUTTON_UP 0
+#define OUTBOX_KEY_BUTTON_DOWN 1
 
-#define KEY_SPEED 0
+// Income message keys
+#define INBOX_RECEIVE_KEY_SPEED 0
+#define INBOX_RECEIVE_KEY_TEMPERATURE 1
+#define INBOX_RECEIVE_KEY_VOLTAGE 2
+#define INBOX_RECEIVE_KEY_BATTERY 3
+#define INBOX_RECEIVE_KEY_CONNECTED_TO_DEVICE 4
 
 static Window *s_main_window;
-static TextLayer *s_output_layer;
-static TextLayer *s_speed_layer;
 
-int _speed = 0;
-int speed = 0;
-char charSpeed[3] = "";
+static Layer *s_main_layer = NULL;
+
+bool _connectedToPhone = false;
+bool _connectedToDevice = false;
+
+char _speedBuffer[] = "00";
+char _temperatureBuffer[] = "0°C";
+char _batteryBuffer[] = "0%";
+char _voltageBuffer[] = "0V";
+char _timeBuffer[] = "00:00";
+
+static void handle_minute_tick(struct tm *tick_time, TimeUnits units_changed)
+{
+  layer_mark_dirty(s_main_layer);
+}
+
+static void kit_connection_handler(bool connected)
+{
+  APP_LOG(APP_LOG_LEVEL_INFO, "PebbleKit %sconnected", connected ? "" : "dis");
+  _connectedToPhone = connected;
+  layer_mark_dirty(s_main_layer);
+}
 
 static void send(int key, int value)
 {
@@ -26,27 +49,23 @@ static void send(int key, int value)
 static void outbox_sent_handler(DictionaryIterator *iter, void *context)
 {
   // Ready for next command
-  text_layer_set_text(s_output_layer, "Press up or down.");
 }
 
 static void outbox_failed_handler(DictionaryIterator *iter, AppMessageResult reason, void *context)
 {
-  text_layer_set_text(s_output_layer, "Send failed!");
   APP_LOG(APP_LOG_LEVEL_ERROR, "Fail reason: %d", (int)reason);
 }
 
 static void up_click_handler(ClickRecognizerRef recognizer, void *context)
 {
-  text_layer_set_text(s_output_layer, "Up");
-
-  send(KEY_BUTTON_UP, 0);
+  APP_LOG(APP_LOG_LEVEL_INFO, "Up presed");
+  send(OUTBOX_KEY_BUTTON_UP, 0);
 }
 
 static void down_click_handler(ClickRecognizerRef recognizer, void *context)
 {
-  text_layer_set_text(s_output_layer, "Down");
-
-  send(KEY_BUTTON_DOWN, 0);
+  APP_LOG(APP_LOG_LEVEL_INFO, "Down presed");
+  send(OUTBOX_KEY_BUTTON_DOWN, 0);
 }
 
 static void click_config_provider(void *context)
@@ -55,53 +74,118 @@ static void click_config_provider(void *context)
   window_single_click_subscribe(BUTTON_ID_DOWN, down_click_handler);
 }
 
+static void main_layer_update_proc(Layer *layer, GContext *ctx)
+{
+  GRect bounds = layer_get_bounds(layer);
+
+  // time
+  clock_copy_time_string(_timeBuffer, sizeof(_timeBuffer));
+  graphics_draw_text(ctx, _timeBuffer, fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD),
+                     GRect(0, 0, bounds.size.w, 28), GTextOverflowModeFill, GTextAlignmentCenter, NULL);
+
+  // speed
+  graphics_draw_text(ctx, _speedBuffer, fonts_get_system_font(FONT_KEY_LECO_42_NUMBERS),
+                     GRect(0, (bounds.size.h - 60) / 2, bounds.size.w, 60), GTextOverflowModeFill, GTextAlignmentCenter, NULL);
+
+  // information (batter, voltage, temperature)
+  char information[20];
+  snprintf(information, sizeof information, "%s   %s   %s", _batteryBuffer, _voltageBuffer, _temperatureBuffer);
+
+  graphics_draw_text(ctx, information, fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD),
+                     GRect(0, (bounds.size.h - 60) / 2 + 70, bounds.size.w, 60), GTextOverflowModeFill, GTextAlignmentCenter, NULL);
+
+  // draw connection indicator
+  if (_connectedToDevice)
+  {
+    graphics_context_set_fill_color(ctx, GColorGreen);
+  }
+  else if (_connectedToPhone)
+  {
+    graphics_context_set_fill_color(ctx, GColorYellow);
+  }
+  else
+  {
+    graphics_context_set_fill_color(ctx, GColorRed);
+  }
+
+  graphics_fill_circle(ctx, GPoint(10, bounds.size.h - 10), 5);
+}
+
 static void main_window_load(Window *window)
 {
   Layer *window_layer = window_get_root_layer(window);
   GRect bounds = layer_get_bounds(window_layer);
 
-  s_output_layer = text_layer_create(grect_inset(bounds, GEdgeInsets(0, 0)));
-  text_layer_set_text(s_output_layer, "Press up or down.");
-  text_layer_set_text_alignment(s_output_layer, GTextAlignmentCenter);
-  layer_add_child(window_layer, text_layer_get_layer(s_output_layer));
+  s_main_layer = layer_create(bounds);
+  layer_set_update_proc(s_main_layer, main_layer_update_proc);
+  layer_add_child(window_layer, s_main_layer);
 
-  s_speed_layer = text_layer_create(grect_inset(bounds, GEdgeInsets((bounds.size.h - 60) / 2, 0)));
-  text_layer_set_text(s_speed_layer, "00");
-  text_layer_set_font(s_speed_layer, fonts_get_system_font(FONT_KEY_LECO_42_NUMBERS));
-  text_layer_set_text_alignment(s_speed_layer, GTextAlignmentCenter);
-  layer_add_child(window_layer, text_layer_get_layer(s_speed_layer));
+  //Register with TickTimerService
+  tick_timer_service_subscribe(MINUTE_UNIT, handle_minute_tick);
+  //Register PebbleKitConnection
+  connection_service_subscribe((ConnectionHandlers){
+      .pebblekit_connection_handler = kit_connection_handler});
 }
 
 static void main_window_unload(Window *window)
 {
-  text_layer_destroy(s_output_layer);
-  text_layer_destroy(s_speed_layer);
+  layer_destroy(s_main_layer);
+  tick_timer_service_unsubscribe();
+  connection_service_unsubscribe();
 }
 
 static void inbox_received_handler(DictionaryIterator *iter, void *context)
 {
-  Tuple *speed_tuple = dict_find(iter, KEY_SPEED);
+  Tuple *speed_tuple = dict_find(iter, INBOX_RECEIVE_KEY_SPEED);
+  Tuple *battery_tuple = dict_find(iter, INBOX_RECEIVE_KEY_BATTERY);
+  Tuple *temperature_tuple = dict_find(iter, INBOX_RECEIVE_KEY_TEMPERATURE);
+  Tuple *voltage_tuple = dict_find(iter, INBOX_RECEIVE_KEY_VOLTAGE);
+  Tuple *connected_to_device_tuple = dict_find(iter, INBOX_RECEIVE_KEY_CONNECTED_TO_DEVICE);
+
   if (speed_tuple)
   {
-    speed = speed_tuple->value->int32;
-    snprintf(charSpeed, 3, "%02d", speed);
-
-    text_layer_set_text(s_speed_layer, charSpeed);
-
-    // Go back to low-power mode
-    app_comm_set_sniff_interval(SNIFF_INTERVAL_NORMAL);
+    int speed = speed_tuple->value->int32;
+    snprintf(_speedBuffer, 3, "%02d", speed);
   }
+
+  if (battery_tuple)
+  {
+    int battery = battery_tuple->value->int32;
+    snprintf(_batteryBuffer, 3, "%02d%%", battery);
+  }
+
+  if (temperature_tuple)
+  {
+    int temperature = temperature_tuple->value->int32;
+    snprintf(_temperatureBuffer, 3, "%02d°C", temperature);
+  }
+
+  if (voltage_tuple)
+  {
+    int voltage = voltage_tuple->value->int32;
+    snprintf(_voltageBuffer, 3, "%02dV", voltage);
+  }
+
+  if (connected_to_device_tuple)
+  {
+    _connectedToDevice = connected_to_device_tuple->value->uint8 != 0;
+  }
+
+  layer_mark_dirty(s_main_layer);
 }
 
 static void init(void)
 {
   s_main_window = window_create();
+  window_set_background_color(s_main_window, GColorBlack);
   window_set_click_config_provider(s_main_window, click_config_provider);
   window_set_window_handlers(s_main_window, (WindowHandlers){
                                                 .load = main_window_load,
                                                 .unload = main_window_unload,
                                             });
   window_stack_push(s_main_window, true);
+
+  app_comm_set_sniff_interval(SNIFF_INTERVAL_NORMAL);
 
   // Open AppMessage
   app_message_register_outbox_sent(outbox_sent_handler);
