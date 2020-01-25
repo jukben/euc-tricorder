@@ -41,9 +41,18 @@ const SubHeader = styled.Text`
   font-size: 10px;
 `;
 
-const Chart = styled.View`
-  flex: 3;
-`;
+const Chart = React.memo(({ data }: { data: Array<number> }) => {
+  return (
+    <LineChart
+      // eslint-disable-next-line react-native/no-inline-styles
+      style={{ flex: 3 }}
+      data={data}
+      animate={true}
+      svg={{ stroke: 'rgb(134, 65, 244)' }}
+      contentInset={{ top: 20, bottom: 20 }}
+    />
+  );
+});
 
 const voiceInfo = (what: number) => {
   Tts.speak(`Speed: ${what}`);
@@ -95,7 +104,7 @@ export const Metrics = () => {
   useThrottle({
     callback: performStateSnapshot,
     value: data,
-    threshold: 1000,
+    threshold: 10000,
   });
 
   const getData = useMemo(() => {
@@ -111,8 +120,6 @@ export const Metrics = () => {
         : []),
       ...dataForDimension,
     ];
-
-    console.log(enhancedData);
 
     const groupByDimension = enhancedData.reduce(
       (acc, v) => {
@@ -132,7 +139,6 @@ export const Metrics = () => {
       } as Record<keyof DeviceData, Array<number>>,
     );
 
-    console.log(groupByDimension);
     return (dimension: keyof DeviceData) => {
       return groupByDimension[dimension];
     };
@@ -148,16 +154,7 @@ export const Metrics = () => {
           <SubHeader>°C</SubHeader>
         </Header>
         <Value>{temperature}</Value>
-        <Chart>
-          <LineChart
-            // eslint-disable-next-line react-native/no-inline-styles
-            style={{ flex: 1 }}
-            data={getData('temperature')}
-            animate={true}
-            svg={{ stroke: 'rgb(134, 65, 244)' }}
-            contentInset={{ top: 20, bottom: 20 }}
-          />
-        </Chart>
+        <Chart data={getData('temperature')} />
       </Section>
       <Section>
         <Header>
@@ -165,16 +162,7 @@ export const Metrics = () => {
           <SubHeader>km/h</SubHeader>
         </Header>
         <Value>{Math.round(speed)}</Value>
-        <Chart>
-          <LineChart
-            // eslint-disable-next-line react-native/no-inline-styles
-            style={{ flex: 1 }}
-            data={getData('speed')}
-            animate={true}
-            svg={{ stroke: 'rgb(134, 65, 244)' }}
-            contentInset={{ top: 20, bottom: 20 }}
-          />
-        </Chart>
+        <Chart data={getData('speed')} />
       </Section>
       <Section>
         <Header>
@@ -182,16 +170,7 @@ export const Metrics = () => {
           <SubHeader>%</SubHeader>
         </Header>
         <Value>{Math.round(battery)}</Value>
-        <Chart>
-          <LineChart
-            // eslint-disable-next-line react-native/no-inline-styles
-            style={{ flex: 1 }}
-            data={getData('battery')}
-            animate={true}
-            svg={{ stroke: 'rgb(134, 65, 244)' }}
-            contentInset={{ top: 20, bottom: 20 }}
-          />
-        </Chart>
+        <Chart data={getData('battery')} />
       </Section>
       <Section>
         <Header>
@@ -199,16 +178,7 @@ export const Metrics = () => {
           <SubHeader>V</SubHeader>
         </Header>
         <Value>{Math.round(voltage)}</Value>
-        <Chart>
-          <LineChart
-            // eslint-disable-next-line react-native/no-inline-styles
-            style={{ flex: 1 }}
-            data={getData('voltage')}
-            animate={true}
-            svg={{ stroke: 'rgb(134, 65, 244)' }}
-            contentInset={{ top: 20, bottom: 20 }}
-          />
-        </Chart>
+        <Chart data={getData('voltage')} />
       </Section>
     </Container>
   );
