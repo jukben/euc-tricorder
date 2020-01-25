@@ -23,6 +23,7 @@ typedef NS_ENUM(NSUInteger, Data) {
     Battery,
     ConnectedToDevice,
     ConnectedToPhone,
+    Dummy,
 };
 
 @implementation PebbleClient
@@ -86,9 +87,10 @@ RCT_EXPORT_MODULE();
 }
 
 - (void)appDisconnected {
+  NSLog(@"Pebble: App disconnected");
   NSNumber *pebbleNotReady = [NSNumber pb_numberWithUint8:0];
-  NSDictionary *update = @{ @(5):pebbleNotReady };
-  
+  NSDictionary *update = @{ @(ConnectedToPhone):pebbleNotReady };
+
   [self sendMessageToPebble:update];
 }
 
@@ -148,8 +150,6 @@ RCT_EXPORT_METHOD(run) {
 }
 
 RCT_EXPORT_METHOD(sendUpdate:(NSDictionary *)data:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
-  NSNumber *speed = [RCTConvert NSNumber:data[@"speed"]];
-  
   if (!self.connectedWatch){
     NSError *error = [[NSError alloc] initWithDomain:NSPOSIXErrorDomain
     code:errno userInfo:nil];
@@ -159,7 +159,33 @@ RCT_EXPORT_METHOD(sendUpdate:(NSDictionary *)data:(RCTPromiseResolveBlock)resolv
   }
 
   NSMutableDictionary *update = [NSMutableDictionary new];
-  update[@(Speed)] = [NSNumber pb_numberWithInt8:speed.pb_uint8Value];
+  
+  if (data[@"speed"]){
+    NSNumber *speed = [RCTConvert NSNumber:data[@"speed"]];
+    update[@(Speed)] = [NSNumber pb_numberWithInt8:speed.pb_uint8Value];
+  }
+  if (data[@"battery"]){
+    NSNumber *battery = [RCTConvert NSNumber:data[@"battery"]];
+    update[@(Battery)] = [NSNumber pb_numberWithInt8:battery.pb_uint8Value];
+  }
+  if (data[@"voltage"]){
+    NSNumber *voltage = [RCTConvert NSNumber:data[@"voltage"]];
+    update[@(Voltage)] = [NSNumber pb_numberWithInt8:voltage.pb_uint8Value];
+  }
+  if (data[@"temperature"]){
+    NSNumber *temperature = [RCTConvert NSNumber:data[@"temperature"]];
+    update[@(Temperature)] = [NSNumber pb_numberWithInt8:temperature.pb_uint8Value];
+  }
+  if (data[@"connectedToDevice"]){
+    NSNumber *connectedToDevice = [RCTConvert NSNumber:data[@"connectedToDevice"]];
+    update[@(ConnectedToDevice)] = [NSNumber pb_numberWithInt8:connectedToDevice.pb_uint8Value];
+  }
+  if (data[@"connectedToPhone"]){
+    NSNumber *connectedToPhone = [RCTConvert NSNumber:data[@"connectedToPhone"]];
+    update[@(ConnectedToPhone)] = [NSNumber pb_numberWithInt8:connectedToPhone.pb_uint8Value];
+  }
+ 
+  NSLog(@"Pebble: Sending update %@", update);
   
   [self sendMessageToPebble:update handler:^(bool succuess, NSError *error){
     if (succuess){
@@ -183,10 +209,9 @@ RCT_EXPORT_METHOD(sendUpdate:(NSDictionary *)data:(RCTPromiseResolveBlock)resolv
   __weak typeof(self) welf = self;
   
   // send we are ready event!
-  NSNumber *pebbleReady = [NSNumber pb_numberWithUint8:1];
-  NSDictionary *update = @{ @(5):pebbleReady };
+  NSNumber *arbitraryEvent = [NSNumber pb_numberWithUint8:1];
+  NSDictionary *update = @{ @(Dummy):arbitraryEvent };
   [self sendMessageToPebble:update];
-
   
   // Sign up for AppMessage
   [self.connectedWatch appMessagesAddReceiveUpdateHandler:^BOOL(PBWatch *watch, NSDictionary *update) {
@@ -199,15 +224,12 @@ RCT_EXPORT_METHOD(sendUpdate:(NSDictionary *)data:(RCTPromiseResolveBlock)resolv
       if (update[@(Ready)]) {
         NSLog(@"Pebble sent message: Ready");
         int state = [update[@(Ready)] intValue];
-
+  
         [[NSNotificationCenter defaultCenter] postNotificationName:@"PebbleMessageReceived" object:self userInfo:@{@"name": @"Ready", @"payload":state == 1 ? @YES : @NO}];
         
         
-        if (state == 1){
-          // response to the pebble
-          NSNumber *pebbleReady = [NSNumber pb_numberWithUint8:1];
-          NSDictionary *update = @{ @(5):pebbleReady };
-          [self sendMessageToPebble:update];
+        if (state == 1 && welf.connectedWatch == nil){
+          welf.connectedWatch = watch;
         }
       }
       

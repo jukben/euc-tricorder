@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ActivityIndicator, SafeAreaView } from 'react-native';
 import styled from 'styled-components/native';
 
-import { useAdapter } from '../../../providers';
+import { useAdapter, usePebbleClient } from '../../../providers';
 import { Header } from './header';
 import { Metrics } from './metrics';
 
@@ -21,14 +21,28 @@ const Content = styled.View`
 
 export const Device = () => {
   const { adapter } = useAdapter();
+  const { connected, sendUpdate } = usePebbleClient();
+
+  useEffect(() => {
+    const updateConnectionStatus = () => {
+      console.log('trying to update connection to pebble', {
+        connectedToDevice: adapter ? 1 : 0,
+        connectedToPhone: connected ? 1 : 0,
+      });
+
+      sendUpdate({
+        connectedToDevice: adapter ? 1 : 0,
+        connectedToPhone: connected ? 1 : 0,
+      });
+    };
+
+    updateConnectionStatus();
+  }, [adapter, connected, sendUpdate]);
 
   return (
     <SafeAreaView>
       <Container>
         <Header />
-        {/* <Content>
-          <Metrics />
-        </Content> */}
         <Content>{adapter ? <Metrics /> : <ActivityIndicator />}</Content>
       </Container>
     </SafeAreaView>

@@ -20,21 +20,14 @@ static Layer *s_main_layer = NULL;
 bool _connectedToPhone = false;
 bool _connectedToDevice = false;
 
-char _speedBuffer[] = "00";
-char _temperatureBuffer[] = "0°C";
-char _batteryBuffer[] = "0%";
-char _voltageBuffer[] = "0V";
-char _timeBuffer[] = "00:00";
+char _speedBuffer[8] = "00";
+char _temperatureBuffer[8] = "0°C";
+char _batteryBuffer[8] = "0%";
+char _voltageBuffer[8] = "0V";
+char _timeBuffer[8] = "00:00";
 
 static void handle_minute_tick(struct tm *tick_time, TimeUnits units_changed)
 {
-  layer_mark_dirty(s_main_layer);
-}
-
-static void connection_handler(bool connected)
-{
-  APP_LOG(APP_LOG_LEVEL_INFO, "PebbleKit %sconnected", connected ? "" : "dis");
-  _connectedToPhone = connected;
   layer_mark_dirty(s_main_layer);
 }
 
@@ -99,11 +92,11 @@ static void main_layer_update_proc(Layer *layer, GContext *ctx)
   // draw connection indicator
   if (_connectedToDevice)
   {
-    graphics_context_set_fill_color(ctx, GColorGreen);
+    graphics_context_set_fill_color(ctx, GColorWhite);
   }
   else if (_connectedToPhone)
   {
-    graphics_context_set_fill_color(ctx, GColorYellow);
+    graphics_context_set_fill_color(ctx, GColorDarkGray);
   }
   else
   {
@@ -124,22 +117,18 @@ static void main_window_load(Window *window)
 
   //Register with TickTimerService
   tick_timer_service_subscribe(MINUTE_UNIT, handle_minute_tick);
-  //Register PebbleKitConnection
-  connection_service_subscribe((ConnectionHandlers){
-      .pebblekit_connection_handler = connection_handler});
-
-  _connectedToPhone = connection_service_peek_pebblekit_connection();
 }
 
 static void main_window_unload(Window *window)
 {
   layer_destroy(s_main_layer);
   tick_timer_service_unsubscribe();
-  connection_service_unsubscribe();
 }
 
 static void inbox_received_handler(DictionaryIterator *iter, void *context)
 {
+  APP_LOG(APP_LOG_LEVEL_INFO, "inbox_received_handler");
+
   Tuple *speed_tuple = dict_find(iter, INBOX_RECEIVE_KEY_SPEED);
   Tuple *battery_tuple = dict_find(iter, INBOX_RECEIVE_KEY_BATTERY);
   Tuple *temperature_tuple = dict_find(iter, INBOX_RECEIVE_KEY_TEMPERATURE);
@@ -149,36 +138,38 @@ static void inbox_received_handler(DictionaryIterator *iter, void *context)
 
   if (speed_tuple)
   {
-    int speed = speed_tuple->value->int32;
-    snprintf(_speedBuffer, 3, "%02d", speed);
+    int speed = speed_tuple->value->int8;
+    snprintf(_speedBuffer, 8, "%02d", speed);
   }
 
   if (battery_tuple)
   {
-    int battery = battery_tuple->value->int32;
-    snprintf(_batteryBuffer, 3, "%02d%%", battery);
+    int battery = battery_tuple->value->int8;
+    snprintf(_batteryBuffer, 8, "%02d%%", battery);
   }
 
   if (temperature_tuple)
   {
-    int temperature = temperature_tuple->value->int32;
-    snprintf(_temperatureBuffer, 3, "%02d°C", temperature);
+    int temperature = temperature_tuple->value->int8;
+    snprintf(_temperatureBuffer, 8, "%02d°C", temperature);
   }
 
   if (voltage_tuple)
   {
-    int voltage = voltage_tuple->value->int32;
-    snprintf(_voltageBuffer, 3, "%02dV", voltage);
+    int voltage = voltage_tuple->value->int8;
+    snprintf(_voltageBuffer, 8, "%02dV", voltage);
   }
 
   if (connected_to_device_tuple)
   {
     _connectedToDevice = connected_to_device_tuple->value->uint8 != 0;
+    APP_LOG(APP_LOG_LEVEL_INFO, "Connected to device update: %s", _connectedToDevice ? "yes" : "no");
   }
 
   if (connected_to_phone_tuple)
   {
     _connectedToPhone = connected_to_phone_tuple->value->uint8 != 0;
+    APP_LOG(APP_LOG_LEVEL_INFO, "Connected to phone update: %s", _connectedToPhone ? "yes" : "no");
   }
 
   layer_mark_dirty(s_main_layer);

@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styled from 'styled-components/native';
 
 import { DeviceData } from '../../../adapters';
-import { useAdapter } from '../../../providers';
+import { useAdapter, usePebbleClient } from '../../../providers';
 import { useAlarm } from './alarm.hook';
 import { useThrottle } from './throttle.hook';
 
@@ -59,10 +59,6 @@ const voiceInfo = (what: number) => {
   Vibration.vibrate(1000);
 };
 
-// const updatePebbleSpeed = (speed: number) => {
-//   sendUpdate(Math.round(speed));
-// };
-
 const initData: DeviceData = {
   speed: 0,
   battery: 0,
@@ -77,6 +73,7 @@ export const Metrics = () => {
   const [data, setData] = useState<DeviceData>(initData);
 
   const { adapter } = useAdapter();
+  const { sendUpdate } = usePebbleClient();
 
   useEffect(() => {
     if (!adapter) {
@@ -100,6 +97,25 @@ export const Metrics = () => {
     },
     [setTelemetryData],
   );
+
+  const updatePebble = useCallback(
+    d => {
+      console.log('pebble', data);
+      sendUpdate({
+        speed: Math.round(d.speed),
+        battery: Math.round(d.battery),
+        temperature: Math.round(d.temperature),
+        voltage: Math.round(d.voltage),
+      });
+    },
+    [data, sendUpdate],
+  );
+
+  useThrottle({
+    callback: updatePebble,
+    value: data,
+    threshold: 1000,
+  });
 
   useThrottle({
     callback: performStateSnapshot,
