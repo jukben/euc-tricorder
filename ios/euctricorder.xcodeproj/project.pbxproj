@@ -15,6 +15,9 @@
 		67AC8FA6B68C95C365B9922D /* libPods-euctricorderTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4EF4D02D220EC8AB8325F5 /* libPods-euctricorderTests.a */; };
 		772726EC389903A9291AA6B6 /* libPods-euctricorder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1FBB3760B902F4D649A447 /* libPods-euctricorder.a */; };
 		798260C523D466920067C3C2 /* PebbleClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 798260C423D466920067C3C2 /* PebbleClient.m */; };
+		79AC7A2D23DC7097004A6FF6 /* FlicClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AC7A2C23DC7097004A6FF6 /* FlicClient.m */; };
+		79AC7A4123DC7AF8004A6FF6 /* fliclib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79AC7A3923DC717F004A6FF6 /* fliclib.framework */; };
+		79AC7A4223DC7AF8004A6FF6 /* fliclib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 79AC7A3923DC717F004A6FF6 /* fliclib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		79F96E5023CD006000AFAE6E /* bridge-me.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F96E4F23CD006000AFAE6E /* bridge-me.swift */; };
 		79F96E5123CD006000AFAE6E /* bridge-me.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F96E4F23CD006000AFAE6E /* bridge-me.swift */; };
 /* End PBXBuildFile section */
@@ -28,6 +31,20 @@
 			remoteInfo = euctricorder;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		79AC7A4323DC7AF8004A6FF6 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				79AC7A4223DC7AF8004A6FF6 /* fliclib.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
@@ -46,6 +63,9 @@
 		7491974F9FD7B71CFC28281D /* Pods-euctricorderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-euctricorderTests.debug.xcconfig"; path = "Target Support Files/Pods-euctricorderTests/Pods-euctricorderTests.debug.xcconfig"; sourceTree = "<group>"; };
 		798260C323D466680067C3C2 /* PebbleClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PebbleClient.h; sourceTree = "<group>"; };
 		798260C423D466920067C3C2 /* PebbleClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PebbleClient.m; sourceTree = "<group>"; };
+		79AC7A2C23DC7097004A6FF6 /* FlicClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlicClient.m; sourceTree = "<group>"; };
+		79AC7A2F23DC70A2004A6FF6 /* FlicClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlicClient.h; sourceTree = "<group>"; };
+		79AC7A3923DC717F004A6FF6 /* fliclib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = fliclib.framework; sourceTree = "<group>"; };
 		79F96E4B23CD006000AFAE6E /* euctricorder-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "euctricorder-Bridging-Header.h"; sourceTree = "<group>"; };
 		79F96E4C23CD006000AFAE6E /* euctricorderTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "euctricorderTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		79F96E4F23CD006000AFAE6E /* bridge-me.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "bridge-me.swift"; sourceTree = "<group>"; };
@@ -69,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79AC7A4123DC7AF8004A6FF6 /* fliclib.framework in Frameworks */,
 				772726EC389903A9291AA6B6 /* libPods-euctricorder.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -110,6 +131,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				79AC7A3923DC717F004A6FF6 /* fliclib.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				3D1FBB3760B902F4D649A447 /* libPods-euctricorder.a */,
@@ -128,6 +150,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				79AC7A2C23DC7097004A6FF6 /* FlicClient.m */,
+				79AC7A2F23DC70A2004A6FF6 /* FlicClient.h */,
 				798260C423D466920067C3C2 /* PebbleClient.m */,
 				798260C323D466680067C3C2 /* PebbleClient.h */,
 				79F96E4F23CD006000AFAE6E /* bridge-me.swift */,
@@ -199,6 +223,7 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				5CF94A100FFB2E71559ABBEA /* [CP] Copy Pods Resources */,
 				A7461D812A496FC357097D5E /* [CP] Embed Pods Frameworks */,
+				79AC7A4323DC7AF8004A6FF6 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -432,6 +457,7 @@
 				79F96E5023CD006000AFAE6E /* bridge-me.swift in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				798260C523D466920067C3C2 /* PebbleClient.m in Sources */,
+				79AC7A2D23DC7097004A6FF6 /* FlicClient.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -522,6 +548,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = U2HL3HZ5TZ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = euctricorder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -546,6 +576,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = U2HL3HZ5TZ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = euctricorder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -565,6 +599,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -618,6 +653,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;

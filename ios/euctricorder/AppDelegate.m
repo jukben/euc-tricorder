@@ -13,6 +13,7 @@
 #import <RNCPushNotificationIOS.h>
 #import <UserNotifications/UserNotifications.h>
 #import "PebbleClient.h"
+#import "FlicClient.h"
 
 @implementation AppDelegate
 
@@ -40,6 +41,10 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application{
    [PebbleClient applicationWillTerminate];
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options; {
+  return [FlicClient handleOpenURL:url];
 }
 
 // Required to register for notifications
