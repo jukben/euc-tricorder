@@ -18,6 +18,9 @@ type FlicClient = {
   grabButton: () => void;
 } & EventSubscriptionVendor;
 
+/**
+ * Known Issue: It doesn't get reconnected correctly in case of full reload
+ */
 const { FlicClient } = NativeModules as { FlicClient: FlicClient };
 
 const flicClientEmitter = new NativeEventEmitter(FlicClient);

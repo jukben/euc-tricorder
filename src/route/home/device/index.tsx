@@ -1,50 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, SafeAreaView, Text } from 'react-native';
+import React from 'react';
+import { ActivityIndicator, SafeAreaView } from 'react-native';
 import styled from 'styled-components/native';
 
-import { useAdapter, useFlicClient, usePebbleClient } from '../../../providers';
+import { useAdapter } from '../../../providers';
+import { Header } from './header';
 import { Metrics } from './metrics';
 
 const Container = styled.View`
   height: 100%;
+  align-items: center;
+  justify-content: flex-start;
+`;
+
+const Content = styled.View`
+  flex: 1;
+  width: 100%;
   align-items: center;
   justify-content: center;
 `;
 
 export const Device = () => {
   const { adapter } = useAdapter();
-  const {
-    registerListener: pebbleRegisterListener,
-    connected: pebbleConnect,
-  } = usePebbleClient();
-  const { connected: flicConnected } = useFlicClient();
-
-  const [connectedToPebble, setConnectionToPebble] = useState(pebbleConnect);
-
-  useEffect(() => {
-    const unregister = pebbleRegisterListener(event => {
-      if (event.name === 'ConnectionChange') {
-        setConnectionToPebble(event.payload);
-      }
-    });
-
-    return unregister;
-  }, [pebbleRegisterListener]);
 
   return (
     <SafeAreaView>
       <Container>
-        {flicConnected ? (
-          <Text>connected to flic</Text>
-        ) : (
-          <Text>disconnected from flic</Text>
-        )}
-        {connectedToPebble ? (
-          <Text>connected to pebble</Text>
-        ) : (
-          <Text>disconnected to pebble</Text>
-        )}
-        {adapter ? <Metrics /> : <ActivityIndicator />}
+        <Header />
+        {/* <Content>
+          <Metrics />
+        </Content> */}
+        <Content>{adapter ? <Metrics /> : <ActivityIndicator />}</Content>
       </Container>
     </SafeAreaView>
   );

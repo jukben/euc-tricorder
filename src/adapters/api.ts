@@ -31,6 +31,7 @@ export type AdapterService = {
   connect: (onDisconnect?: () => void) => Promise<unknown>;
   disconnect: () => Promise<unknown>;
   isConnected: () => Promise<boolean>;
+  // TODO create better API instantly returning remove handler?
   addListener: (listener: (deviceData: DeviceData) => void) => number;
   removeListener: (id: number) => void;
 };
