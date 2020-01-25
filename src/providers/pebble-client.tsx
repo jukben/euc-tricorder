@@ -9,10 +9,15 @@ type Data = {
   speed: number;
   battery: number;
   temperature: number;
+  voltage: number;
+  connectedToDevice: boolean;
 };
+
+type PebbleWatch = { name: string };
 
 type PebbleClient = {
   run: () => void;
+  destroy: () => void;
   configure: (uuid: string) => void;
   sendUpdate: (data: Data) => Promise<void>;
 } & EventSubscriptionVendor;
@@ -38,30 +43,23 @@ export const PebbleClientProvider: React.FC = ({ children }) => {
   useEffect(() => {
     PebbleClient.configure(PEBBLE_APP_UUID);
 
-    const subscription = pebbleClientEmitter.addListener(
-      'PebbleConnected',
-      watchName => {
-        console.log(`Pebble ${watchName} has been connected!`);
-        setConnected(true);
-      },
-    );
-
-    PebbleClient.run();
-
-    return () => subscription.remove();
-  }, []);
-
-  useEffect(() => {
-    PebbleClient.configure(PEBBLE_APP_UUID);
-
     const subscriptions = [
-      pebbleClientEmitter.addListener('PebbleConnected', watchName => {
-        console.log(`Pebble ${watchName} has been connected!`);
-        setConnected(true);
-      }),
-      pebbleClientEmitter.addListener('PebbleDisconnected', watchName => {
-        console.log(`Pebble ${watchName} has been disconnected!`);
-        setConnected(false);
+      pebbleClientEmitter.addListener(
+        'PebbleConnected',
+        ({ name }: PebbleWatch) => {
+          console.log(`Pebble ${name} has been connected!`);
+          setConnected(true);
+        },
+      ),
+      pebbleClientEmitter.addListener(
+        'PebbleDisconnected',
+        ({ name }: PebbleWatch) => {
+          console.log(`Pebble ${name} has been disconnected!`);
+          setConnected(false);
+        },
+      ),
+      pebbleClientEmitter.addListener('PebbleMessage', ({ name }) => {
+        console.log(`Pebble sent event! ${name}`);
       }),
     ];
 
@@ -69,8 +67,9 @@ export const PebbleClientProvider: React.FC = ({ children }) => {
 
     return () => {
       subscriptions.forEach(subscription => subscription.remove());
+      PebbleClient.destory();
     };
-  }, []);
+  }, [connected]);
 
   const api = useMemo(
     () => ({

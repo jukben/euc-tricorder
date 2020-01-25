@@ -12,7 +12,7 @@
 #import <React/RCTRootView.h>
 #import <RNCPushNotificationIOS.h>
 #import <UserNotifications/UserNotifications.h>
-//#import <PebbleKit/PebbleKit.h>
+#import "PebbleClient.h"
 
 @implementation AppDelegate
 
@@ -36,6 +36,10 @@
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
   return YES;
+}
+
+- (void)applicationWillTerminate:(UIApplication *)application{
+   [PebbleClient applicationWillTerminate];
 }
 
 // Required to register for notifications

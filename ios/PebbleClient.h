@@ -12,7 +12,10 @@
 
 @interface PebbleClient : RCTEventEmitter <RCTBridgeModule, PBPebbleCentralDelegate>
 
-@property (weak, nonatomic) PBPebbleCentral* central;
-@property (weak, nonatomic) PBWatch *connectedWatch;
++ (void) applicationWillTerminate;
+- (void)dispatchEvent:(NSString * _Nonnull)name value:(id _Nonnull)value;
+
+@property (weak, nonatomic) PBPebbleCentral* _Nullable central;
+@property (weak, nonatomic) PBWatch * _Nullable connectedWatch;
 
 @end
