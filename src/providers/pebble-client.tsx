@@ -85,7 +85,6 @@ export const PebbleClientProvider: React.FC = ({ children }) => {
         ({ name }: PebbleWatch) => {
           console.log(`Pebble ${name} has been connected!`);
           setConnected(true);
-          handleMessage({ name: 'ConnectionChange', payload: true });
         },
       ),
       pebbleClientEmitter.addListener(
@@ -93,7 +92,6 @@ export const PebbleClientProvider: React.FC = ({ children }) => {
         ({ name }: PebbleWatch) => {
           console.log(`Pebble ${name} has been disconnected!`);
           setConnected(false);
-          handleMessage({ name: 'ConnectionChange', payload: false });
         },
       ),
       pebbleClientEmitter.addListener(

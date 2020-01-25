@@ -9,6 +9,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { adapters } from '../../adapters';
 import { CrossroadNavigatorProps } from '../../Crossroad';
 import {
+  FlicClientProvider,
   PebbleClientProvider,
   useAdapter,
   useBle,
@@ -97,26 +98,28 @@ export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
 
   return (
     <PebbleClientProvider>
-      <Tab.Navigator initialRouteName={'Device'}>
-        <Tab.Screen
-          name="Device"
-          component={Device}
-          options={{
-            tabBarIcon: ({ color, size }) => (
-              <Icon name={'speedometer'} color={color} size={size} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Settings"
-          component={Settings}
-          options={{
-            tabBarIcon: ({ color, size }) => (
-              <Icon name={'settings'} color={color} size={size} />
-            ),
-          }}
-        />
-      </Tab.Navigator>
+      <FlicClientProvider>
+        <Tab.Navigator initialRouteName={'Device'}>
+          <Tab.Screen
+            name="Device"
+            component={Device}
+            options={{
+              tabBarIcon: ({ color, size }) => (
+                <Icon name={'speedometer'} color={color} size={size} />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="Settings"
+            component={Settings}
+            options={{
+              tabBarIcon: ({ color, size }) => (
+                <Icon name={'settings'} color={color} size={size} />
+              ),
+            }}
+          />
+        </Tab.Navigator>
+      </FlicClientProvider>
     </PebbleClientProvider>
   );
 };

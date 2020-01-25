@@ -71,7 +71,7 @@ RCT_EXPORT_MODULE();
                                                  name:@"AppDisconnected"
                                                object:nil];
 
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messageRecieved :) name:@"PebbleMessageReceived" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messageRecieved :) name:@"PebbleMessageReceived" object:nil];
   
     return self;
 }
