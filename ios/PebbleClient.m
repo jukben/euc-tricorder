@@ -185,7 +185,6 @@ RCT_EXPORT_METHOD(sendUpdate:(NSDictionary *)data:(RCTPromiseResolveBlock)resolv
   // send we are ready event!
   NSNumber *pebbleReady = [NSNumber pb_numberWithUint8:1];
   NSDictionary *update = @{ @(5):pebbleReady };
-
   [self sendMessageToPebble:update];
 
   
@@ -198,20 +197,30 @@ RCT_EXPORT_METHOD(sendUpdate:(NSDictionary *)data:(RCTPromiseResolveBlock)resolv
       }
     
       if (update[@(Ready)]) {
-        NSLog(@"Pebble sent message: READY!");
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"PebbleMessageReceived" object:self userInfo:@{@"name": @"ready"}];
+        NSLog(@"Pebble sent message: Ready");
+        int state = [update[@(Ready)] intValue];
+
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"PebbleMessageReceived" object:self userInfo:@{@"name": @"Ready", @"payload":state == 1 ? @YES : @NO}];
+        
+        
+        if (state == 1){
+          // response to the pebble
+          NSNumber *pebbleReady = [NSNumber pb_numberWithUint8:1];
+          NSDictionary *update = @{ @(5):pebbleReady };
+          [self sendMessageToPebble:update];
+        }
       }
       
       // Process incoming messages
       if (update[@(KeyButtonUp)]) {
         NSLog(@"Pebble sent message: KeyButtonUP!");
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"PebbleMessageReceived" object:self userInfo:@{@"name": @"button-up"}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"PebbleMessageReceived" object:self userInfo:@{@"name": @"ButtonPressed", @"payload":@"up"}];
 
       }
       
       if (update[@(KeyButtonDown)]) {
         NSLog(@"Pebble sent message: KeyButtonDOWN!");
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"PebbleMessageReceived" object:self userInfo:@{@"name": @"button-down"}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"PebbleMessageReceived" object:self userInfo:@{@"name": @"ButtonPressed", @"payload":@"down"}];
       }
       
       return YES;

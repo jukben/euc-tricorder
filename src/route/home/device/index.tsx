@@ -1,8 +1,8 @@
-import React from 'react';
-import { ActivityIndicator, SafeAreaView } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { ActivityIndicator, SafeAreaView, Text } from 'react-native';
 import styled from 'styled-components/native';
 
-import { useAdapter } from '../../../providers';
+import { useAdapter, usePebbleClient } from '../../../providers';
 import { Metrics } from './metrics';
 
 const Container = styled.View`
@@ -13,10 +13,29 @@ const Container = styled.View`
 
 export const Device = () => {
   const { adapter } = useAdapter();
+  const { registerListener, connected } = usePebbleClient();
+  const [connectedToPebble, setConnectionToPebble] = useState(connected);
+
+  useEffect(() => {
+    const unregister = registerListener(event => {
+      if (event.name === 'ConnectionChange') {
+        setConnectionToPebble(event.payload);
+      }
+    });
+
+    return unregister;
+  }, [registerListener]);
 
   return (
     <SafeAreaView>
-      <Container>{adapter ? <Metrics /> : <ActivityIndicator />}</Container>
+      <Container>
+        {connectedToPebble ? (
+          <Text>connected to pebble</Text>
+        ) : (
+          <Text>disconnected to pebble</Text>
+        )}
+        {adapter ? <Metrics /> : <ActivityIndicator />}
+      </Container>
     </SafeAreaView>
   );
 };

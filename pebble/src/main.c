@@ -206,11 +206,12 @@ static void init(void)
   const int outbox_size = 128;
   app_message_open(inbox_size, outbox_size);
 
-  send(OUTBOX_KEY_READY, 0);
+  send(OUTBOX_KEY_READY, 1);
 }
 
 static void deinit(void)
 {
+  send(OUTBOX_KEY_READY, 0);
   window_destroy(s_main_window);
 }
 
