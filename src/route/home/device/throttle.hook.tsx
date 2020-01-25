@@ -7,7 +7,7 @@ export const useThrottle = <T extends unknown>({
 }: {
   value: T;
   callback: (value: T) => void;
-  threshold: number;
+  threshold?: number;
 }) => {
   const oldDate = useRef(Date.now());
 
