@@ -1,8 +1,9 @@
 #include <pebble.h>
 
 // Outcome message keys
-#define OUTBOX_KEY_BUTTON_UP 0
-#define OUTBOX_KEY_BUTTON_DOWN 1
+#define OUTBOX_KEY_READY 0
+#define OUTBOX_KEY_BUTTON_UP 1
+#define OUTBOX_KEY_BUTTON_DOWN 2
 
 // Income message keys
 #define INBOX_RECEIVE_KEY_SPEED 0
@@ -10,6 +11,7 @@
 #define INBOX_RECEIVE_KEY_VOLTAGE 2
 #define INBOX_RECEIVE_KEY_BATTERY 3
 #define INBOX_RECEIVE_KEY_CONNECTED_TO_DEVICE 4
+#define INBOX_RECEIVE_KEY_CONNECTED_TO_PHONE 5
 
 static Window *s_main_window;
 
@@ -29,7 +31,7 @@ static void handle_minute_tick(struct tm *tick_time, TimeUnits units_changed)
   layer_mark_dirty(s_main_layer);
 }
 
-static void kit_connection_handler(bool connected)
+static void connection_handler(bool connected)
 {
   APP_LOG(APP_LOG_LEVEL_INFO, "PebbleKit %sconnected", connected ? "" : "dis");
   _connectedToPhone = connected;
@@ -124,7 +126,9 @@ static void main_window_load(Window *window)
   tick_timer_service_subscribe(MINUTE_UNIT, handle_minute_tick);
   //Register PebbleKitConnection
   connection_service_subscribe((ConnectionHandlers){
-      .pebblekit_connection_handler = kit_connection_handler});
+      .pebblekit_connection_handler = connection_handler});
+
+  _connectedToPhone = connection_service_peek_pebblekit_connection();
 }
 
 static void main_window_unload(Window *window)
@@ -141,6 +145,7 @@ static void inbox_received_handler(DictionaryIterator *iter, void *context)
   Tuple *temperature_tuple = dict_find(iter, INBOX_RECEIVE_KEY_TEMPERATURE);
   Tuple *voltage_tuple = dict_find(iter, INBOX_RECEIVE_KEY_VOLTAGE);
   Tuple *connected_to_device_tuple = dict_find(iter, INBOX_RECEIVE_KEY_CONNECTED_TO_DEVICE);
+  Tuple *connected_to_phone_tuple = dict_find(iter, INBOX_RECEIVE_KEY_CONNECTED_TO_PHONE);
 
   if (speed_tuple)
   {
@@ -171,6 +176,11 @@ static void inbox_received_handler(DictionaryIterator *iter, void *context)
     _connectedToDevice = connected_to_device_tuple->value->uint8 != 0;
   }
 
+  if (connected_to_phone_tuple)
+  {
+    _connectedToPhone = connected_to_phone_tuple->value->uint8 != 0;
+  }
+
   layer_mark_dirty(s_main_layer);
 }
 
@@ -195,6 +205,8 @@ static void init(void)
   const int inbox_size = 128;
   const int outbox_size = 128;
   app_message_open(inbox_size, outbox_size);
+
+  send(OUTBOX_KEY_READY, 0);
 }
 
 static void deinit(void)

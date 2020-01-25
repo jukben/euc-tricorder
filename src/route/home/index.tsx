@@ -8,7 +8,12 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { adapters } from '../../adapters';
 import { CrossroadNavigatorProps } from '../../Crossroad';
-import { useAdapter, useBle, useSettings } from '../../providers';
+import {
+  PebbleClientProvider,
+  useAdapter,
+  useBle,
+  useSettings,
+} from '../../providers';
 import { CustomNavigatorProps } from '../../types';
 import { Device } from './device';
 import { Settings } from './settings';
@@ -91,25 +96,27 @@ export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
   ]);
 
   return (
-    <Tab.Navigator initialRouteName={'Device'}>
-      <Tab.Screen
-        name="Device"
-        component={Device}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <Icon name={'speedometer'} color={color} size={size} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Settings"
-        component={Settings}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <Icon name={'settings'} color={color} size={size} />
-          ),
-        }}
-      />
-    </Tab.Navigator>
+    <PebbleClientProvider>
+      <Tab.Navigator initialRouteName={'Device'}>
+        <Tab.Screen
+          name="Device"
+          component={Device}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <Icon name={'speedometer'} color={color} size={size} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Settings"
+          component={Settings}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <Icon name={'settings'} color={color} size={size} />
+            ),
+          }}
+        />
+      </Tab.Navigator>
+    </PebbleClientProvider>
   );
 };
