@@ -27,6 +27,7 @@ export const Header = () => {
   const {
     registerListener: pebbleRegisterListener,
     connected: pebbleConnect,
+    sendUpdate,
   } = usePebbleClient();
   const { connected: flicConnected } = useFlicClient();
   const { adapter } = useAdapter();

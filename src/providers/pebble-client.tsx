@@ -17,7 +17,8 @@ type Data = {
   battery: number;
   temperature: number;
   voltage: number;
-  connectedToDevice: boolean;
+  connectedToDevice: 1 | 0;
+  connectedToPhone: 1 | 0;
 };
 
 type PebbleWatch = { name: string };
@@ -26,7 +27,7 @@ type PebbleClient = {
   run: () => void;
   destroy: () => void;
   configure: (uuid: string) => void;
-  sendUpdate: (data: Data) => Promise<void>;
+  sendUpdate: (data: Partial<Data>) => Promise<void>;
 } & EventSubscriptionVendor;
 
 const { PebbleClient } = NativeModules as { PebbleClient: PebbleClient };
@@ -84,14 +85,12 @@ export const PebbleClientProvider: React.FC = ({ children }) => {
         'PebbleConnected',
         ({ name }: PebbleWatch) => {
           console.log(`Pebble ${name} has been connected!`);
-          setConnected(true);
         },
       ),
       pebbleClientEmitter.addListener(
         'PebbleDisconnected',
         ({ name }: PebbleWatch) => {
           console.log(`Pebble ${name} has been disconnected!`);
-          setConnected(false);
         },
       ),
       pebbleClientEmitter.addListener(
@@ -99,6 +98,7 @@ export const PebbleClientProvider: React.FC = ({ children }) => {
         (event: ButtonPressedEvent | ReadyEvent) => {
           if (event.name === 'Ready') {
             handleMessage({ name: 'ConnectionChange', payload: event.payload });
+            setConnected(event.payload);
             return;
           }
 
@@ -113,14 +113,17 @@ export const PebbleClientProvider: React.FC = ({ children }) => {
       subscriptions.forEach(subscription => subscription.remove());
       PebbleClient.destroy();
     };
-  }, [connected]);
+  }, []);
 
   const sendUpdate = useCallback(
-    (data: Data) =>
-      PebbleClient.sendUpdate({
-        ...data,
-      }),
-    [],
+    (data: Partial<Data>) => {
+      if (!connected) {
+        return Promise.resolve();
+      }
+
+      return PebbleClient.sendUpdate(data);
+    },
+    [connected],
   );
 
   const registerListener = useCallback((listener: Listener) => {
