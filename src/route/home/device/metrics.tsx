@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { Vibration } from 'react-native';
 import { LineChart } from 'react-native-svg-charts';
 import Tts from 'react-native-tts';
@@ -6,7 +12,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styled from 'styled-components/native';
 
 import { DeviceData } from '../../../adapters';
-import { useAdapter, usePebbleClient } from '../../../providers';
+import { useAdapter, useFlicClient, usePebbleClient } from '../../../providers';
 import { useAlarm } from './alarm.hook';
 import { useThrottle } from './throttle.hook';
 
@@ -54,11 +60,6 @@ const Chart = React.memo(({ data }: { data: Array<number> }) => {
   );
 });
 
-const voiceInfo = (what: number) => {
-  Tts.speak(`Speed: ${what}`);
-  Vibration.vibrate(1000);
-};
-
 const initData: DeviceData = {
   speed: 0,
   battery: 0,
@@ -69,8 +70,11 @@ const initData: DeviceData = {
 
 export const Metrics = () => {
   const [telemetryData, setTelemetryData] = useState<Array<DeviceData>>([]);
+  const { registerListener } = useFlicClient();
 
   const [data, setData] = useState<DeviceData>(initData);
+  // for optimization purposes to avoid re-registering handlers
+  const dataRef = useRef<DeviceData>(initData);
 
   const { adapter } = useAdapter();
   const { sendUpdate } = usePebbleClient();
@@ -80,16 +84,13 @@ export const Metrics = () => {
       return;
     }
 
-    const id = adapter.addListener(newData => {
+    const unsubscribe = adapter.handleData(newData => {
       setData(newData);
+      dataRef.current = newData;
     });
 
-    return () => adapter.removeListener(id);
+    return unsubscribe;
   }, [adapter]);
-
-  useAlarm({ what: data.speed, when: 30, action: voiceInfo });
-
-  useAlarm({ what: data.speed, when: 40, action: voiceInfo });
 
   const performStateSnapshot = useCallback(
     dataSnapshot => {
@@ -100,7 +101,6 @@ export const Metrics = () => {
 
   const updatePebble = useCallback(
     d => {
-      console.log('pebble', data);
       sendUpdate({
         speed: Math.round(d.speed),
         battery: Math.round(d.battery),
@@ -108,7 +108,7 @@ export const Metrics = () => {
         voltage: Math.round(d.voltage),
       });
     },
-    [data, sendUpdate],
+    [sendUpdate],
   );
 
   useThrottle({
@@ -120,10 +120,36 @@ export const Metrics = () => {
   useThrottle({
     callback: performStateSnapshot,
     value: data,
-    threshold: 10000,
+    threshold: 5000,
   });
 
-  const getData = useMemo(() => {
+  useAlarm({
+    what: data.speed,
+    when: 40,
+    action: speed => {
+      Tts.speak(`Watch out! speed is ${speed} km/h`);
+      Vibration.vibrate([1000, 1000]);
+    },
+  });
+
+  useEffect(() => {
+    const unsubscribe = registerListener(event => {
+      if (event.name === 'ButtonAction' && event.payload === 'hold') {
+        console.log('Flic action - say key information out loud!');
+        Tts.speak(
+          `Speed: ${Math.round(
+            dataRef.current.speed,
+          )} km/h; Battery: ${Math.round(
+            dataRef.current.battery,
+          )}%; Temperature: ${Math.round(dataRef.current.temperature)} °C`,
+        );
+      }
+    });
+
+    return unsubscribe;
+  }, [registerListener]);
+
+  const getChartData = useMemo(() => {
     const SNAPSHOT_SIZE = 600;
     const dataForDimension = telemetryData.reverse().slice(-SNAPSHOT_SIZE);
 
@@ -170,7 +196,7 @@ export const Metrics = () => {
           <SubHeader>°C</SubHeader>
         </Header>
         <Value>{temperature}</Value>
-        <Chart data={getData('temperature')} />
+        <Chart data={getChartData('temperature')} />
       </Section>
       <Section>
         <Header>
@@ -178,7 +204,7 @@ export const Metrics = () => {
           <SubHeader>km/h</SubHeader>
         </Header>
         <Value>{Math.round(speed)}</Value>
-        <Chart data={getData('speed')} />
+        <Chart data={getChartData('speed')} />
       </Section>
       <Section>
         <Header>
@@ -186,7 +212,7 @@ export const Metrics = () => {
           <SubHeader>%</SubHeader>
         </Header>
         <Value>{Math.round(battery)}</Value>
-        <Chart data={getData('battery')} />
+        <Chart data={getChartData('battery')} />
       </Section>
       <Section>
         <Header>
@@ -194,7 +220,7 @@ export const Metrics = () => {
           <SubHeader>V</SubHeader>
         </Header>
         <Value>{Math.round(voltage)}</Value>
-        <Chart data={getData('voltage')} />
+        <Chart data={getChartData('voltage')} />
       </Section>
     </Container>
   );

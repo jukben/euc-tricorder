@@ -32,15 +32,6 @@ type Flic = {
   name: string;
 };
 
-export type FlicClientApi = {
-  connected: boolean;
-  registerListener: (listener: any) => () => void;
-};
-
-const FlicClientContext = React.createContext<FlicClientApi>(
-  (null as unknown) as FlicClientApi,
-);
-
 type ButtonActionEvent = {
   name: 'ButtonAction';
   payload: 'click' | 'hold';
@@ -56,6 +47,15 @@ type ButtonConnected = {
 type Events = ButtonConnected | ButtonActionEvent;
 
 type Listener = (event: Events) => void;
+
+export type FlicClientApi = {
+  connected: boolean;
+  registerListener: (listener: Listener) => () => void;
+};
+
+const FlicClientContext = React.createContext<FlicClientApi>(
+  (null as unknown) as FlicClientApi,
+);
 
 export const useFlicClient = () => useContext(FlicClientContext);
 
@@ -92,6 +92,7 @@ export const FlicClientProvider: React.FC = ({ children }) => {
     };
   }, []);
 
+  // rewrite to reuse deleted ids
   const registerListener = useCallback((listener: Listener) => {
     const id = listeners.current.push(listener) - 1;
 

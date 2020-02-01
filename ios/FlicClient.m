@@ -76,11 +76,11 @@ RCT_EXPORT_METHOD(destroy) {
 // -- SCLFlicButtonDelegate --
 
 - (void) flicButton:(SCLFlicButton *)button didReceiveButtonClick:(BOOL)queued age:(NSInteger)age{
-  [self dispatchEvent:@"FlicAction" value:@{@"name": @"click"}];
+  [self dispatchEvent:@"FlicAction" value:@"click"];
 }
 
 - (void) flicButton:(SCLFlicButton *)button didReceiveButtonHold:(BOOL)queued age:(NSInteger)age{
-  [self dispatchEvent:@"FlicAction" value:@{@"name": @"hold"}];
+  [self dispatchEvent:@"FlicAction" value:@"hold"];
 }
 
 - (void)flicButtonDidConnect:(SCLFlicButton *)button{

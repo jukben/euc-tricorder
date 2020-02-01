@@ -12,7 +12,7 @@ export type BleListener = ExtractParameterType<
   2
 >;
 
-export type Listener = ExtractParameterType<AdapterService['addListener'], 0>;
+export type Listener = ExtractParameterType<AdapterService['handleData'], 0>;
 
 export const defaultAdapter = (
   { device, name }: { device: BleDevice; name: AdapterID },
@@ -104,11 +104,11 @@ export const defaultAdapter = (
 
   const isConnected = () => device.isConnected();
 
-  const addListener: AdapterService['addListener'] = listener =>
-    listeners.push(listener) - 1;
+  const handleData: AdapterService['handleData'] = listener => {
+    const id = listeners.push(listener) - 1;
 
-  const removeListener: AdapterService['removeListener'] = id =>
-    delete listeners[id];
+    return () => delete listeners[id];
+  };
 
   const getName = () => device.name || name;
 
@@ -124,7 +124,6 @@ export const defaultAdapter = (
     connect,
     disconnect,
     isConnected,
-    addListener,
-    removeListener,
+    handleData,
   };
 };
