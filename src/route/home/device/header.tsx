@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, Text } from 'react-native';
+import { Text } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styled from 'styled-components/native';
 
@@ -27,7 +27,6 @@ export const Header = () => {
   const {
     registerListener: pebbleRegisterListener,
     connected: pebbleConnect,
-    sendUpdate,
   } = usePebbleClient();
   const { connected: flicConnected } = useFlicClient();
   const { adapter } = useAdapter();

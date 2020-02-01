@@ -68,12 +68,12 @@ export const Crossroad: React.FC = () => {
     Tts.setDucking(true);
     Tts.setIgnoreSilentSwitch('ignore');
 
-    const getRememberedDevice = async () => {
+    const timeoutId = setTimeout(async () => {
       const rememberedDevice = await getSettingsForKey('device');
       dispatch({ type: 'loaded', device: rememberedDevice });
-    };
+    }, 1000);
 
-    getRememberedDevice();
+    return () => clearTimeout(timeoutId);
   }, [getSettingsForKey]);
 
   return state.phase === 'loading' ? (

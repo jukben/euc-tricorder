@@ -126,6 +126,7 @@ export const PebbleClientProvider: React.FC = ({ children }) => {
     [connected],
   );
 
+  // rewrite to reuse deleted ids
   const registerListener = useCallback((listener: Listener) => {
     const id = listeners.current.push(listener) - 1;
 
