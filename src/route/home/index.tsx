@@ -35,7 +35,7 @@ const Tab = createBottomTabNavigator<Stack>();
 export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
   const { setAdapter, adapter } = useAdapter();
   const { removeSettingsForKey } = useSettings();
-  const bleApi = useBle();
+  const { state, manager } = useBle();
 
   const {
     params: { device },
@@ -51,13 +51,13 @@ export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
 
   useEffect(() => {
     console.log('attempt to auto-connect');
-    if (bleApi.state === 'PoweredOn' && !adapter) {
+    if (state === 'PoweredOn' && !adapter) {
       if (!device) {
         console.error("device hasn't been provided to this screen");
         return;
       }
 
-      console.log('auto-connect');
+      console.log('auto-connect', state);
       const adapterFactory = adapters.find(
         a => a.adapterName === device.adapter,
       );
@@ -68,7 +68,7 @@ export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
         return;
       }
 
-      bleApi.manager.startDeviceScan(null, null, (error, bleDevice) => {
+      manager.startDeviceScan(null, null, (error, bleDevice) => {
         if (error) {
           console.error(error);
           return;
@@ -81,15 +81,16 @@ export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
 
           setAdapter(configuredAdapter);
 
-          bleApi.manager.stopDeviceScan();
+          manager.stopDeviceScan();
         }
       });
     }
 
-    return () => bleApi.manager.stopDeviceScan();
+    return () => manager.stopDeviceScan();
   }, [
     adapter,
-    bleApi,
+    manager,
+    state,
     setAdapter,
     handleDisconnect,
     device,
