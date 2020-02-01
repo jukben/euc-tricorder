@@ -89,7 +89,7 @@ RCT_EXPORT_MODULE();
 - (void)appDisconnected {
   NSLog(@"Pebble: App disconnected");
   NSNumber *pebbleNotReady = [NSNumber pb_numberWithUint8:0];
-  NSDictionary *update = @{ @(ConnectedToPhone):pebbleNotReady };
+  NSDictionary *update = @{ @(ConnectedToPhone):pebbleNotReady, @(ConnectedToDevice):pebbleNotReady };
 
   [self sendMessageToPebble:update];
 }
