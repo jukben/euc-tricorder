@@ -29,7 +29,6 @@ typedef NS_ENUM(NSUInteger, Data) {
 @implementation PebbleClient
 {
   bool hasListeners;
-  void (^_completionHandler)(bool success, NSError *__nullable error);
 }
 
 @synthesize methodQueue = _methodQueue;
@@ -109,20 +108,18 @@ RCT_EXPORT_MODULE();
 
 - (void)sendMessageToPebble:(NSDictionary*)update handler:(void(^)(bool, NSError *__nullable error))handler  {
   if (self.connectedWatch != nil){
-    _completionHandler = [handler copy];
+    void (^completionHandler)(bool, NSError *__nullable error) = [handler copy];
     
     [self.connectedWatch appMessagesPushUpdate:update onSent:^(PBWatch *watch,
                                                       NSDictionary *update, NSError *error) {
     
         if (!error) {
           NSLog(@"Pebble: Successfully sent message.");
-          self->_completionHandler(true, error);
+          completionHandler(true, error);
         } else {
           NSLog(@"Pebble: Error sending message: %@", error);
-          self->_completionHandler(false, error);
+          completionHandler(false, error);
         }
-      
-        self->_completionHandler = nil;
     }];
   }
 }
