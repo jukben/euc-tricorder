@@ -15,7 +15,7 @@
 + (void)applicationWillTerminate;
 - (void)dispatchEvent:(NSString * _Nonnull)name value:(id _Nonnull)value;
 
-@property (weak, nonatomic) PBPebbleCentral* _Nullable central;
-@property (weak, nonatomic) PBWatch * _Nullable connectedWatch;
+@property (strong, nonatomic) PBPebbleCentral* _Nullable central;
+@property (strong, nonatomic) PBWatch * _Nullable connectedWatch;
 
 @end
