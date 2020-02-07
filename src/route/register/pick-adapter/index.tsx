@@ -16,7 +16,7 @@ export const PickAdapter = ({
   } = route;
 
   const handlePress = async (adapterFactory: AdapterFactory) => {
-    const adapter = adapterFactory(device, bleApi);
+    const adapter = adapterFactory(device);
 
     navigation.navigate('Connect', { adapter });
   };
