@@ -27,7 +27,7 @@ type PebbleClient = {
   run: () => void;
   destroy: () => void;
   configure: (uuid: string) => void;
-  sendUpdate: (data: Partial<Data>) => Promise<void>;
+  sendUpdate: (data: Partial<Data>) => void;
 } & EventSubscriptionVendor;
 
 const { PebbleClient } = NativeModules as { PebbleClient: PebbleClient };
@@ -121,7 +121,11 @@ export const PebbleClientProvider: React.FC = ({ children }) => {
         return Promise.resolve();
       }
 
-      return PebbleClient.sendUpdate(data);
+      try {
+        PebbleClient.sendUpdate(data);
+      } catch (e) {
+        console.warn('Pebble: update failed. Are Pebble watch online?');
+      }
     },
     [connected],
   );

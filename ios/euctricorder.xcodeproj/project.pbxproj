@@ -14,6 +14,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		67AC8FA6B68C95C365B9922D /* libPods-euctricorderTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4EF4D02D220EC8AB8325F5 /* libPods-euctricorderTests.a */; };
 		772726EC389903A9291AA6B6 /* libPods-euctricorder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1FBB3760B902F4D649A447 /* libPods-euctricorder.a */; };
+		7968BC5C23E74BC100D2BA60 /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7968BC5B23E74BC100D2BA60 /* AppCenter-Config.plist */; };
 		798260C523D466920067C3C2 /* PebbleClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 798260C423D466920067C3C2 /* PebbleClient.m */; };
 		79AC7A2D23DC7097004A6FF6 /* FlicClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AC7A2C23DC7097004A6FF6 /* FlicClient.m */; };
 		79AC7A4123DC7AF8004A6FF6 /* fliclib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79AC7A3923DC717F004A6FF6 /* fliclib.framework */; };
@@ -61,6 +62,7 @@
 		3D1FBB3760B902F4D649A447 /* libPods-euctricorder.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-euctricorder.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		56FFBFD6606653E7E1FDE737 /* Pods-euctricorderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-euctricorderTests.release.xcconfig"; path = "Target Support Files/Pods-euctricorderTests/Pods-euctricorderTests.release.xcconfig"; sourceTree = "<group>"; };
 		7491974F9FD7B71CFC28281D /* Pods-euctricorderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-euctricorderTests.debug.xcconfig"; path = "Target Support Files/Pods-euctricorderTests/Pods-euctricorderTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7968BC5B23E74BC100D2BA60 /* AppCenter-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AppCenter-Config.plist"; sourceTree = "<group>"; };
 		798260C323D466680067C3C2 /* PebbleClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PebbleClient.h; sourceTree = "<group>"; };
 		798260C423D466920067C3C2 /* PebbleClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PebbleClient.m; sourceTree = "<group>"; };
 		79AC7A2C23DC7097004A6FF6 /* FlicClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlicClient.m; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				798260C423D466920067C3C2 /* PebbleClient.m */,
 				798260C323D466680067C3C2 /* PebbleClient.h */,
 				79F96E4F23CD006000AFAE6E /* bridge-me.swift */,
+				7968BC5B23E74BC100D2BA60 /* AppCenter-Config.plist */,
 				13B07FAE1A68108700A75B9A /* euctricorder */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* euctricorderTests */,
@@ -289,6 +292,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				7968BC5C23E74BC100D2BA60 /* AppCenter-Config.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

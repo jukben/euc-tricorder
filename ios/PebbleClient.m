@@ -147,12 +147,14 @@ RCT_EXPORT_METHOD(run) {
 }
 
 RCT_EXPORT_METHOD(sendUpdate:(NSDictionary *)data:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
-  if (!self.connectedWatch){
+  if (self.connectedWatch == nil){
     NSError *error = [[NSError alloc] initWithDomain:NSPOSIXErrorDomain
     code:errno userInfo:nil];
 
     NSLog(@"Pebble: Watch is not connected");
     reject(@"not_sent", @"Watch is not connected", error);
+    
+    return;
   }
 
   NSMutableDictionary *update = [NSMutableDictionary new];
@@ -226,6 +228,7 @@ RCT_EXPORT_METHOD(sendUpdate:(NSDictionary *)data:(RCTPromiseResolveBlock)resolv
         
         
         if (state == 1 && welf.connectedWatch == nil){
+          NSLog(@"Pebble: watches resurrected");
           welf.connectedWatch = watch;
         }
       }
