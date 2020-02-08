@@ -6,7 +6,7 @@ import { Crossroad } from './Crossroad';
 import { AdapterProvider, BleProvider } from './providers';
 import { SettingsProvider } from './providers/settings';
 
-export const App = () => {
+export const App = () => (
   <NavigationNativeContainer>
     <PaperProvider>
       <SettingsProvider>
@@ -17,5 +17,5 @@ export const App = () => {
         </BleProvider>
       </SettingsProvider>
     </PaperProvider>
-  </NavigationNativeContainer>;
-};
+  </NavigationNativeContainer>
+);
