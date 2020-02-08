@@ -51,6 +51,7 @@ type Listener = (event: Events) => void;
 export type FlicClientApi = {
   connected: boolean;
   registerListener: (listener: Listener) => () => void;
+  grabButton: () => void;
 };
 
 const FlicClientContext = React.createContext<FlicClientApi>(
