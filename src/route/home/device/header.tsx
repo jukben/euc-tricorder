@@ -28,7 +28,7 @@ export const Header = () => {
     registerListener: pebbleRegisterListener,
     connected: pebbleConnect,
   } = usePebbleClient();
-  const { connected: flicConnected } = useFlicClient();
+  const { connected: flicConnected, grabButton } = useFlicClient();
   const { adapter } = useAdapter();
 
   const [pebbleConnected, setConnectionToPebble] = useState(pebbleConnect);
@@ -43,6 +43,14 @@ export const Header = () => {
     return unregister;
   }, [pebbleRegisterListener]);
 
+  const handleConnectFlic = () => {
+    if (flicConnected) {
+      return;
+    }
+
+    grabButton();
+  };
+
   return (
     <Container>
       <Row>
@@ -50,6 +58,7 @@ export const Header = () => {
           name="hockey-puck"
           size={30}
           color={getColorByStatus(flicConnected)}
+          onPress={handleConnectFlic}
         />
       </Row>
       {adapter ? (
