@@ -11,7 +11,7 @@ import {
   NativeEventEmitter,
   NativeModules,
 } from 'react-native';
-
+import Config from 'react-native-config';
 type FlicClient = {
   configure: (key: string, secret: string) => void;
   destroy: () => void;
@@ -25,8 +25,8 @@ const { FlicClient } = NativeModules as { FlicClient: FlicClient };
 
 const flicClientEmitter = new NativeEventEmitter(FlicClient);
 
-const FLIC_APP_KEY = '***REMOVED***';
-const FLIC_APP_SECRET = '***REMOVED***	';
+const FLIC_APP_KEY = Config.FLIC_APP_KEY;
+const FLIC_APP_SECRET = Config.FLIC_APP_SECRET;
 
 type Flic = {
   name: string;
