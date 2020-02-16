@@ -62,3 +62,5 @@ buck-out/
 .lock*
 pebble/build
 
+# iOS
+ios/AppCenter-Config.plist
