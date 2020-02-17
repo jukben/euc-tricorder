@@ -63,5 +63,8 @@
   },
   "jest": {
     "preset": "react-native"
+  },
+  "resolutions": {
+    "hoist-non-react-statics": "3.3.1"
   }
 }
