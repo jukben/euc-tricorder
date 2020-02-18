@@ -1,5 +1,8 @@
 import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { BleManager, State } from 'react-native-ble-plx';
+import Config from 'react-native-config';
+
+import { BleManagerMock } from './mock';
 
 const BleAPI = {
   manager: (null as unknown) as BleManager,
@@ -14,11 +17,14 @@ export const useBle = () => useContext(BleContext);
 
 export const BleProvider: React.FC = ({ children }) => {
   const bleManagerRef = useRef<BleManager>(
-    new BleManager({
-      restoreStateIdentifier: 'eucmonitor',
-      restoreStateFunction: restoredState =>
-        restoredState && console.log('restored state tu', restoredState),
-    }),
+    Config.BLE_MOCK
+      ? ((BleManagerMock() as unknown) as BleManager)
+      : new BleManager({
+          restoreStateIdentifier: 'org.jukben.euctricorder',
+          restoreStateFunction: restoredState =>
+            restoredState &&
+            console.log('BleProvider: restored state', restoredState),
+        }),
   );
 
   const [state, setState] = useState<State>('Unknown' as State);

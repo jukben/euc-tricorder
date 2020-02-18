@@ -1,3 +1,4 @@
+import Analytics from 'appcenter-analytics';
 import React, { useCallback, useEffect, useReducer } from 'react';
 import { ActivityIndicator, Text } from 'react-native';
 import styled from 'styled-components/native';
@@ -42,7 +43,7 @@ export const Connect = ({
       await adapter.testServicesAndCharacteristics();
       dispatch({ type: 'connected' });
     } catch (e) {
-      console.error(e);
+      console.log(e);
       dispatch({ type: 'failure' });
     }
   }, [adapter]);

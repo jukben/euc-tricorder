@@ -53,7 +53,7 @@ export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
     console.log('attempt to auto-connect');
     if (state === 'PoweredOn' && !adapter) {
       if (!device) {
-        console.error("device hasn't been provided to this screen");
+        console.log("device hasn't been provided to this screen");
         return;
       }
 
@@ -63,14 +63,14 @@ export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
       );
 
       if (!adapterFactory) {
-        console.error('remembered adapter not found');
+        console.log('remembered adapter not found');
         removeSettingsForKey('device');
         return;
       }
 
       manager.startDeviceScan(null, null, (error, bleDevice) => {
         if (error) {
-          console.error(error);
+          console.log(error);
           return;
         }
 

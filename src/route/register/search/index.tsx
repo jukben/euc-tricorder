@@ -25,7 +25,7 @@ export const Search = ({ navigation }: RegisterNavigatorProps<'Search'>) => {
     2
   > = (error, device) => {
     if (error) {
-      console.error(error);
+      console.log(error);
       return;
     }
 
