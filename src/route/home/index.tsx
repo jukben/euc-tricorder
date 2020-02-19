@@ -7,7 +7,7 @@ import React, { useCallback, useEffect } from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { adapters } from '../../adapters';
-import { CrossroadNavigatorProps } from '../../Crossroad';
+import { CrossroadNavigatorProps } from '../../crossroad';
 import {
   FlicClientProvider,
   PebbleClientProvider,

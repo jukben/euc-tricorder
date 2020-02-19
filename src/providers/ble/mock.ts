@@ -1,4 +1,53 @@
-import { BleManager, Device, State, Subscription } from 'react-native-ble-plx';
+import {
+  BleError,
+  BleManager,
+  Characteristic,
+  Device,
+  State,
+  Subscription,
+} from 'react-native-ble-plx';
+
+let updateInterval: ReturnType<typeof setInterval>;
+
+const characteristicMock = ({
+  value: new ArrayBuffer(1),
+} as unknown) as Characteristic;
+
+const subscriptionMock: Subscription = {
+  remove: () => null,
+};
+
+const deviceMock = ({
+  id: 'dummy-euc',
+  name: 'Dummy EUC',
+  connect: () => Promise.resolve(deviceMock),
+  discoverAllServicesAndCharacteristics: () => Promise.resolve(deviceMock),
+  readCharacteristicForService: () => Promise.resolve(characteristicMock),
+  cancelConnection: () => Promise.resolve(deviceMock),
+  isConnected: () => Promise.resolve(false),
+  onDisconnected: () => {
+    if (updateInterval) {
+      clearInterval(updateInterval);
+    }
+
+    return subscriptionMock;
+  },
+  monitorCharacteristicForService: (
+    _service: string,
+    _characteristics: string,
+    handleListening: (
+      error: BleError | null,
+      characteristic: Characteristic,
+    ) => Subscription,
+  ) => {
+    updateInterval = setInterval(
+      () => handleListening(null, characteristicMock),
+      100,
+    );
+
+    return subscriptionMock;
+  },
+} as unknown) as Device;
 
 /**
  * Very naive version of BleManager
@@ -18,14 +67,7 @@ export const BleManagerMock = () => {
       };
     },
     startDeviceScan: (_uuid, _options, handle) => {
-      handle(null, ({
-        id: 'simulator-ks18l',
-        name: 'Simulator KingSong-18L',
-        connect: () => Promise.resolve(),
-        discoverAllServicesAndCharacteristics: () => Promise.resolve(),
-        readCharacteristicForService: () => Promise.resolve(),
-        cancelConnection: () => Promise.resolve(),
-      } as unknown) as Device);
+      handle(null, deviceMock);
     },
     stopDeviceScan: () => null,
     remove: () => null,

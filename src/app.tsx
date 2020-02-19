@@ -2,7 +2,7 @@ import { NavigationNativeContainer } from '@react-navigation/native';
 import React from 'react';
 import { Provider as PaperProvider } from 'react-native-paper';
 
-import { Crossroad } from './Crossroad';
+import { Crossroad } from './crossroad';
 import { AdapterProvider, BleProvider } from './providers';
 import { SettingsProvider } from './providers/settings';
 

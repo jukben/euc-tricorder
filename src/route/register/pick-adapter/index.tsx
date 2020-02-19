@@ -4,13 +4,11 @@ import { List } from 'react-native-paper';
 
 import { RegisterNavigatorProps } from '..';
 import { AdapterFactory, adapters } from '../../../adapters';
-import { useBle } from '../../../providers';
 
 export const PickAdapter = ({
   route,
   navigation,
 }: RegisterNavigatorProps<'PickAdapter'>) => {
-  const bleApi = useBle();
   const {
     params: { device },
   } = route;

@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react-native';
 import React from 'react';
 
-import { App } from './App';
+import { App } from './app';
 
 jest.mock('./providers/pebble-client.tsx');
 jest.mock('./providers/flic-client.tsx');

@@ -6,7 +6,7 @@ import React from 'react';
 import { Device } from 'react-native-ble-plx';
 
 import { AdapterService } from '../../adapters';
-import { Stack as RootStack } from '../../Crossroad';
+import { Stack as RootStack } from '../../crossroad';
 import { CustomNavigatorProps } from '../../types';
 import { Connect } from './connect';
 import { PickAdapter } from './pick-adapter';
