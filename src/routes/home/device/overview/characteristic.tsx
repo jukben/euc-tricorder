@@ -1,5 +1,5 @@
 import { DeviceData } from '@euc-tricorder/adapters';
-import { useAdapter } from '@euc-tricorder/providers';
+import { useAdapter, useTelemetry } from '@euc-tricorder/providers';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { LineChart } from 'react-native-svg-charts';
@@ -59,13 +59,12 @@ type Props = {
 const initialValue = 0;
 
 const SNAPSHOT_SIZE = 600;
-const REFRESH_RATE = 1000; // 1s
 
 export const Characteristic = ({ Icon, description, onPress, name }: Props) => {
+  const { data } = useTelemetry();
+  const characteristicTelemetry = data[name];
+
   const [value, setValue] = useState(initialValue);
-  const [telemetryData, setTelemetryData] = useState(() =>
-    Array(SNAPSHOT_SIZE).fill(initialValue),
-  );
 
   const { adapter } = useAdapter();
 
@@ -83,24 +82,23 @@ export const Characteristic = ({ Icon, description, onPress, name }: Props) => {
     return unsubscribe;
   }, [adapter, name]);
 
-  const performStateSnapshot = useCallback(
-    dataSnapshot => {
-      setTelemetryData(restSnapshots => [...restSnapshots, dataSnapshot]);
-    },
-    [setTelemetryData],
-  );
-
-  useThrottle({
-    callback: performStateSnapshot,
-    value,
-    threshold: REFRESH_RATE,
-  });
-
   const chartData = useMemo(() => {
-    const dataSnapshot = telemetryData.slice(-SNAPSHOT_SIZE);
+    if (characteristicTelemetry.length > 600) {
+      return characteristicTelemetry.slice(-SNAPSHOT_SIZE);
+    }
+
+    // In case we don't have enough data let's pre-fill it with zeroes
+    const dataSnapshot = Array(SNAPSHOT_SIZE).fill(0);
+
+    // and append data we have
+    dataSnapshot.splice(
+      SNAPSHOT_SIZE - characteristicTelemetry.length,
+      characteristicTelemetry.length,
+      ...characteristicTelemetry,
+    );
 
     return dataSnapshot;
-  }, [telemetryData]);
+  }, [characteristicTelemetry]);
 
   return (
     <Container>
