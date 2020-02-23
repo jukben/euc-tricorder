@@ -1,9 +1,8 @@
+import { AdapterFactory, adapters } from '@euc-tricorder/adapters';
+import { RegisterNavigatorProps } from '@euc-tricorder/routes/register';
 import React from 'react';
 import { ScrollView } from 'react-native';
 import { List } from 'react-native-paper';
-
-import { RegisterNavigatorProps } from '..';
-import { AdapterFactory, adapters } from '../../../adapters';
 
 export const PickAdapter = ({
   route,

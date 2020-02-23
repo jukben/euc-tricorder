@@ -1,10 +1,10 @@
+import { AdapterProvider, BleProvider } from '@euc-tricorder/providers';
+import { SettingsProvider } from '@euc-tricorder/providers/settings';
 import { NavigationNativeContainer } from '@react-navigation/native';
 import React from 'react';
 import { Provider as PaperProvider } from 'react-native-paper';
 
-import { Crossroad } from './crossroad';
-import { AdapterProvider, BleProvider } from './providers';
-import { SettingsProvider } from './providers/settings';
+import { Crossroad } from './routes/crossroad';
 
 export const App = () => (
   <NavigationNativeContainer>

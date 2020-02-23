@@ -9,7 +9,17 @@
     "moduleResolution": "node",
     "noEmit": true,
     "strict": true,
-    "target": "esnext"
+    "target": "esnext",
+    "baseUrl": ".",
+    "paths": {
+      "@euc-tricorder/types": ["src/types.ts"],
+      "@euc-tricorder/adapters": ["src/adapters"],
+      "@euc-tricorder/adapters/*": ["src/adapters/*"],
+      "@euc-tricorder/providers": ["src/providers"],
+      "@euc-tricorder/providers/*": ["src/providers/*"],
+      "@euc-tricorder/routes": ["src/routes"],
+      "@euc-tricorder/routes/*": ["src/routes/*"]
+    }
   },
   "exclude": [
     "node_modules",

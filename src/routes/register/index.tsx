@@ -1,3 +1,5 @@
+import { AdapterService } from '@euc-tricorder/adapters';
+import { CustomNavigatorProps } from '@euc-tricorder/types';
 import {
   createStackNavigator,
   StackNavigationProp,
@@ -5,9 +7,7 @@ import {
 import React from 'react';
 import { Device } from 'react-native-ble-plx';
 
-import { AdapterService } from '../../adapters';
-import { Stack as RootStack } from '../../crossroad';
-import { CustomNavigatorProps } from '../../types';
+import { Stack as RootStack } from '../crossroad';
 import { Connect } from './connect';
 import { PickAdapter } from './pick-adapter';
 import { Search } from './search';

@@ -1,13 +1,14 @@
+import { adapters } from '@euc-tricorder/adapters';
+import { CustomNavigatorProps } from '@euc-tricorder/types';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import {
   BottomTabNavigationProp,
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
 import React, { useCallback, useEffect } from 'react';
+import { Text } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import { adapters } from '../../adapters';
-import { CrossroadNavigatorProps } from '../../crossroad';
 import {
   FlicClientProvider,
   PebbleClientProvider,
@@ -15,7 +16,7 @@ import {
   useBle,
   useSettings,
 } from '../../providers';
-import { CustomNavigatorProps } from '../../types';
+import { CrossroadNavigatorProps } from '../crossroad';
 import { Device } from './device';
 import { Settings } from './settings';
 
@@ -98,29 +99,32 @@ export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
   ]);
 
   return (
-    <PebbleClientProvider>
-      <FlicClientProvider>
-        <Tab.Navigator initialRouteName={'Device'}>
-          <Tab.Screen
-            name="Device"
-            component={Device}
-            options={{
-              tabBarIcon: ({ color, size }) => (
-                <Icon name={'speedometer'} color={color} size={size} />
-              ),
-            }}
-          />
-          <Tab.Screen
-            name="Settings"
-            component={Settings}
-            options={{
-              tabBarIcon: ({ color, size }) => (
-                <Icon name={'settings'} color={color} size={size} />
-              ),
-            }}
-          />
-        </Tab.Navigator>
-      </FlicClientProvider>
-    </PebbleClientProvider>
+    <>
+      <Text>lol</Text>
+      <PebbleClientProvider>
+        <FlicClientProvider>
+          <Tab.Navigator initialRouteName={'Device'}>
+            <Tab.Screen
+              name="Device"
+              component={Device}
+              options={{
+                tabBarIcon: ({ color, size }) => (
+                  <Icon name={'speedometer'} color={color} size={size} />
+                ),
+              }}
+            />
+            <Tab.Screen
+              name="Settings"
+              component={Settings}
+              options={{
+                tabBarIcon: ({ color, size }) => (
+                  <Icon name={'settings'} color={color} size={size} />
+                ),
+              }}
+            />
+          </Tab.Navigator>
+        </FlicClientProvider>
+      </PebbleClientProvider>
+    </>
   );
 };

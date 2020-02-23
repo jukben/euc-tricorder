@@ -1,11 +1,11 @@
+import { useBle } from '@euc-tricorder/providers';
+import { ExtractParameterType } from '@euc-tricorder/types';
 import React, { useEffect, useRef, useState } from 'react';
 import { ScrollView } from 'react-native';
 import { BleManager, Device } from 'react-native-ble-plx';
 import { List } from 'react-native-paper';
 
-import { RegisterNavigatorProps } from '../';
-import { useBle } from '../../../providers';
-import { ExtractParameterType } from '../../../types';
+import { RegisterNavigatorProps } from '..';
 
 export const Search = ({ navigation }: RegisterNavigatorProps<'Search'>) => {
   const { manager, state } = useBle();

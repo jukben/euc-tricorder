@@ -1,3 +1,6 @@
+import { TSettings, useSettings } from '@euc-tricorder/providers/settings';
+import * as routes from '@euc-tricorder/routes';
+import { CustomNavigatorProps } from '@euc-tricorder/types';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import {
   createStackNavigator,
@@ -7,10 +10,6 @@ import React, { useEffect, useReducer } from 'react';
 import { ActivityIndicator } from 'react-native';
 import Tts from 'react-native-tts';
 import styled from 'styled-components/native';
-
-import { TSettings, useSettings } from './providers/settings';
-import * as routes from './route';
-import { CustomNavigatorProps } from './types';
 
 const Container = styled.View`
   flex: 1;

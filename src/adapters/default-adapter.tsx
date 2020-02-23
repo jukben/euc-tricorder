@@ -1,10 +1,10 @@
+import { ExtractParameterType } from '@euc-tricorder/types';
 import { Buffer } from 'buffer';
 import {
   Device as BleDevice,
   Subscription as BleSubscription,
 } from 'react-native-ble-plx';
 
-import { ExtractParameterType } from '../types';
 import { AdapterApi, AdapterID, AdapterService } from './api';
 
 export type BleListener = ExtractParameterType<

@@ -1,10 +1,9 @@
-import Analytics from 'appcenter-analytics';
+import { useSettings } from '@euc-tricorder/providers';
 import React, { useCallback, useEffect, useReducer } from 'react';
 import { ActivityIndicator, Text } from 'react-native';
 import styled from 'styled-components/native';
 
 import { RegisterNavigatorProps } from '..';
-import { useSettings } from '../../../providers';
 
 const Container = styled.View`
   flex: 1;
