@@ -4,7 +4,7 @@ import React from 'react';
 import { ScrollView } from 'react-native';
 import { List } from 'react-native-paper';
 
-export const PickAdapter = ({
+export const PickAdapterScreen = ({
   route,
   navigation,
 }: RegisterNavigatorProps<'PickAdapter'>) => {

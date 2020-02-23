@@ -26,7 +26,7 @@ function reducer(state: State, action: Action): State {
   }
 }
 
-export const Connect = ({
+export const ConnectScreen = ({
   navigation,
   route,
 }: RegisterNavigatorProps<'Connect'>) => {

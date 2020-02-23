@@ -8,9 +8,9 @@ import React from 'react';
 import { Device } from 'react-native-ble-plx';
 
 import { Stack as RootStack } from '../crossroad';
-import { Connect } from './connect';
-import { PickAdapter } from './pick-adapter';
-import { Search } from './search';
+import { ConnectScreen } from './connect';
+import { PickAdapterScreen } from './pick-adapter';
+import { SearchScreen } from './search';
 
 type Stack = {
   Search: {};
@@ -27,13 +27,13 @@ const Stack = createStackNavigator<Stack>();
 export const Register = () => {
   return (
     <Stack.Navigator initialRouteName="Search">
-      <Stack.Screen name="Search" component={Search} />
+      <Stack.Screen name="Search" component={SearchScreen} />
       <Stack.Screen
         name="PickAdapter"
-        component={PickAdapter}
+        component={PickAdapterScreen}
         options={{ title: 'Pick an adapter' }}
       />
-      <Stack.Screen name="Connect" component={Connect} />
+      <Stack.Screen name="Connect" component={ConnectScreen} />
     </Stack.Navigator>
   );
 };

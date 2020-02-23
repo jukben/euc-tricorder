@@ -19,7 +19,7 @@ const Container = styled.View`
 `;
 
 export type Stack = {
-  Register: {};
+  Register: undefined;
   Home: {
     device: TSettings['device'];
   };

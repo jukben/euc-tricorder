@@ -1,9 +1,12 @@
+import {
+  useAdapter,
+  useFlicClient,
+  usePebbleClient,
+} from '@euc-tricorder/providers';
 import React, { useEffect, useState } from 'react';
 import { Text } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styled from 'styled-components/native';
-
-import { useAdapter, useFlicClient, usePebbleClient } from '../../../providers';
 
 const Container = styled.View`
   width: 100%;

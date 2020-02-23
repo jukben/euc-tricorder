@@ -17,11 +17,11 @@ import {
   useSettings,
 } from '../../providers';
 import { CrossroadNavigatorProps } from '../crossroad';
-import { Device } from './device';
-import { Settings } from './settings';
+import { DeviceScreen } from './device';
+import { SettingsScreen } from './settings';
 
 type Stack = {
-  Device: {};
+  Device: undefined;
   Settings: {};
 };
 
@@ -99,32 +99,29 @@ export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
   ]);
 
   return (
-    <>
-      <Text>lol</Text>
-      <PebbleClientProvider>
-        <FlicClientProvider>
-          <Tab.Navigator initialRouteName={'Device'}>
-            <Tab.Screen
-              name="Device"
-              component={Device}
-              options={{
-                tabBarIcon: ({ color, size }) => (
-                  <Icon name={'speedometer'} color={color} size={size} />
-                ),
-              }}
-            />
-            <Tab.Screen
-              name="Settings"
-              component={Settings}
-              options={{
-                tabBarIcon: ({ color, size }) => (
-                  <Icon name={'settings'} color={color} size={size} />
-                ),
-              }}
-            />
-          </Tab.Navigator>
-        </FlicClientProvider>
-      </PebbleClientProvider>
-    </>
+    <PebbleClientProvider>
+      <FlicClientProvider>
+        <Tab.Navigator initialRouteName={'Device'}>
+          <Tab.Screen
+            name="Device"
+            component={DeviceScreen}
+            options={{
+              tabBarIcon: ({ color, size }) => (
+                <Icon name={'speedometer'} color={color} size={size} />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="Settings"
+            component={SettingsScreen}
+            options={{
+              tabBarIcon: ({ color, size }) => (
+                <Icon name={'settings'} color={color} size={size} />
+              ),
+            }}
+          />
+        </Tab.Navigator>
+      </FlicClientProvider>
+    </PebbleClientProvider>
   );
 };

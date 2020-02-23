@@ -5,7 +5,7 @@ import { Button } from 'react-native-paper';
 
 import { HomeNavigatorProps } from '..';
 
-export const Settings = (_props: HomeNavigatorProps<'Settings'>) => {
+export const SettingsScreen = (_props: HomeNavigatorProps<'Settings'>) => {
   const { removeSettingsForKey } = useSettings();
 
   const handleDisconnect = () => {

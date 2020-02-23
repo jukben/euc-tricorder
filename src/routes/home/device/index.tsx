@@ -1,50 +1,36 @@
-import React, { useEffect } from 'react';
-import { ActivityIndicator, SafeAreaView } from 'react-native';
-import styled from 'styled-components/native';
+import { DeviceData } from '@euc-tricorder/adapters';
+import { CustomNavigatorProps } from '@euc-tricorder/types';
+import {
+  createStackNavigator,
+  StackNavigationProp,
+} from '@react-navigation/stack';
+import React from 'react';
 
-import { useAdapter, usePebbleClient } from '../../../providers';
-import { Header } from './header';
-import { Metrics } from './metrics';
+import { DetailScreen } from './detail';
+import { OverviewScreen } from './overview';
 
-const Container = styled.View`
-  height: 100%;
-  align-items: center;
-  justify-content: flex-start;
-`;
+export type Stack = {
+  Overview: undefined;
+  Detail: { characteristic: keyof DeviceData };
+};
 
-const Content = styled.View`
-  flex: 1;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-`;
+export type DeviceNavigatorProps<P extends keyof Stack> = CustomNavigatorProps<
+  StackNavigationProp<Stack>,
+  Stack,
+  P
+>;
 
-export const Device = () => {
-  const { adapter } = useAdapter();
-  const { connected, sendUpdate } = usePebbleClient();
+const Device = createStackNavigator<Stack>();
 
-  useEffect(() => {
-    const updateConnectionStatus = () => {
-      console.log('trying to update connection to pebble', {
-        connectedToDevice: adapter ? 1 : 0,
-        connectedToPhone: connected ? 1 : 0,
-      });
-
-      sendUpdate({
-        connectedToDevice: adapter ? 1 : 0,
-        connectedToPhone: connected ? 1 : 0,
-      });
-    };
-
-    updateConnectionStatus();
-  }, [adapter, connected, sendUpdate]);
-
+export const DeviceScreen = () => {
   return (
-    <SafeAreaView>
-      <Container>
-        <Header />
-        <Content>{adapter ? <Metrics /> : <ActivityIndicator />}</Content>
-      </Container>
-    </SafeAreaView>
+    <Device.Navigator>
+      <Device.Screen
+        name="Overview"
+        component={OverviewScreen}
+        options={{ headerShown: false }}
+      />
+      <Device.Screen name="Detail" component={DetailScreen} />
+    </Device.Navigator>
   );
 };

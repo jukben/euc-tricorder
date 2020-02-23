@@ -7,7 +7,9 @@ import { List } from 'react-native-paper';
 
 import { RegisterNavigatorProps } from '..';
 
-export const Search = ({ navigation }: RegisterNavigatorProps<'Search'>) => {
+export const SearchScreen = ({
+  navigation,
+}: RegisterNavigatorProps<'Search'>) => {
   const { manager, state } = useBle();
   const DevicesMapRef = useRef<Map<Device['id'], Device>>(new Map());
   const [devices, setDevices] = useState<Array<Device>>([]);
