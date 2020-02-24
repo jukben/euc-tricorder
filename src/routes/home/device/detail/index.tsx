@@ -1,9 +1,13 @@
 import { DeviceData } from '@euc-tricorder/adapters';
+import { useTelemetry } from '@euc-tricorder/providers';
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react';
-import { Text } from 'react-native';
+import styled from 'styled-components/native';
 
-import { DeviceNavigatorProps } from '.';
+import { DeviceNavigatorProps } from '..';
+import { Statistics } from './statistics';
+
+const Container = styled.View``;
 
 const characteristicToTitle: Record<keyof DeviceData, string> = {
   battery: 'Battery',
@@ -15,6 +19,7 @@ const characteristicToTitle: Record<keyof DeviceData, string> = {
 
 export const DetailScreen = (props: DeviceNavigatorProps<'Detail'>) => {
   const navigation = useNavigation();
+  const { data } = useTelemetry();
   const {
     route: {
       params: { characteristic },
@@ -22,9 +27,14 @@ export const DetailScreen = (props: DeviceNavigatorProps<'Detail'>) => {
   } = props;
 
   useEffect(() => {
-    console.log(props);
     navigation.setOptions({ title: characteristicToTitle[characteristic] });
-  }, [characteristic, navigation, props]);
+  }, [characteristic, navigation]);
 
-  return <Text>Nothing here for now</Text>;
+  const telemetry = data[characteristic];
+
+  return (
+    <Container>
+      <Statistics telemetry={telemetry} />
+    </Container>
+  );
 };

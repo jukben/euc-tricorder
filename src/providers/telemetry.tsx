@@ -1,12 +1,6 @@
 import { DeviceData } from '@euc-tricorder/adapters';
 import { useAdapter } from '@euc-tricorder/providers';
-import React, {
-  useContext,
-  useEffect,
-  useMemo,
-  useReducer,
-  useRef,
-} from 'react';
+import React, { useContext, useEffect, useReducer, useRef } from 'react';
 
 const initialData = {
   speed: [],
