@@ -5,6 +5,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components/native';
 
 import { DeviceNavigatorProps } from '..';
+import { Chart } from '../chart';
 import { Statistics } from './statistics';
 
 const Container = styled.View``;
@@ -30,11 +31,16 @@ export const DetailScreen = (props: DeviceNavigatorProps<'Detail'>) => {
     navigation.setOptions({ title: characteristicToTitle[characteristic] });
   }, [characteristic, navigation]);
 
-  const telemetry = data[characteristic];
+  const characteristicTelemetry = data[characteristic];
 
   return (
     <Container>
-      <Statistics telemetry={telemetry} />
+      <Statistics data={characteristicTelemetry} />
+      <Chart
+        data={characteristicTelemetry}
+        style={{ height: 100 }}
+        snapshotSize={1000}
+      />
     </Container>
   );
 };

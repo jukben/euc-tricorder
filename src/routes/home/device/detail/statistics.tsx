@@ -19,13 +19,13 @@ export const getMin = (arr: Array<number>) => Math.round(Math.min(...arr));
 export const getMax = (arr: Array<number>) => Math.round(Math.max(...arr));
 
 type Props = {
-  telemetry: Array<number>;
+  data: Array<number>;
 };
 
 export const Statistics = (props: Props) => {
-  const { telemetry } = props;
+  const { data } = props;
 
-  if (!telemetry.length) {
+  if (!data.length) {
     return (
       <Container>
         <ActivityIndicator />
@@ -33,9 +33,9 @@ export const Statistics = (props: Props) => {
     );
   }
 
-  const min = getMin(telemetry);
-  const max = getMax(telemetry);
-  const average = getAverage(telemetry);
+  const min = getMin(data);
+  const max = getMax(data);
+  const average = getAverage(data);
 
   return (
     <Container>

@@ -30,7 +30,7 @@ const createSnapshotUpdater = ({ data }: State, snapshot: DeviceData) => (
   characteristic: keyof DeviceData,
 ) => [...data[characteristic], snapshot[characteristic]];
 
-function reducer(state: State, action: Action): State {
+export function reducer(state: State, action: Action): State {
   switch (action.type) {
     case 'ADD_SNAPSHOT': {
       const { snapshot } = action;
@@ -59,6 +59,7 @@ const UPDATE_FREQUENCY = 1000; //1s
 
 export const TelemetryProvider: React.FC = ({ children }) => {
   const { adapter } = useAdapter();
+
   const dataRef = useRef<DeviceData>({
     speed: 0,
     battery: 0,
