@@ -6,6 +6,7 @@ import styled from 'styled-components/native';
 
 import { DeviceNavigatorProps } from '..';
 import { Chart } from '../chart';
+import { Alarms } from './alarms';
 import { Statistics } from './statistics';
 
 const Container = styled.View``;
@@ -28,8 +29,10 @@ export const DetailScreen = (props: DeviceNavigatorProps<'Detail'>) => {
   } = props;
 
   useEffect(() => {
-    navigation.setOptions({ title: characteristicToTitle[characteristic] });
-  }, [characteristic, navigation]);
+    navigation.setOptions({
+      title: characteristicToTitle[characteristic],
+    });
+  }, [navigation, characteristic]);
 
   const characteristicTelemetry = data[characteristic];
 
@@ -41,6 +44,7 @@ export const DetailScreen = (props: DeviceNavigatorProps<'Detail'>) => {
         style={{ height: 100 }}
         snapshotSize={1000}
       />
+      <Alarms />
     </Container>
   );
 };

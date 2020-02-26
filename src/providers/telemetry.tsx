@@ -3,17 +3,19 @@ import { useAdapter } from '@euc-tricorder/providers';
 import React, { useContext, useEffect, useReducer, useRef } from 'react';
 
 const initialData = {
-  speed: [],
-  voltage: [],
-  current: [],
-  temperature: [],
-  battery: [],
+  speed: [] as Array<number>,
+  voltage: [] as Array<number>,
+  current: [] as Array<number>,
+  temperature: [] as Array<number>,
+  battery: [] as Array<number>,
 };
 
-type Data = Record<keyof DeviceData, Array<DeviceData[keyof DeviceData]>>;
+type State = typeof initialData;
+
+type Action = { type: 'ADD_SNAPSHOT'; snapshot: DeviceData };
 
 export type TelemetryApi = {
-  data: Data;
+  data: State;
 };
 
 const TelemetryContext = React.createContext<TelemetryApi>(
@@ -22,13 +24,9 @@ const TelemetryContext = React.createContext<TelemetryApi>(
 
 export const useTelemetry = () => useContext(TelemetryContext);
 
-type State = { data: Data };
-
-type Action = { type: 'ADD_SNAPSHOT'; snapshot: DeviceData };
-
-const createSnapshotUpdater = ({ data }: State, snapshot: DeviceData) => (
+const createSnapshotUpdater = (state: State, snapshot: DeviceData) => (
   characteristic: keyof DeviceData,
-) => [...data[characteristic], snapshot[characteristic]];
+) => [...state[characteristic], snapshot[characteristic]];
 
 export function reducer(state: State, action: Action): State {
   switch (action.type) {
@@ -38,14 +36,11 @@ export function reducer(state: State, action: Action): State {
       const updateCharacteristic = createSnapshotUpdater(state, snapshot);
 
       return {
-        ...state,
-        data: {
-          speed: updateCharacteristic('speed'),
-          voltage: updateCharacteristic('voltage'),
-          current: updateCharacteristic('current'),
-          temperature: updateCharacteristic('temperature'),
-          battery: updateCharacteristic('battery'),
-        },
+        speed: updateCharacteristic('speed'),
+        voltage: updateCharacteristic('voltage'),
+        current: updateCharacteristic('current'),
+        temperature: updateCharacteristic('temperature'),
+        battery: updateCharacteristic('battery'),
       };
     }
 
@@ -68,7 +63,7 @@ export const TelemetryProvider: React.FC = ({ children }) => {
     voltage: 0,
   });
 
-  const [state, dispatch] = useReducer(reducer, { data: initialData });
+  const [state, dispatch] = useReducer(reducer, initialData);
 
   useEffect(() => {
     if (!adapter) {
@@ -91,7 +86,7 @@ export const TelemetryProvider: React.FC = ({ children }) => {
   });
 
   return (
-    <TelemetryContext.Provider value={state}>
+    <TelemetryContext.Provider value={{ data: state }}>
       {children}
     </TelemetryContext.Provider>
   );

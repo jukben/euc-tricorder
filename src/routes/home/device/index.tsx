@@ -6,6 +6,7 @@ import {
   StackNavigationProp,
 } from '@react-navigation/stack';
 import React from 'react';
+import { Button } from 'react-native';
 
 import { DetailScreen } from './detail';
 import { OverviewScreen } from './overview';
