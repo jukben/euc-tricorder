@@ -1,6 +1,7 @@
-import nanoid from 'nanoid/non-secure';
-import React, { useReducer } from 'react';
-import { Switch } from 'react-native';
+import { DeviceData } from '@euc-tricorder/adapters';
+import { useAlarm } from '@euc-tricorder/providers';
+import React from 'react';
+import { Alert } from 'react-native';
 import styled from 'styled-components/native';
 
 import { NewAlarm } from './new-alarm';
@@ -17,76 +18,46 @@ export const AlarmValue = styled.Text`
   font-size: 30px;
 `;
 
-type Alarm = { active: boolean; value: number; id: string };
+const AlarmRemove = styled.Button``;
 
-const initialState = {
-  list: [] as Array<Alarm['id']>,
-  alarm: {} as Record<Alarm['id'], Alarm>,
+type Props = {
+  characteristic: keyof DeviceData;
 };
 
-type State = typeof initialState;
+export const Alarms = ({ characteristic }: Props) => {
+  const { data, addAlarm, removeAlarm } = useAlarm();
 
-type Action =
-  | { type: 'ADD_ALARM'; value: number }
-  | { type: 'ALARM_TOGGLED'; id: string; value: boolean };
+  const { list, alarm } = data;
 
-export function reducer(state: State, action: Action): State {
-  switch (action.type) {
-    case 'ADD_ALARM': {
-      const { value } = action;
+  const alarms = list[characteristic];
 
-      const newAlarm = { active: true, value, id: nanoid() };
-
-      return {
-        list: [newAlarm.id, ...state.list],
-        alarm: {
-          ...state.alarm,
-          [newAlarm.id]: newAlarm,
+  const handleRemove = (id: string) => {
+    Alert.alert(
+      'Remove alarm',
+      'Do you want to remove this alarm?',
+      [
+        {
+          text: 'Yes',
+          onPress: () => removeAlarm({ id }),
         },
-      };
-    }
-
-    case 'ALARM_TOGGLED': {
-      const { id, value } = action;
-
-      return {
-        ...state,
-        alarm: {
-          ...state.alarm,
-          [id]: {
-            ...state.alarm[id],
-            active: value,
-          },
+        {
+          text: 'No',
         },
-      };
-    }
-
-    default: {
-      return state;
-    }
-  }
-}
-
-export const Alarms = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  const { list, alarm } = state;
+      ],
+      { cancelable: true },
+    );
+  };
 
   return (
     <Container>
-      <NewAlarm onAdd={({ value }) => dispatch({ type: 'ADD_ALARM', value })} />
-      {list.map(id => {
-        const { value, active } = alarm[id];
+      <NewAlarm onAdd={({ value }) => addAlarm({ characteristic, value })} />
+      {alarms.map(id => {
+        const { value } = alarm[id];
 
         return (
           <Alarm key={id}>
             <AlarmValue>{value}</AlarmValue>
-            <Switch
-              value={active}
-              onValueChange={newValue =>
-                dispatch({ type: 'ALARM_TOGGLED', id, value: newValue })
-              }
-            />
+            <AlarmRemove title="Remove" onPress={() => handleRemove(id)} />
           </Alarm>
         );
       })}

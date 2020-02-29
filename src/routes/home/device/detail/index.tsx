@@ -1,4 +1,4 @@
-import { DeviceData } from '@euc-tricorder/adapters';
+import { readableDeviceDataKeys } from '@euc-tricorder/adapters';
 import { useTelemetry } from '@euc-tricorder/providers';
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react';
@@ -11,14 +11,6 @@ import { Statistics } from './statistics';
 
 const Container = styled.View``;
 
-const characteristicToTitle: Record<keyof DeviceData, string> = {
-  battery: 'Battery',
-  current: 'Current',
-  speed: 'Speed',
-  temperature: 'Temperature',
-  voltage: 'Voltage',
-} as const;
-
 export const DetailScreen = (props: DeviceNavigatorProps<'Detail'>) => {
   const navigation = useNavigation();
   const { data } = useTelemetry();
@@ -30,7 +22,7 @@ export const DetailScreen = (props: DeviceNavigatorProps<'Detail'>) => {
 
   useEffect(() => {
     navigation.setOptions({
-      title: characteristicToTitle[characteristic],
+      title: readableDeviceDataKeys[characteristic],
     });
   }, [navigation, characteristic]);
 
@@ -44,7 +36,7 @@ export const DetailScreen = (props: DeviceNavigatorProps<'Detail'>) => {
         style={{ height: 100 }}
         snapshotSize={1000}
       />
-      <Alarms />
+      <Alarms characteristic={characteristic} />
     </Container>
   );
 };

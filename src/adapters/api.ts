@@ -10,6 +10,14 @@ export type DeviceData = {
   battery: number;
 };
 
+export const readableDeviceDataKeys: Record<keyof DeviceData, string> = {
+  battery: 'Battery',
+  current: 'Current',
+  speed: 'Speed',
+  temperature: 'Temperature',
+  voltage: 'Voltage',
+} as const;
+
 export type AdapterID = string;
 
 export type AdapterApi = {

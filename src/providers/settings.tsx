@@ -1,13 +1,16 @@
+import { AdapterID } from '@euc-tricorder/adapters';
+import { useAlarm } from '@euc-tricorder/providers';
 import AsyncStorage from '@react-native-community/async-storage';
 import React, { useContext } from 'react';
 
-import { AdapterID } from '../adapters';
+type AlarmsSettings = ReturnType<typeof useAlarm>['data'];
 
 export type TSettings = {
   device?: {
     id: string;
     adapter: AdapterID;
   };
+  alarms?: AlarmsSettings;
 };
 
 const api = {

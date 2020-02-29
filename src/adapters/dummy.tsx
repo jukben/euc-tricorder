@@ -10,10 +10,28 @@ let dummyData = {
   voltage: 72,
 };
 
+const maxSpeed = 10;
+const minSpeed = 0;
+let curSpeed = 0;
+let direction: 'up' | 'down' = 'up';
+
 function updateData(prevData: DeviceData): DeviceData {
+  // speed mock, kinda lol
+  if (direction === 'up') {
+    curSpeed++;
+    if (curSpeed === maxSpeed) {
+      direction = 'down';
+    }
+  } else if (direction === 'down') {
+    curSpeed--;
+    if (curSpeed === minSpeed) {
+      direction = 'up';
+    }
+  }
+
   return {
     ...prevData,
-    speed: Math.random() * 30 + 10,
+    speed: curSpeed,
   };
 }
 

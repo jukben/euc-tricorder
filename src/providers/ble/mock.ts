@@ -42,7 +42,7 @@ const deviceMock = ({
   ) => {
     updateInterval = setInterval(
       () => handleListening(null, characteristicMock),
-      100,
+      1000,
     );
 
     return subscriptionMock;

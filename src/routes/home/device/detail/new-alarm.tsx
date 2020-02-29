@@ -6,7 +6,6 @@ import { Alarm, AlarmValue } from './alarms';
 
 const initialState = {
   isEditing: false,
-  active: true,
   value: '',
 };
 
@@ -40,19 +39,21 @@ export function reducer(state: State, action: Action): State {
 }
 
 type Props = {
-  onAdd: ({ value, active }: { value: number; active: boolean }) => void;
+  onAdd: ({ value }: { value: number }) => void;
 };
 
 export const NewAlarm = ({ onAdd }: Props) => {
   const navigation = useNavigation();
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const { isEditing, value, active } = state;
+  const { isEditing, value } = state;
+
+  const numberValue = parseInt(value, 10);
 
   const handleDone = useCallback(() => {
     dispatch({ type: 'DONE' });
-    onAdd({ value: parseInt(value, 10), active: true });
-  }, [onAdd, value]);
+    onAdd({ value: numberValue });
+  }, [numberValue, onAdd]);
 
   const handleAdd = useCallback(() => {
     dispatch({ type: 'ADD' });
@@ -69,12 +70,15 @@ export const NewAlarm = ({ onAdd }: Props) => {
     navigation.setOptions({
       headerRight: () =>
         isEditing ? (
-          <Button onPress={handleDone} title="Done" />
+          // allow to save alarm for 5 or higher only
+          numberValue >= 5 ? (
+            <Button onPress={handleDone} title="Done" />
+          ) : null
         ) : (
           <Button onPress={handleAdd} title="Add alarm" />
         ),
     });
-  }, [handleAdd, handleDone, isEditing, navigation]);
+  }, [handleAdd, handleDone, isEditing, navigation, numberValue]);
 
   if (!isEditing) {
     return null;
@@ -89,7 +93,6 @@ export const NewAlarm = ({ onAdd }: Props) => {
         onChangeText={handleOnChangeValue}
         value={value}
       />
-      <Switch value={active} />
     </Alarm>
   );
 };

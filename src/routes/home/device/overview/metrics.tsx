@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styled from 'styled-components/native';
 
 import { Stack as DeviceNavigatorStack } from '..';
+import { Alarms } from './alarms';
 import { Characteristic } from './characteristic';
 import { FlicButton } from './flic-button';
 import { Pebble } from './pebble';
@@ -22,6 +23,8 @@ export const Metrics = () => {
       <Pebble />
       {/* listen for Flic press */}
       <FlicButton action="click" />
+      {/* listen for active alarms */}
+      <Alarms />
 
       <Container>
         <Characteristic

@@ -1,5 +1,6 @@
 import { DeviceData } from '@euc-tricorder/adapters';
 import { useAdapter } from '@euc-tricorder/providers';
+import producer from 'immer';
 import React, { useContext, useEffect, useReducer, useRef } from 'react';
 
 const initialData = {
@@ -18,30 +19,24 @@ export type TelemetryApi = {
   data: State;
 };
 
-const TelemetryContext = React.createContext<TelemetryApi>(
-  (null as unknown) as TelemetryApi,
-);
+const TelemetryContext = React.createContext<TelemetryApi>({
+  data: initialData,
+});
 
 export const useTelemetry = () => useContext(TelemetryContext);
-
-const createSnapshotUpdater = (state: State, snapshot: DeviceData) => (
-  characteristic: keyof DeviceData,
-) => [...state[characteristic], snapshot[characteristic]];
 
 export function reducer(state: State, action: Action): State {
   switch (action.type) {
     case 'ADD_SNAPSHOT': {
       const { snapshot } = action;
 
-      const updateCharacteristic = createSnapshotUpdater(state, snapshot);
-
-      return {
-        speed: updateCharacteristic('speed'),
-        voltage: updateCharacteristic('voltage'),
-        current: updateCharacteristic('current'),
-        temperature: updateCharacteristic('temperature'),
-        battery: updateCharacteristic('battery'),
-      };
+      return producer(state, draftState => {
+        ((Object.keys(snapshot) as unknown) as Array<keyof DeviceData>).forEach(
+          characteristic => {
+            draftState[characteristic].push(snapshot[characteristic]);
+          },
+        );
+      });
     }
 
     default: {

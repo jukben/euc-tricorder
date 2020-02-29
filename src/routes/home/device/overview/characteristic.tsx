@@ -68,17 +68,19 @@ export const Characteristic = ({ Icon, description, onPress, name }: Props) => {
   const characteristicTelemetry = data[name];
 
   return (
-    <Container>
-      <TouchableOpacity onPress={onPress}>
-        <Section>
-          <Header>
-            <Icon />
-            <SubHeader>{description}</SubHeader>
-          </Header>
-          <Value>{Math.round(value)}</Value>
-          <Chart data={characteristicTelemetry} style={{ flex: 3 }} />
-        </Section>
-      </TouchableOpacity>
-    </Container>
+    <>
+      <Container>
+        <TouchableOpacity onPress={onPress}>
+          <Section>
+            <Header>
+              <Icon />
+              <SubHeader>{description}</SubHeader>
+            </Header>
+            <Value>{Math.round(value)}</Value>
+            <Chart data={characteristicTelemetry} style={{ flex: 3 }} />
+          </Section>
+        </TouchableOpacity>
+      </Container>
+    </>
   );
 };
