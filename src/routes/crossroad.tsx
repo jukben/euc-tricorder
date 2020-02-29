@@ -19,7 +19,7 @@ const Container = styled.View`
 `;
 
 export type Stack = {
-  Register: undefined;
+  Register: {};
   Home: {
     device: TSettings['device'];
   };
@@ -67,12 +67,12 @@ export const Crossroad: React.FC = () => {
     Tts.setDucking(true);
     Tts.setIgnoreSilentSwitch('ignore');
 
-    const timeoutId = setTimeout(async () => {
+    const getRememberedDevice = async () => {
       const rememberedDevice = await getSettingsForKey('device');
       dispatch({ type: 'loaded', device: rememberedDevice });
-    }, 1000);
+    };
 
-    return () => clearTimeout(timeoutId);
+    getRememberedDevice();
   }, [getSettingsForKey]);
 
   return state.phase === 'loading' ? (

@@ -8,6 +8,7 @@ module.exports = {
       {
         root: ['.'],
         alias: {
+          '@euc-tricorder/core': './src/core',
           '@euc-tricorder/types': './src/types',
           '@euc-tricorder/adapters': './src/adapters',
           '@euc-tricorder/providers': './src/providers',

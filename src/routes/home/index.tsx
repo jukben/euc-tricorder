@@ -16,11 +16,11 @@ import {
   useBle,
   useSettings,
 } from '../../providers';
-import { CrossroadNavigatorProps } from '../crossroad';
+import { CrossroadNavigatorProps, Stack as CrossroadStack } from '../crossroad';
 import { DeviceScreen } from './device';
 import { SettingsScreen } from './settings';
 
-type Stack = {
+type Stack = CrossroadStack & {
   Device: undefined;
   Settings: {};
 };
