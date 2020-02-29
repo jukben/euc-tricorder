@@ -32,7 +32,7 @@ type Flic = {
   name: string;
 };
 
-type ButtonActionEvent = {
+export type ButtonActionEvent = {
   name: 'ButtonAction';
   payload: 'click' | 'hold';
 };
@@ -48,7 +48,7 @@ type Events = ButtonConnected | ButtonActionEvent;
 
 type Listener = (event: Events) => void;
 
-export type FlicClientApi = {
+type FlicClientApi = {
   connected: boolean;
   registerListener: (listener: Listener) => () => void;
   grabButton: () => void;

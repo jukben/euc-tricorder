@@ -8,7 +8,12 @@
 #import <Foundation/Foundation.h>
 #import <React/RCTBridgeModule.h>
 #import <React/RCTEventEmitter.h>
-#import <fliclib/fliclib.h>
+
+#if TARGET_OS_SIMULATOR
+  #import "flicSimulator/SCLFlicManagerSimulator.h"
+#else
+  #import <fliclib/fliclib.h>
+#endif
 
 @interface FlicClient : RCTEventEmitter <RCTBridgeModule, SCLFlicManagerDelegate, SCLFlicButtonDelegate>
 

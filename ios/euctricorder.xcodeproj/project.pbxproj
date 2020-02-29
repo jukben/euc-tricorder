@@ -14,6 +14,8 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		67AC8FA6B68C95C365B9922D /* libPods-euctricorderTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4EF4D02D220EC8AB8325F5 /* libPods-euctricorderTests.a */; };
 		772726EC389903A9291AA6B6 /* libPods-euctricorder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1FBB3760B902F4D649A447 /* libPods-euctricorder.a */; };
+		795CD75923FC79F300A91FBC /* SCLFlicButtonSimulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 795CD75423FC79F300A91FBC /* SCLFlicButtonSimulator.m */; };
+		795CD75A23FC79F300A91FBC /* SCLFlicManagerSimulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 795CD75723FC79F300A91FBC /* SCLFlicManagerSimulator.m */; };
 		7968BC5C23E74BC100D2BA60 /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7968BC5B23E74BC100D2BA60 /* AppCenter-Config.plist */; };
 		798260C523D466920067C3C2 /* PebbleClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 798260C423D466920067C3C2 /* PebbleClient.m */; };
 		79AC7A2D23DC7097004A6FF6 /* FlicClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AC7A2C23DC7097004A6FF6 /* FlicClient.m */; };
@@ -62,6 +64,10 @@
 		3D1FBB3760B902F4D649A447 /* libPods-euctricorder.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-euctricorder.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		56FFBFD6606653E7E1FDE737 /* Pods-euctricorderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-euctricorderTests.release.xcconfig"; path = "Target Support Files/Pods-euctricorderTests/Pods-euctricorderTests.release.xcconfig"; sourceTree = "<group>"; };
 		7491974F9FD7B71CFC28281D /* Pods-euctricorderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-euctricorderTests.debug.xcconfig"; path = "Target Support Files/Pods-euctricorderTests/Pods-euctricorderTests.debug.xcconfig"; sourceTree = "<group>"; };
+		795CD75423FC79F300A91FBC /* SCLFlicButtonSimulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLFlicButtonSimulator.m; sourceTree = "<group>"; };
+		795CD75623FC79F300A91FBC /* SCLFlicManagerSimulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLFlicManagerSimulator.h; sourceTree = "<group>"; };
+		795CD75723FC79F300A91FBC /* SCLFlicManagerSimulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLFlicManagerSimulator.m; sourceTree = "<group>"; };
+		795CD75823FC79F300A91FBC /* SCLFlicButtonSimulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLFlicButtonSimulator.h; sourceTree = "<group>"; };
 		7968BC5B23E74BC100D2BA60 /* AppCenter-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AppCenter-Config.plist"; sourceTree = "<group>"; };
 		798260C323D466680067C3C2 /* PebbleClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PebbleClient.h; sourceTree = "<group>"; };
 		798260C423D466920067C3C2 /* PebbleClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PebbleClient.m; sourceTree = "<group>"; };
@@ -142,6 +148,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		795CD75B23FC7BB600A91FBC /* flicSimulator */ = {
+			isa = PBXGroup;
+			children = (
+				795CD75723FC79F300A91FBC /* SCLFlicManagerSimulator.m */,
+				795CD75623FC79F300A91FBC /* SCLFlicManagerSimulator.h */,
+				795CD75423FC79F300A91FBC /* SCLFlicButtonSimulator.m */,
+				795CD75823FC79F300A91FBC /* SCLFlicButtonSimulator.h */,
+			);
+			path = flicSimulator;
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +171,7 @@
 			children = (
 				79AC7A2C23DC7097004A6FF6 /* FlicClient.m */,
 				79AC7A2F23DC70A2004A6FF6 /* FlicClient.h */,
+				795CD75B23FC7BB600A91FBC /* flicSimulator */,
 				798260C423D466920067C3C2 /* PebbleClient.m */,
 				798260C323D466680067C3C2 /* PebbleClient.h */,
 				79F96E4F23CD006000AFAE6E /* bridge-me.swift */,
@@ -255,6 +273,7 @@
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = U2HL3HZ5TZ;
 						LastSwiftMigration = 1130;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -459,7 +478,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				79F96E5023CD006000AFAE6E /* bridge-me.swift in Sources */,
+				795CD75923FC79F300A91FBC /* SCLFlicButtonSimulator.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				795CD75A23FC79F300A91FBC /* SCLFlicManagerSimulator.m in Sources */,
 				798260C523D466920067C3C2 /* PebbleClient.m in Sources */,
 				79AC7A2D23DC7097004A6FF6 /* FlicClient.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
@@ -549,9 +570,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = U2HL3HZ5TZ;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -565,6 +588,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.jukben.euctricorder;
 				PRODUCT_NAME = "EUC Tricorder";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "euctricorder-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -578,8 +602,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = U2HL3HZ5TZ;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -593,6 +619,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.jukben.euctricorder;
 				PRODUCT_NAME = "EUC Tricorder";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "euctricorder-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";

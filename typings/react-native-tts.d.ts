@@ -21,9 +21,10 @@ declare module 'react-native-tts' {
     setDefaultRate: (speed: number) => void;
     setIgnoreSilentSwitch: (rule: 'ignore' | 'obey') => void;
     addEventListener: (
-      event: 'tts-start' | 'tts-finish' | 'tts-cancel',
+      event: 'tts-start' | 'tts-finish' | 'tts-cancel' | 'tts-progress',
       listener: (event: Event) => void,
     ) => void;
+    removeEventListener: Tts['addEventListener'];
   };
 
   var api: Tts;

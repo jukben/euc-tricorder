@@ -1,6 +1,5 @@
+import { AdapterFactory } from '@euc-tricorder/adapters';
 import React, { ReactChild, useContext, useMemo, useState } from 'react';
-
-import { AdapterFactory } from '../adapters';
 
 type TAdapter = ReturnType<AdapterFactory> | null;
 
