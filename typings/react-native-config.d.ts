@@ -7,7 +7,7 @@ declare module 'react-native-config' {
   export interface NativeConfig {
     FLIC_APP_KEY: string;
     FLIC_APP_SECRET: string;
-    BLE_MOCK: boolean;
+    BLE_MOCK: string;
   }
 
   export const Config: NativeConfig;

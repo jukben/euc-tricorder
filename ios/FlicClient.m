@@ -87,18 +87,6 @@ RCT_EXPORT_METHOD(destroy) {
   [self dispatchEvent:@"FlicConnected" value:@{@"name": button.name}];
 }
 
-- (void)flicManagerDidRestoreState:(SCLFlicManager *)manager{
-  NSLog(@"Flic: restore %@", manager.knownButtons);
-  
-  NSDictionary *connectedFlic = manager.knownButtons;
-
-  for (id flic in connectedFlic) {
-    SCLFlicButton *button =  [connectedFlic objectForKey:flic];
-    
-    [self dispatchEvent:@"FlicConnected" value:@{@"name": button.name}];
-  }
-}
-
 - (void) flicManager:(SCLFlicManager *)manager didGrabFlicButton:(SCLFlicButton *)button withError:(NSError *)error; {
   if (error) {
     NSLog(@"Flic: Could not grab: %@", error);

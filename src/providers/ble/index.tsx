@@ -1,6 +1,6 @@
+import { BLE_MOCK } from '@euc-tricorder/core';
 import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { BleManager, State } from 'react-native-ble-plx';
-import Config from 'react-native-config';
 
 import { BleManagerMock } from './mock';
 
@@ -17,7 +17,7 @@ export const useBle = () => useContext(BleContext);
 
 export const BleProvider: React.FC = ({ children }) => {
   const bleManagerRef = useRef<BleManager>(
-    Config.BLE_MOCK
+    BLE_MOCK
       ? ((BleManagerMock() as unknown) as BleManager)
       : new BleManager({
           restoreStateIdentifier: 'org.jukben.euctricorder',
