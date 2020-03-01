@@ -1,6 +1,6 @@
 import { DeviceData, readableDeviceDataKeys } from '@euc-tricorder/adapters';
 import { useAdapter, useAlarm } from '@euc-tricorder/providers';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { Vibration } from 'react-native';
 import Tts from 'react-native-tts';
 

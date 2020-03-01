@@ -31,15 +31,11 @@ export const BleProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     const subscription = bleManagerRef.current.onStateChange(newState => {
-      if (newState === state) {
-        return;
-      }
-
       setState(newState);
     });
 
     return () => subscription.remove();
-  }, [state]);
+  }, []);
 
   const api = useMemo(() => ({ manager: bleManagerRef.current, state }), [
     state,

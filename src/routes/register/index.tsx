@@ -12,15 +12,19 @@ import { ConnectScreen } from './connect';
 import { PickAdapterScreen } from './pick-adapter';
 import { SearchScreen } from './search';
 
-type Stack = {
+export type Stack = {
   Search: {};
   Connect: { adapter: AdapterService };
   PickAdapter: { device: Device };
-} & RootStack;
+};
 
 export type RegisterNavigatorProps<
   P extends keyof Stack
-> = CustomNavigatorProps<StackNavigationProp<Stack>, Stack, P>;
+> = CustomNavigatorProps<
+  StackNavigationProp<Stack & RootStack>,
+  Stack & RootStack,
+  P
+>;
 
 const Stack = createStackNavigator<Stack>();
 

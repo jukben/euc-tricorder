@@ -50,13 +50,7 @@ const UPDATE_FREQUENCY = 1000; //1s
 export const TelemetryProvider: React.FC = ({ children }) => {
   const { adapter } = useAdapter();
 
-  const dataRef = useRef<DeviceData>({
-    speed: 0,
-    battery: 0,
-    current: 0,
-    temperature: 0,
-    voltage: 0,
-  });
+  const dataRef = useRef<DeviceData | null>(null);
 
   const [state, dispatch] = useReducer(reducer, initialData);
 
@@ -74,11 +68,13 @@ export const TelemetryProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      dispatch({ type: 'ADD_SNAPSHOT', snapshot: dataRef.current });
+      if (dataRef.current) {
+        dispatch({ type: 'ADD_SNAPSHOT', snapshot: dataRef.current });
+      }
     }, UPDATE_FREQUENCY);
 
     return () => clearInterval(interval);
-  });
+  }, []);
 
   return (
     <TelemetryContext.Provider value={{ data: state }}>

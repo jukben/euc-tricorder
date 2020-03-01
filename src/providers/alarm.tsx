@@ -30,12 +30,6 @@ export type AlarmContext = {
   removeAlarm: ({ id }: { id: Alarm['id'] }) => void;
 };
 
-const AlarmContext = React.createContext<AlarmContext>(
-  (null as unknown) as AlarmContext,
-);
-
-export const useAlarm = () => useContext(AlarmContext);
-
 const initialState = {
   list: {
     battery: [],
@@ -46,6 +40,12 @@ const initialState = {
   } as Record<AlarmTypes, Array<Alarm['id']>>,
   alarm: {} as Record<Alarm['id'], Alarm>,
 };
+
+const AlarmContext = React.createContext<AlarmContext>({
+  data: initialState,
+} as AlarmContext);
+
+export const useAlarm = () => useContext(AlarmContext);
 
 type State = typeof initialState;
 

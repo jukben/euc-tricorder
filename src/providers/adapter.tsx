@@ -29,7 +29,7 @@ export const AdapterProvider = ({
 }) => {
   const [adapter, setAdapter] = useState<AdapterAPI['adapter']>(value);
 
-  const api = useMemo(() => ({ adapter, setAdapter }), [adapter, setAdapter]);
+  const api = useMemo(() => ({ adapter, setAdapter }), [adapter]);
 
   return (
     <AdapterContext.Provider value={api}>{children}</AdapterContext.Provider>

@@ -11,7 +11,7 @@ import { DetailScreen } from './detail';
 import { OverviewScreen } from './overview';
 
 export type Stack = {
-  Overview: undefined;
+  Overview: {};
   Detail: { characteristic: keyof DeviceData };
 };
 
