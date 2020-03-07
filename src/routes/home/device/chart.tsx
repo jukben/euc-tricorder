@@ -1,3 +1,4 @@
+import { TTelemetryData } from '@euc-tricorder/providers';
 import React, { useMemo } from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
 import { LineChart } from 'react-native-svg-charts';
@@ -8,11 +9,13 @@ export const Chart = React.memo(
     snapshotSize = 600,
     style,
   }: {
-    data: Array<number>;
+    data: TTelemetryData;
     snapshotSize?: number;
     style?: StyleProp<ViewStyle>;
   }) => {
     const normalizedData = useMemo(() => {
+      const dataValues = data.map(d => d.value);
+
       if (data.length > 600) {
         return data.slice(-snapshotSize);
       }
@@ -21,7 +24,11 @@ export const Chart = React.memo(
       const dataSnapshot = Array(snapshotSize).fill(0);
 
       // and append data we have
-      dataSnapshot.splice(snapshotSize - data.length, data.length, ...data);
+      dataSnapshot.splice(
+        snapshotSize - data.length,
+        data.length,
+        ...dataValues,
+      );
 
       return dataSnapshot;
     }, [data, snapshotSize]);

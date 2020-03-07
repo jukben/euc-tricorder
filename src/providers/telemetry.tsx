@@ -3,12 +3,17 @@ import { useAdapter } from '@euc-tricorder/providers';
 import producer from 'immer';
 import React, { useContext, useEffect, useReducer, useRef } from 'react';
 
+export type TTelemetryData = Array<{
+  value: number;
+  isoString: string;
+}>;
+
 const initialData = {
-  speed: [] as Array<number>,
-  voltage: [] as Array<number>,
-  current: [] as Array<number>,
-  temperature: [] as Array<number>,
-  battery: [] as Array<number>,
+  speed: [] as TTelemetryData,
+  voltage: [] as TTelemetryData,
+  current: [] as TTelemetryData,
+  temperature: [] as TTelemetryData,
+  battery: [] as TTelemetryData,
 };
 
 type State = typeof initialData;
@@ -33,7 +38,10 @@ export function telemetryReducer(state: State, action: Action): State {
       return producer(state, draftState => {
         ((Object.keys(snapshot) as unknown) as Array<keyof DeviceData>).forEach(
           characteristic => {
-            draftState[characteristic].push(snapshot[characteristic]);
+            draftState[characteristic].push({
+              value: snapshot[characteristic],
+              isoString: new Date().toISOString(),
+            });
           },
         );
       });
