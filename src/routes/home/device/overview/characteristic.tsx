@@ -1,6 +1,7 @@
 import { DeviceData } from '@euc-tricorder/adapters';
 import { useAdapter, useTelemetry } from '@euc-tricorder/providers';
 import React, { useEffect, useState } from 'react';
+import { ActivityIndicator } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
 
@@ -26,8 +27,11 @@ const Header = styled.View`
 `;
 
 const Value = styled.Text`
-  font-size: 50px;
   padding-left: 15px;
+  font-size: 50px;
+`;
+
+const ValueContainer = styled.View`
   flex: 1;
 `;
 
@@ -42,12 +46,10 @@ type Props = {
   onPress: () => void;
 };
 
-const initialValue = 0;
-
 export const Characteristic = ({ Icon, description, onPress, name }: Props) => {
   const { data } = useTelemetry();
 
-  const [value, setValue] = useState(initialValue);
+  const [value, setValue] = useState<number | null>(null);
 
   const { adapter } = useAdapter();
 
@@ -76,7 +78,15 @@ export const Characteristic = ({ Icon, description, onPress, name }: Props) => {
               <Icon />
               <SubHeader>{description}</SubHeader>
             </Header>
-            <Value>{Math.round(value)}</Value>
+            {value ? (
+              <ValueContainer>
+                <Value>{Math.round(value)}</Value>
+              </ValueContainer>
+            ) : (
+              <ValueContainer>
+                <ActivityIndicator />
+              </ValueContainer>
+            )}
             <Chart data={characteristicTelemetry} style={{ flex: 3 }} />
           </Section>
         </TouchableOpacity>
