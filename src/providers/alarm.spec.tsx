@@ -10,6 +10,7 @@ jest.mock('nanoid/non-secure');
 jest.mock('./pebble-client.tsx');
 jest.mock('./flic-client.tsx');
 jest.mock('./settings.tsx');
+jest.mock('../core/environment.ts');
 
 type Props = {
   onData: (data: AlarmContext['data']) => void;
