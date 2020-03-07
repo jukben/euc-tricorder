@@ -1,3 +1,4 @@
+import { TTelemetryData } from '@euc-tricorder/providers';
 import React from 'react';
 import { ActivityIndicator } from 'react-native';
 import styled from 'styled-components/native';
@@ -19,7 +20,7 @@ export const getMin = (arr: Array<number>) => Math.round(Math.min(...arr));
 export const getMax = (arr: Array<number>) => Math.round(Math.max(...arr));
 
 type Props = {
-  data: Array<number>;
+  data: TTelemetryData;
 };
 
 export const Statistics = (props: Props) => {
@@ -33,9 +34,11 @@ export const Statistics = (props: Props) => {
     );
   }
 
-  const min = getMin(data);
-  const max = getMax(data);
-  const average = getAverage(data);
+  const values = data.map(d => d.value);
+
+  const min = getMin(values);
+  const max = getMax(values);
+  const average = getAverage(values);
 
   return (
     <Container>
