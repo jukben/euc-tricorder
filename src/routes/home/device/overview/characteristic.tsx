@@ -78,13 +78,13 @@ export const Characteristic = ({ Icon, description, onPress, name }: Props) => {
               <Icon />
               <SubHeader>{description}</SubHeader>
             </Header>
-            {value ? (
+            {value === null ? (
               <ValueContainer>
-                <Value>{Math.round(value)}</Value>
+                <ActivityIndicator />
               </ValueContainer>
             ) : (
               <ValueContainer>
-                <ActivityIndicator />
+                <Value>{Math.round(value)}</Value>
               </ValueContainer>
             )}
             <Chart data={characteristicTelemetry} style={{ flex: 3 }} />
