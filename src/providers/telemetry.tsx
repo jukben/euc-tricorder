@@ -25,7 +25,7 @@ const TelemetryContext = React.createContext<TelemetryApi>({
 
 export const useTelemetry = () => useContext(TelemetryContext);
 
-export function reducer(state: State, action: Action): State {
+export function telemetryReducer(state: State, action: Action): State {
   switch (action.type) {
     case 'ADD_SNAPSHOT': {
       const { snapshot } = action;
@@ -52,7 +52,7 @@ export const TelemetryProvider: React.FC = ({ children }) => {
 
   const dataRef = useRef<DeviceData | null>(null);
 
-  const [state, dispatch] = useReducer(reducer, initialData);
+  const [state, dispatch] = useReducer(telemetryReducer, initialData);
 
   useEffect(() => {
     if (!adapter) {

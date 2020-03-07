@@ -2,10 +2,7 @@ import { TSettings, useSettings } from '@euc-tricorder/providers/settings';
 import * as routes from '@euc-tricorder/routes';
 import { CustomNavigatorProps } from '@euc-tricorder/types';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
-import {
-  createStackNavigator,
-  StackNavigationProp,
-} from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import React, { useEffect, useReducer } from 'react';
 import Tts from 'react-native-tts';
 
@@ -18,7 +15,7 @@ export type Stack = {
 
 export type CrossroadNavigatorProps<
   P extends keyof Stack
-> = CustomNavigatorProps<StackNavigationProp<Stack>, Stack, P>;
+> = CustomNavigatorProps<Stack, P>;
 
 const Root = createStackNavigator<Stack>();
 

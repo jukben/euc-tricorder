@@ -16,6 +16,12 @@ module.exports = {
         },
       },
     ],
+    [
+      'babel-plugin-dotenv',
+      {
+        replacedModuleName: '@euc-tricorder/dotenv',
+      },
+    ],
   ],
   env: {
     production: {

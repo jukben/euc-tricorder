@@ -1,9 +1,6 @@
 import { AdapterService } from '@euc-tricorder/adapters';
 import { CustomNavigatorProps } from '@euc-tricorder/types';
-import {
-  createStackNavigator,
-  StackNavigationProp,
-} from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import { Device } from 'react-native-ble-plx';
 
@@ -12,21 +9,17 @@ import { ConnectScreen } from './connect';
 import { PickAdapterScreen } from './pick-adapter';
 import { SearchScreen } from './search';
 
-export type Stack = {
+export type RegisterStack = {
   Search: {};
   Connect: { adapter: AdapterService };
   PickAdapter: { device: Device };
 };
 
 export type RegisterNavigatorProps<
-  P extends keyof Stack
-> = CustomNavigatorProps<
-  StackNavigationProp<Stack & RootStack>,
-  Stack & RootStack,
-  P
->;
+  P extends keyof RegisterStack
+> = CustomNavigatorProps<RegisterStack & RootStack, P>;
 
-const Stack = createStackNavigator<Stack>();
+const Stack = createStackNavigator<RegisterStack>();
 
 export const Register = () => {
   return (

@@ -1,10 +1,7 @@
 import { adapters } from '@euc-tricorder/adapters';
 import { CustomNavigatorProps } from '@euc-tricorder/types';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
-import {
-  BottomTabNavigationProp,
-  createBottomTabNavigator,
-} from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React, { useCallback, useEffect } from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -19,18 +16,16 @@ import { CrossroadNavigatorProps, Stack as CrossroadStack } from '../crossroad';
 import { DeviceScreen } from './device';
 import { SettingsScreen } from './settings';
 
-export type Stack = {
+export type HomeStack = {
   Device: {};
   Settings: {};
 };
 
-export type HomeNavigatorProps<P extends keyof Stack> = CustomNavigatorProps<
-  BottomTabNavigationProp<Stack & CrossroadStack>,
-  Stack & CrossroadStack,
-  P
->;
+export type HomeNavigatorProps<
+  P extends keyof HomeStack
+> = CustomNavigatorProps<HomeStack & CrossroadStack, P>;
 
-const Tab = createBottomTabNavigator<Stack>();
+const Tab = createBottomTabNavigator<HomeStack>();
 
 export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
   const { setAdapter, adapter } = useAdapter();

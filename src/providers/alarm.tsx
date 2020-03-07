@@ -15,19 +15,25 @@ export const AlarmValue = styled.Text`
   font-size: 30px;
 `;
 
-export type Alarm = { active: boolean; value: number; id: string };
+export type TAlarm = {
+  direction: 'up' | 'down';
+  active: boolean;
+  value: number;
+  id: string;
+};
 
 type AlarmTypes = keyof DeviceData;
 
 export type AlarmContext = {
   data: State;
-  addAlarm: (alarm: { characteristic: AlarmTypes; value: number }) => void;
-  updateAlarm: (alarm: {
-    id: Alarm['id'];
-    value: number;
-    active: boolean;
+  addAlarm: (add: {
+    characteristic: AlarmTypes;
+    alarm: Omit<TAlarm, 'id'>;
   }) => void;
-  removeAlarm: ({ id }: { id: Alarm['id'] }) => void;
+  updateAlarm: (alarm: {
+    alarm: { id: TAlarm['id'] } & Partial<Omit<TAlarm, 'id'>>;
+  }) => void;
+  removeAlarm: ({ id }: { id: TAlarm['id'] }) => void;
 };
 
 const initialState = {
@@ -37,8 +43,8 @@ const initialState = {
     current: [],
     temperature: [],
     voltage: [],
-  } as Record<AlarmTypes, Array<Alarm['id']>>,
-  alarm: {} as Record<Alarm['id'], Alarm>,
+  } as Record<AlarmTypes, Array<TAlarm['id']>>,
+  alarm: {} as Record<TAlarm['id'], TAlarm>,
 };
 
 const AlarmContext = React.createContext<AlarmContext>({
@@ -54,21 +60,22 @@ type Action =
       type: 'LOAD_FROM_STORAGE';
       data: State;
     }
-  | { type: 'ADD'; value: Alarm['value']; characteristic: AlarmTypes }
+  | { type: 'ADD'; alarm: Omit<TAlarm, 'id'>; characteristic: AlarmTypes }
   | {
       type: 'UPDATE';
-      id: Alarm['id'];
-      active: Alarm['active'];
-      value: Alarm['value'];
+      alarm: { id: TAlarm['id'] } & Partial<Omit<TAlarm, 'id'>>;
     }
-  | { type: 'REMOVE'; id: Alarm['id'] };
+  | { type: 'REMOVE'; id: TAlarm['id'] };
 
-export function reducer(state: State, action: Action): State {
+function reducer(state: State, action: Action): State {
   switch (action.type) {
     case 'ADD': {
-      const { value, characteristic } = action;
+      const {
+        alarm: { value, active, direction },
+        characteristic,
+      } = action;
 
-      const newAlarm = { active: true, value, id: nanoid() };
+      const newAlarm: TAlarm = { id: nanoid(), active, value, direction };
 
       return {
         list: {
@@ -83,7 +90,15 @@ export function reducer(state: State, action: Action): State {
     }
 
     case 'UPDATE': {
-      const { id, active, value } = action;
+      const { alarm } = action;
+
+      const id = alarm.id;
+
+      const {
+        active = state.alarm[id].active,
+        direction = state.alarm[id].direction,
+        value = state.alarm[id].value,
+      } = alarm;
 
       return {
         ...state,
@@ -93,6 +108,7 @@ export function reducer(state: State, action: Action): State {
             ...state.alarm[id],
             active,
             value,
+            direction,
           },
         },
       };
@@ -146,11 +162,11 @@ export const AlarmProvider: React.FC = ({ children }) => {
     <AlarmContext.Provider
       value={{
         data: state,
-        addAlarm: ({ characteristic, value }) => {
-          dispatch({ type: 'ADD', characteristic, value });
+        addAlarm: ({ characteristic, alarm }) => {
+          dispatch({ type: 'ADD', characteristic, alarm });
         },
-        updateAlarm: ({ id, active, value }) => {
-          dispatch({ type: 'UPDATE', id, value, active });
+        updateAlarm: ({ alarm }) => {
+          dispatch({ type: 'UPDATE', alarm });
         },
         removeAlarm: ({ id }) => {
           dispatch({ type: 'REMOVE', id });

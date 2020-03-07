@@ -1,4 +1,4 @@
-import { reducer } from './telemetry';
+import { telemetryReducer } from './telemetry';
 
 jest.mock('./pebble-client.tsx');
 jest.mock('./flic-client.tsx');
@@ -31,5 +31,5 @@ test('can reduce state correctly', () => {
     battery: [5],
   };
 
-  expect(reducer(state, action)).toEqual(expectedState);
+  expect(telemetryReducer(state, action)).toEqual(expectedState);
 });

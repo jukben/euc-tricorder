@@ -37,6 +37,7 @@ export const FlicButton = ({ action }: Props) => {
     const unsubscribe = registerListener(event => {
       if (event.name === 'ButtonAction' && event.payload === action) {
         console.log('Flic action - say key information out loud!');
+        Tts.stop();
         Tts.speak(
           `Speed: ${Math.round(
             dataRef.current.speed,

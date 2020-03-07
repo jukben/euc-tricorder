@@ -4,6 +4,11 @@ import { useCallback, useEffect, useRef } from 'react';
 import { Vibration } from 'react-native';
 import Tts from 'react-native-tts';
 
+/**
+ * Alarms are cached. Eg. if you have warning at 20 Km/h you will get
+ * warning at 20 Km/h and to trigger it again, it you will need
+ * to decelerate to 17 (20 - THRESHOLD) again.
+ */
 const cachedValues = new Map<string, number>();
 
 const THRESHOLD = 3;
@@ -31,13 +36,19 @@ const checkAlarms = ({
       return;
     }
 
-    alarms.forEach(({ id, value: watchedValue }) => {
+    alarms.forEach(({ id, direction, value: watchedValue }) => {
       const cachedValueForCharacteristic = cachedValues.get(id);
 
-      if (
-        cachedValueForCharacteristic &&
-        value < cachedValueForCharacteristic - THRESHOLD
-      ) {
+      const shouldClean = cachedValueForCharacteristic
+        ? direction === 'up'
+          ? value < cachedValueForCharacteristic - THRESHOLD
+          : value > cachedValueForCharacteristic + THRESHOLD
+        : false;
+
+      const shouldTrigger =
+        direction === 'up' ? value > watchedValue : value < watchedValue;
+
+      if (cachedValueForCharacteristic && shouldClean) {
         cachedValues.delete(id);
       }
 
@@ -45,7 +56,7 @@ const checkAlarms = ({
         return;
       }
 
-      if (value >= watchedValue) {
+      if (shouldTrigger) {
         action(readableDeviceDataKeys[characteristic], value);
         cachedValues.set(id, value);
       }
