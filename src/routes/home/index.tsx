@@ -1,12 +1,8 @@
 import { adapters } from '@euc-tricorder/adapters';
 import { CustomNavigatorProps } from '@euc-tricorder/types';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
-import {
-  BottomTabNavigationProp,
-  createBottomTabNavigator,
-} from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React, { useCallback, useEffect } from 'react';
-import { Text } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {
@@ -20,18 +16,16 @@ import { CrossroadNavigatorProps, Stack as CrossroadStack } from '../crossroad';
 import { DeviceScreen } from './device';
 import { SettingsScreen } from './settings';
 
-type Stack = CrossroadStack & {
-  Device: undefined;
+export type HomeStack = {
+  Device: {};
   Settings: {};
 };
 
-export type HomeNavigatorProps<P extends keyof Stack> = CustomNavigatorProps<
-  BottomTabNavigationProp<Stack>,
-  Stack,
-  P
->;
+export type HomeNavigatorProps<
+  P extends keyof HomeStack
+> = CustomNavigatorProps<HomeStack & CrossroadStack, P>;
 
-const Tab = createBottomTabNavigator<Stack>();
+const Tab = createBottomTabNavigator<HomeStack>();
 
 export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
   const { setAdapter, adapter } = useAdapter();
@@ -52,15 +46,17 @@ export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
 
   useEffect(() => {
     console.log('attempt to auto-connect');
+    let timeout: ReturnType<typeof setTimeout>;
+
     if (state === 'PoweredOn' && !adapter) {
       if (!device) {
         console.log("device hasn't been provided to this screen");
         return;
       }
 
-      console.log('auto-connect', state);
+      console.log('auto-connecting');
       const adapterFactory = adapters.find(
-        a => a.adapterName === device.adapter,
+        ({ adapterName }) => adapterName === device.adapter,
       );
 
       if (!adapterFactory) {
@@ -69,25 +65,40 @@ export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
         return;
       }
 
-      manager.startDeviceScan(null, null, (error, bleDevice) => {
-        if (error) {
-          console.log(error);
-          return;
-        }
+      /**
+       * react-native-ble-plx has some problem if I call startDeviceScan
+       * right in the moment Ble is ready (weird right?) so let's artificially
+       * slow down a bit.
+       *
+       * This should be considered as hot fix, ideally it should be simply without
+       * the timeout.
+       */
+      timeout = setTimeout(
+        () =>
+          manager.startDeviceScan(null, null, (error, bleDevice) => {
+            if (error) {
+              console.log(error);
+              return;
+            }
 
-        if (bleDevice && bleDevice.id === device.id) {
-          const configuredAdapter = adapterFactory(bleDevice);
+            if (bleDevice && bleDevice.id === device.id) {
+              const configuredAdapter = adapterFactory(bleDevice);
 
-          configuredAdapter.connect(handleDisconnect);
+              configuredAdapter.connect(handleDisconnect);
 
-          setAdapter(configuredAdapter);
+              setAdapter(configuredAdapter);
 
-          manager.stopDeviceScan();
-        }
-      });
+              manager.stopDeviceScan();
+            }
+          }),
+        1000,
+      );
     }
 
-    return () => manager.stopDeviceScan();
+    return () => {
+      manager.stopDeviceScan();
+      timeout && clearTimeout(timeout);
+    };
   }, [
     adapter,
     manager,

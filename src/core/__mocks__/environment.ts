@@ -1,0 +1,3 @@
+export const BLE_MOCK = false;
+export const FLIC_APP_KEY = '00000-1111-2222-3333-444444444';
+export const FLIC_APP_SECRET = '00000-1111-2222-3333-55555555';

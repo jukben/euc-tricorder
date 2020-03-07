@@ -1,3 +1,4 @@
+import { FLIC_APP_KEY, FLIC_APP_SECRET } from '@euc-tricorder/core';
 import React, {
   useCallback,
   useContext,
@@ -11,7 +12,6 @@ import {
   NativeEventEmitter,
   NativeModules,
 } from 'react-native';
-import Config from 'react-native-config';
 type FlicClient = {
   configure: (key: string, secret: string) => void;
   destroy: () => void;
@@ -24,9 +24,6 @@ type FlicClient = {
 const { FlicClient } = NativeModules as { FlicClient: FlicClient };
 
 const flicClientEmitter = new NativeEventEmitter(FlicClient);
-
-const FLIC_APP_KEY = Config.FLIC_APP_KEY;
-const FLIC_APP_SECRET = Config.FLIC_APP_SECRET;
 
 type Flic = {
   name: string;

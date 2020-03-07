@@ -25,7 +25,7 @@ const TelemetryContext = React.createContext<TelemetryApi>({
 
 export const useTelemetry = () => useContext(TelemetryContext);
 
-export function reducer(state: State, action: Action): State {
+export function telemetryReducer(state: State, action: Action): State {
   switch (action.type) {
     case 'ADD_SNAPSHOT': {
       const { snapshot } = action;
@@ -50,15 +50,9 @@ const UPDATE_FREQUENCY = 1000; //1s
 export const TelemetryProvider: React.FC = ({ children }) => {
   const { adapter } = useAdapter();
 
-  const dataRef = useRef<DeviceData>({
-    speed: 0,
-    battery: 0,
-    current: 0,
-    temperature: 0,
-    voltage: 0,
-  });
+  const dataRef = useRef<DeviceData | null>(null);
 
-  const [state, dispatch] = useReducer(reducer, initialData);
+  const [state, dispatch] = useReducer(telemetryReducer, initialData);
 
   useEffect(() => {
     if (!adapter) {
@@ -74,11 +68,13 @@ export const TelemetryProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      dispatch({ type: 'ADD_SNAPSHOT', snapshot: dataRef.current });
+      if (dataRef.current) {
+        dispatch({ type: 'ADD_SNAPSHOT', snapshot: dataRef.current });
+      }
     }, UPDATE_FREQUENCY);
 
     return () => clearInterval(interval);
-  });
+  }, []);
 
   return (
     <TelemetryContext.Provider value={{ data: state }}>

@@ -1,22 +1,18 @@
 import { DeviceData } from '@euc-tricorder/adapters';
 import { AlarmProvider, TelemetryProvider } from '@euc-tricorder/providers';
 import { CustomNavigatorProps } from '@euc-tricorder/types';
-import {
-  createStackNavigator,
-  StackNavigationProp,
-} from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 
 import { DetailScreen } from './detail';
 import { OverviewScreen } from './overview';
 
 export type Stack = {
-  Overview: undefined;
+  Overview: {};
   Detail: { characteristic: keyof DeviceData };
 };
 
 export type DeviceNavigatorProps<P extends keyof Stack> = CustomNavigatorProps<
-  StackNavigationProp<Stack>,
   Stack,
   P
 >;

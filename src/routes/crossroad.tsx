@@ -2,21 +2,9 @@ import { TSettings, useSettings } from '@euc-tricorder/providers/settings';
 import * as routes from '@euc-tricorder/routes';
 import { CustomNavigatorProps } from '@euc-tricorder/types';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
-import {
-  createStackNavigator,
-  StackNavigationProp,
-} from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import React, { useEffect, useReducer } from 'react';
-import { ActivityIndicator } from 'react-native';
 import Tts from 'react-native-tts';
-import styled from 'styled-components/native';
-
-const Container = styled.View`
-  flex: 1;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
 
 export type Stack = {
   Register: {};
@@ -27,7 +15,7 @@ export type Stack = {
 
 export type CrossroadNavigatorProps<
   P extends keyof Stack
-> = CustomNavigatorProps<StackNavigationProp<Stack>, Stack, P>;
+> = CustomNavigatorProps<Stack, P>;
 
 const Root = createStackNavigator<Stack>();
 
@@ -75,11 +63,11 @@ export const Crossroad: React.FC = () => {
     getRememberedDevice();
   }, [getSettingsForKey]);
 
-  return state.phase === 'loading' ? (
-    <Container>
-      <ActivityIndicator />
-    </Container>
-  ) : (
+  if (state.phase === 'loading') {
+    return null;
+  }
+
+  return (
     <Root.Navigator
       initialRouteName={state.phase === 'auto-connect' ? 'Home' : 'Register'}
       screenOptions={{ headerShown: false }}>

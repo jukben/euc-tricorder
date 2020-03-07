@@ -1,6 +1,5 @@
 import { readableDeviceDataKeys } from '@euc-tricorder/adapters';
 import { useTelemetry } from '@euc-tricorder/providers';
-import { useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 import styled from 'styled-components/native';
 
@@ -12,12 +11,12 @@ import { Statistics } from './statistics';
 const Container = styled.View``;
 
 export const DetailScreen = (props: DeviceNavigatorProps<'Detail'>) => {
-  const navigation = useNavigation();
   const { data } = useTelemetry();
   const {
     route: {
       params: { characteristic },
     },
+    navigation,
   } = props;
 
   useEffect(() => {
