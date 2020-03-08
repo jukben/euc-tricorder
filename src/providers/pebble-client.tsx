@@ -134,7 +134,9 @@ export const PebbleClientProvider: React.FC = ({ children }) => {
   const registerListener = useCallback((listener: Listener) => {
     const id = listeners.current.push(listener) - 1;
 
-    return () => delete listeners.current[id];
+    return () => {
+      delete listeners.current[id];
+    };
   }, []);
 
   const api: PebbleClientApi = useMemo(

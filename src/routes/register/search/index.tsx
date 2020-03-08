@@ -15,11 +15,27 @@ export const SearchScreen = ({
   const [devices, setDevices] = useState<Array<Device>>([]);
 
   useEffect(() => {
+    let timeout: ReturnType<typeof setTimeout>;
+
     if (state === 'PoweredOn') {
-      manager.startDeviceScan(null, null, handleListener);
+      /**
+       * react-native-ble-plx has some problem if I call startDeviceScan
+       * right in the moment Ble is ready (weird right?) so let's artificially
+       * slow down a bit.
+       *
+       * This should be considered as hot fix, ideally it should be simply without
+       * the timeout.
+       */
+      timeout = setTimeout(
+        () => manager.startDeviceScan(null, null, handleListener),
+        1000,
+      );
     }
 
-    return () => manager.stopDeviceScan();
+    return () => {
+      manager.stopDeviceScan();
+      timeout && clearTimeout(timeout);
+    };
   }, [manager, state]);
 
   const handleListener: ExtractParameterType<

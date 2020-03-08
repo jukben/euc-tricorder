@@ -3,6 +3,7 @@ import { CustomNavigatorProps } from '@euc-tricorder/types';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React, { useCallback, useEffect } from 'react';
+import { Device } from 'react-native-ble-plx';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {
@@ -10,7 +11,6 @@ import {
   PebbleClientProvider,
   useAdapter,
   useBle,
-  useSettings,
 } from '../../providers';
 import { CrossroadNavigatorProps, Stack as CrossroadStack } from '../crossroad';
 import { DeviceScreen } from './device';
@@ -29,8 +29,7 @@ const Tab = createBottomTabNavigator<HomeStack>();
 
 export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
   const { setAdapter, adapter } = useAdapter();
-  const { removeSettingsForKey } = useSettings();
-  const { state, manager } = useBle();
+  const { state, manager, registerRestoreStateListener } = useBle();
 
   const {
     params: { device },
@@ -44,27 +43,34 @@ export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
     setAdapter(null);
   }, [setAdapter]);
 
-  useEffect(() => {
-    console.log('attempt to auto-connect');
-    let timeout: ReturnType<typeof setTimeout>;
-
-    if (state === 'PoweredOn' && !adapter) {
-      if (!device) {
-        console.log("device hasn't been provided to this screen");
-        return;
-      }
-
-      console.log('auto-connecting');
+  const connectToDevice = useCallback(
+    (bleDevice: Device) => {
       const adapterFactory = adapters.find(
         ({ adapterName }) => adapterName === device.adapter,
       );
 
       if (!adapterFactory) {
-        console.log('remembered adapter not found');
-        removeSettingsForKey('device');
         return;
       }
 
+      const configuredAdapter = adapterFactory(bleDevice);
+      configuredAdapter.connect(handleDisconnect);
+      setAdapter(configuredAdapter);
+    },
+    [device.adapter, handleDisconnect, setAdapter],
+  );
+
+  useEffect(() => {
+    // we are already connected, so no needs to reconnect :)
+    if (adapter) {
+      return;
+    }
+
+    console.log('attempt to auto-connect...');
+    let timeout: ReturnType<typeof setTimeout>;
+
+    if (state === 'PoweredOn') {
+      console.log('...auto-connecting...');
       /**
        * react-native-ble-plx has some problem if I call startDeviceScan
        * right in the moment Ble is ready (weird right?) so let's artificially
@@ -82,13 +88,8 @@ export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
             }
 
             if (bleDevice && bleDevice.id === device.id) {
-              const configuredAdapter = adapterFactory(bleDevice);
-
-              configuredAdapter.connect(handleDisconnect);
-
-              setAdapter(configuredAdapter);
-
-              manager.stopDeviceScan();
+              connectToDevice(bleDevice);
+              console.log('...connected!');
             }
           }),
         1000,
@@ -99,15 +100,22 @@ export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
       manager.stopDeviceScan();
       timeout && clearTimeout(timeout);
     };
-  }, [
-    adapter,
-    manager,
-    state,
-    setAdapter,
-    handleDisconnect,
-    device,
-    removeSettingsForKey,
-  ]);
+  }, [adapter, manager, state, connectToDevice, device.id]);
+
+  useEffect(() => {
+    const unsubscribe = registerRestoreStateListener(restoredState => {
+      const bleDevice = restoredState.connectedPeripherals.find(
+        ({ id }) => id === device.id,
+      );
+
+      if (!bleDevice) {
+        return;
+      }
+      connectToDevice(bleDevice);
+    });
+
+    return unsubscribe;
+  }, [device.id, connectToDevice, registerRestoreStateListener]);
 
   return (
     <PebbleClientProvider>
