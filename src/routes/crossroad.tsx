@@ -9,7 +9,7 @@ import Tts from 'react-native-tts';
 export type Stack = {
   Register: {};
   Home: {
-    device: TSettings['device'];
+    device: NonNullable<TSettings['device']>;
   };
 };
 
@@ -54,7 +54,9 @@ export const Crossroad: React.FC = () => {
     PushNotificationIOS.requestPermissions();
     Tts.setDucking(true);
     Tts.setIgnoreSilentSwitch('ignore');
+  }, []);
 
+  useEffect(() => {
     const getRememberedDevice = async () => {
       const rememberedDevice = await getSettingsForKey('device');
       dispatch({ type: 'loaded', device: rememberedDevice });

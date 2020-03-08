@@ -1,11 +1,12 @@
 import { ExtractParameterType } from '@euc-tricorder/types';
+import { trackEvent } from 'appcenter-analytics';
 import { Buffer } from 'buffer';
 import {
   Device as BleDevice,
   Subscription as BleSubscription,
 } from 'react-native-ble-plx';
 
-import { AdapterApi, AdapterID, AdapterService } from './api';
+import { AdapterApi, AdapterID, AdapterService, DeviceData } from './api';
 
 export type BleListener = ExtractParameterType<
   BleDevice['monitorCharacteristicForService'],
@@ -34,16 +35,25 @@ export const defaultAdapter = (
     }
 
     if (characteristics && characteristics.value) {
-      const bufferValue = Buffer.from(characteristics.value, 'base64').buffer;
-      const data = configuration.getData(bufferValue);
+      const { value } = characteristics;
+      const bufferValue = Buffer.from(value, 'base64').buffer;
 
-      if (!data) {
-        return;
+      try {
+        const data = configuration.getData(bufferValue);
+
+        if (!data) {
+          return;
+        }
+
+        listeners.forEach(listener => {
+          listener(data);
+        });
+      } catch (e) {
+        trackEvent('adapter listening exception', {
+          buffer: value,
+        });
+        console.error(e);
       }
-
-      return listeners.forEach(listener => {
-        listener(data);
-      });
     }
   };
 
