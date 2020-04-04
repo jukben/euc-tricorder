@@ -45,7 +45,7 @@ export const defaultAdapter = (
           return;
         }
 
-        listeners.forEach(listener => {
+        listeners.forEach((listener) => {
           listener(data);
         });
       } catch (e) {
@@ -75,7 +75,7 @@ export const defaultAdapter = (
     await device.cancelConnection();
   };
 
-  const connect: AdapterService['connect'] = async onDisconnect => {
+  const connect: AdapterService['connect'] = async (onDisconnect) => {
     if (await isConnected()) {
       console.log('already connected');
       return;
@@ -114,7 +114,7 @@ export const defaultAdapter = (
 
   const isConnected = () => device.isConnected();
 
-  const handleData: AdapterService['handleData'] = listener => {
+  const handleData: AdapterService['handleData'] = (listener) => {
     const id = listeners.push(listener) - 1;
 
     return () => delete listeners[id];

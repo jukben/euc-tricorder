@@ -103,7 +103,7 @@ export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
   }, [adapter, manager, state, connectToDevice, device.id]);
 
   useEffect(() => {
-    const unsubscribe = registerRestoreStateListener(restoredState => {
+    const unsubscribe = registerRestoreStateListener((restoredState) => {
       const bleDevice = restoredState.connectedPeripherals.find(
         ({ id }) => id === device.id,
       );

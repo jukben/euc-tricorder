@@ -115,10 +115,10 @@ function reducer(state: State, action: Action): State {
     }
 
     case 'REMOVE': {
-      return produce(state, draftState => {
-        (Object.keys(draftState.list) as Array<AlarmTypes>).forEach(type => {
+      return produce(state, (draftState) => {
+        (Object.keys(draftState.list) as Array<AlarmTypes>).forEach((type) => {
           draftState.list[type] = draftState.list[type].filter(
-            id => id !== action.id,
+            (id) => id !== action.id,
           );
         });
 

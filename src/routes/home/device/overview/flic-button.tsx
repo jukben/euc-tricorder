@@ -26,7 +26,7 @@ export const FlicButton = ({ action }: Props) => {
       return;
     }
 
-    const unsubscribe = adapter.handleData(newData => {
+    const unsubscribe = adapter.handleData((newData) => {
       dataRef.current = newData;
     });
 
@@ -34,7 +34,7 @@ export const FlicButton = ({ action }: Props) => {
   }, [adapter]);
 
   useEffect(() => {
-    const unsubscribe = registerListener(event => {
+    const unsubscribe = registerListener((event) => {
       if (event.name === 'ButtonAction' && event.payload === action) {
         console.log('Flic action - say key information out loud!');
         Tts.stop();

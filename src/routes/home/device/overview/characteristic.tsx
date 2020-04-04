@@ -58,7 +58,7 @@ export const Characteristic = ({ Icon, description, onPress, name }: Props) => {
       return;
     }
 
-    const unsubscribe = adapter.handleData(newData => {
+    const unsubscribe = adapter.handleData((newData) => {
       const characteristic = newData[name];
 
       setValue(characteristic);

@@ -35,9 +35,9 @@ export function telemetryReducer(state: State, action: Action): State {
     case 'ADD_SNAPSHOT': {
       const { snapshot } = action;
 
-      return producer(state, draftState => {
+      return producer(state, (draftState) => {
         ((Object.keys(snapshot) as unknown) as Array<keyof DeviceData>).forEach(
-          characteristic => {
+          (characteristic) => {
             draftState[characteristic].push({
               value: snapshot[characteristic],
               isoString: new Date().toISOString(),
@@ -67,7 +67,7 @@ export const TelemetryProvider: React.FC = ({ children }) => {
       return;
     }
 
-    const unsubscribe = adapter.handleData(newData => {
+    const unsubscribe = adapter.handleData((newData) => {
       dataRef.current = newData;
     });
 

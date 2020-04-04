@@ -14,7 +14,7 @@ export const Chart = React.memo(
     style?: StyleProp<ViewStyle>;
   }) => {
     const normalizedData = useMemo(() => {
-      const dataValues = data.map(d => d.value);
+      const dataValues = data.map((d) => d.value);
 
       if (data.length > 600) {
         return data.slice(-snapshotSize);

@@ -21,7 +21,7 @@ export const PickAdapterScreen = ({
   return (
     <ScrollView>
       <List.Section>
-        {adapters.map(adapter => (
+        {adapters.map((adapter) => (
           <List.Item
             key={adapter.adapterName}
             title={adapter.adapterName}

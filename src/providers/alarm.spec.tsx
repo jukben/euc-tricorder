@@ -50,7 +50,7 @@ test('add', () => {
     <AlarmProvider>
       <TestComponent
         onData={handleData}
-        onAdd={add =>
+        onAdd={(add) =>
           add({
             characteristic: 'speed',
             alarm: { active: true, direction: 'up', value: 20 },
@@ -91,13 +91,13 @@ test('remove', () => {
     <AlarmProvider>
       <TestComponent
         onData={handleData}
-        onAdd={add =>
+        onAdd={(add) =>
           add({
             characteristic: 'speed',
             alarm: { active: true, direction: 'up', value: 20 },
           })
         }
-        onRemove={remove =>
+        onRemove={(remove) =>
           remove({
             id: '3467rtyuhjk-I',
           })
@@ -133,13 +133,13 @@ test('update', () => {
     <AlarmProvider>
       <TestComponent
         onData={handleData}
-        onAdd={add =>
+        onAdd={(add) =>
           add({
             characteristic: 'speed',
             alarm: { active: true, direction: 'up', value: 20 },
           })
         }
-        onUpdate={update =>
+        onUpdate={(update) =>
           update({ alarm: { id: '3467rtyuhjk-I', active: false } })
         }
       />

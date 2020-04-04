@@ -59,7 +59,7 @@ export const BleManagerMock = () => {
     stopDeviceScan: BleManager['stopDeviceScan'];
     remove: Subscription['remove'];
   } = {
-    onStateChange: callback => {
+    onStateChange: (callback) => {
       callback('PoweredOn' as State);
 
       return {
