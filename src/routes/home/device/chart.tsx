@@ -14,10 +14,10 @@ export const Chart = React.memo(
     style?: StyleProp<ViewStyle>;
   }) => {
     const normalizedData = useMemo(() => {
-      const dataValues = data.map(d => d.value);
+      const dataValues = data.map((d) => d.value);
 
-      if (data.length > 600) {
-        return data.slice(-snapshotSize);
+      if (data.length > snapshotSize) {
+        return dataValues.slice(-snapshotSize);
       }
 
       // In case we don't have enough data let's pre-fill it with zeroes

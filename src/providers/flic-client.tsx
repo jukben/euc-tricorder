@@ -62,7 +62,7 @@ export const FlicClientProvider: React.FC = ({ children }) => {
   const listeners = useRef<Array<Listener | undefined>>([]);
 
   const handleMessage = (event: Events) => {
-    listeners.current.forEach(listener => {
+    listeners.current.forEach((listener) => {
       listener && listener(event);
     });
   };
@@ -85,7 +85,7 @@ export const FlicClientProvider: React.FC = ({ children }) => {
     ];
 
     return () => {
-      subscriptions.forEach(subscription => subscription.remove());
+      subscriptions.forEach((subscription) => subscription.remove());
       FlicClient.destroy();
     };
   }, []);

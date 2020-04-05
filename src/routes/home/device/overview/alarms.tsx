@@ -26,10 +26,15 @@ const checkAlarms = ({
     keyof typeof telemetry
   >;
 
-  characteristics.forEach(characteristic => {
+  characteristics.forEach((characteristic) => {
     const value = telemetry[characteristic];
+
+    if (value === undefined || value == null) {
+      return;
+    }
+
     const alarms = alarmConfiguration.list[characteristic].map(
-      id => alarmConfiguration.alarm[id],
+      (id) => alarmConfiguration.alarm[id],
     );
 
     if (!alarms.length) {
@@ -88,7 +93,7 @@ export const Alarms = () => {
       return;
     }
 
-    const unsubscribe = adapter.handleData(telemetry =>
+    const unsubscribe = adapter.handleData((telemetry) =>
       checkAlarms({ telemetry, alarmConfiguration, action }),
     );
 

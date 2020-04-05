@@ -1,9 +1,10 @@
 import { DeviceData } from '@euc-tricorder/adapters';
-import { useSettings } from '@euc-tricorder/providers';
 import produce from 'immer';
 import nanoid from 'nanoid/non-secure';
 import React, { useContext, useEffect, useReducer } from 'react';
 import styled from 'styled-components/native';
+
+import { useSettings } from './settings';
 
 export const Alarm = styled.View`
   margin: 10px;
@@ -43,6 +44,8 @@ const initialState = {
     current: [],
     temperature: [],
     voltage: [],
+    currentDistance: [],
+    totalDistance: [],
   } as Record<AlarmTypes, Array<TAlarm['id']>>,
   alarm: {} as Record<TAlarm['id'], TAlarm>,
 };
@@ -115,10 +118,10 @@ function reducer(state: State, action: Action): State {
     }
 
     case 'REMOVE': {
-      return produce(state, draftState => {
-        (Object.keys(draftState.list) as Array<AlarmTypes>).forEach(type => {
+      return produce(state, (draftState) => {
+        (Object.keys(draftState.list) as Array<AlarmTypes>).forEach((type) => {
           draftState.list[type] = draftState.list[type].filter(
-            id => id !== action.id,
+            (id) => id !== action.id,
           );
         });
 
@@ -143,12 +146,17 @@ export const AlarmProvider: React.FC = ({ children }) => {
   useEffect(() => {
     const rehydrateState = async () => {
       const data = await getSettingsForKey('alarms');
-
       if (!data) {
         return;
       }
 
-      dispatch({ type: 'LOAD_FROM_STORAGE', data });
+      dispatch({
+        type: 'LOAD_FROM_STORAGE',
+        data: {
+          alarm: { ...initialState.alarm, ...data.alarm },
+          list: { ...initialState.list, ...data.list },
+        },
+      });
     };
 
     rehydrateState();

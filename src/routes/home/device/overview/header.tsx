@@ -37,7 +37,7 @@ export const Header = () => {
   const [pebbleConnected, setConnectionToPebble] = useState(pebbleConnect);
 
   useEffect(() => {
-    const unregister = pebbleRegisterListener(event => {
+    const unregister = pebbleRegisterListener((event) => {
       if (event.name === 'ConnectionChange') {
         setConnectionToPebble(event.payload);
       }

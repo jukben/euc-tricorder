@@ -35,13 +35,13 @@ export const BleProvider: React.FC = ({ children }) => {
       ? ((BleManagerMock() as unknown) as BleManager)
       : new BleManager({
           restoreStateIdentifier: 'org.jukben.euctricorder',
-          restoreStateFunction: restoredState => {
+          restoreStateFunction: (restoredState) => {
             if (!restoredState) {
               return;
             }
 
             console.log('BleProvider has restored state', restoredState);
-            listeners.current.forEach(listener => {
+            listeners.current.forEach((listener) => {
               listener && listener(restoredState);
             });
           },
@@ -64,7 +64,7 @@ export const BleProvider: React.FC = ({ children }) => {
   const [state, setState] = useState<State>('Unknown' as State);
 
   useEffect(() => {
-    const subscription = bleManagerRef.current.onStateChange(newState => {
+    const subscription = bleManagerRef.current.onStateChange((newState) => {
       setState(newState);
     });
 

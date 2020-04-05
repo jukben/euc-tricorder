@@ -53,7 +53,7 @@ export const SearchScreen = ({
 
     if (!DevicesMapRef.current.has(device.id)) {
       DevicesMapRef.current.set(device.id, device);
-      setDevices(allDevices => [device, ...allDevices]);
+      setDevices((allDevices) => [device, ...allDevices]);
     }
   };
 
@@ -65,8 +65,8 @@ export const SearchScreen = ({
     <ScrollView>
       <List.Section>
         {devices
-          .filter(device => device.name)
-          .map(device => (
+          .filter((device) => device.name)
+          .map((device) => (
             <List.Item
               key={device.id}
               title={device.name}

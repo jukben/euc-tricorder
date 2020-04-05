@@ -6,7 +6,7 @@ import {
   Subscription as BleSubscription,
 } from 'react-native-ble-plx';
 
-import { AdapterApi, AdapterID, AdapterService, DeviceData } from './api';
+import { AdapterApi, AdapterID, AdapterService } from './api';
 
 export type BleListener = ExtractParameterType<
   BleDevice['monitorCharacteristicForService'],
@@ -45,7 +45,7 @@ export const defaultAdapter = (
           return;
         }
 
-        listeners.forEach(listener => {
+        listeners.forEach((listener) => {
           listener(data);
         });
       } catch (e) {
@@ -53,6 +53,7 @@ export const defaultAdapter = (
           buffer: value,
         });
         console.error(e);
+        return;
       }
     }
   };
@@ -75,25 +76,28 @@ export const defaultAdapter = (
     await device.cancelConnection();
   };
 
-  const connect: AdapterService['connect'] = async onDisconnect => {
-    if (await isConnected()) {
-      console.log('already connected');
-      return;
-    }
-
+  const connect: AdapterService['connect'] = async (onDisconnect) => {
     const { service, characteristic } = configuration.bleConfiguration;
 
     try {
-      await device.connect();
+      if (await isConnected()) {
+        console.log('already connected');
+        return;
+      }
 
+      await device.connect();
       await device.discoverAllServicesAndCharacteristics();
 
       if (configuration.afterConnect) {
-        configuration.afterConnect(device);
+        await configuration.afterConnect(device);
       }
     } catch (e) {
       await device.cancelConnection();
-      throw e;
+      trackEvent('adapter connect exception', {
+        error: e,
+      });
+      console.error(e);
+      return;
     }
 
     onDisconnectSubscription = device.onDisconnected(
@@ -108,13 +112,13 @@ export const defaultAdapter = (
   };
 
   const disconnect: AdapterService['disconnect'] = async () => {
-    unsubscribe();
     await device.cancelConnection();
+    unsubscribe();
   };
 
   const isConnected = () => device.isConnected();
 
-  const handleData: AdapterService['handleData'] = listener => {
+  const handleData: AdapterService['handleData'] = (listener) => {
     const id = listeners.push(listener) - 1;
 
     return () => delete listeners[id];

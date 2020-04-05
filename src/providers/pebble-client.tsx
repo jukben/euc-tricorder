@@ -72,7 +72,7 @@ export const PebbleClientProvider: React.FC = ({ children }) => {
   const listeners = useRef<Array<Listener | undefined>>([]);
 
   const handleMessage = (event: PublicEvents) => {
-    listeners.current.forEach(listener => {
+    listeners.current.forEach((listener) => {
       listener && listener(event);
     });
   };
@@ -110,7 +110,7 @@ export const PebbleClientProvider: React.FC = ({ children }) => {
     PebbleClient.run();
 
     return () => {
-      subscriptions.forEach(subscription => subscription.remove());
+      subscriptions.forEach((subscription) => subscription.remove());
       PebbleClient.destroy();
     };
   }, []);

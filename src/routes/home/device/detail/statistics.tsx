@@ -34,7 +34,7 @@ export const Statistics = (props: Props) => {
     );
   }
 
-  const values = data.map(d => d.value);
+  const values = data.map((d) => d.value);
 
   const min = getMin(values);
   const max = getMax(values);

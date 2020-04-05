@@ -89,7 +89,7 @@ export const Alarms = ({ characteristic }: Props) => {
   return (
     <Container>
       <NewAlarm onAdd={handleAdd} />
-      {alarms.map(id => {
+      {alarms.map((id) => {
         const { value, direction } = alarm[id];
 
         return (

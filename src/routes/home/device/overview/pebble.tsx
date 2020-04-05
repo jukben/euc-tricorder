@@ -23,7 +23,7 @@ export const Pebble = () => {
       return;
     }
 
-    const unsubscribe = adapter.handleData(newData => {
+    const unsubscribe = adapter.handleData((newData) => {
       setData(newData);
     });
 
@@ -31,7 +31,7 @@ export const Pebble = () => {
   }, [adapter]);
 
   const updatePebble = useCallback(
-    d => {
+    (d) => {
       sendUpdate({
         speed: Math.round(d.speed),
         battery: Math.round(d.battery),

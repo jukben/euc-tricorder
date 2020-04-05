@@ -1,0 +1,15 @@
+diff --git a/node_modules/react-native-ble-plx/ios/RxBluetoothKit/BluetoothManager.swift b/node_modules/react-native-ble-plx/ios/RxBluetoothKit/BluetoothManager.swift
+index b3ebaae..66ec191 100644
+--- a/node_modules/react-native-ble-plx/ios/RxBluetoothKit/BluetoothManager.swift
++++ b/node_modules/react-native-ble-plx/ios/RxBluetoothKit/BluetoothManager.swift
+@@ -245,8 +245,8 @@ public class BluetoothManager {
+             return Disposables.create { [weak self] in
+                 guard let strongSelf = self else { return }
+                 if !peripheral.isConnected {
+-                    strongSelf.centralManager.cancelPeripheralConnection(peripheral.peripheral)
+-                    disposable.dispose()
++                    // strongSelf.centralManager.cancelPeripheralConnection(peripheral.peripheral)
++                    // disposable.dispose()
+                 }
+             }
+         }

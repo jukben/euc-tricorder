@@ -1,7 +1,8 @@
 import { DeviceData } from '@euc-tricorder/adapters';
-import { useAdapter } from '@euc-tricorder/providers';
 import producer from 'immer';
 import React, { useContext, useEffect, useReducer, useRef } from 'react';
+
+import { useAdapter } from './adapter';
 
 export type TTelemetryData = Array<{
   value: number;
@@ -14,6 +15,8 @@ const initialData = {
   current: [] as TTelemetryData,
   temperature: [] as TTelemetryData,
   battery: [] as TTelemetryData,
+  totalDistance: [] as TTelemetryData,
+  currentDistance: [] as TTelemetryData,
 };
 
 type State = typeof initialData;
@@ -35,13 +38,17 @@ export function telemetryReducer(state: State, action: Action): State {
     case 'ADD_SNAPSHOT': {
       const { snapshot } = action;
 
-      return producer(state, draftState => {
+      return producer(state, (draftState) => {
         ((Object.keys(snapshot) as unknown) as Array<keyof DeviceData>).forEach(
-          characteristic => {
-            draftState[characteristic].push({
-              value: snapshot[characteristic],
-              isoString: new Date().toISOString(),
-            });
+          (characteristic) => {
+            const value = snapshot[characteristic];
+
+            if (value !== undefined) {
+              draftState[characteristic].push({
+                value,
+                isoString: new Date().toISOString(),
+              });
+            }
           },
         );
       });
@@ -67,7 +74,7 @@ export const TelemetryProvider: React.FC = ({ children }) => {
       return;
     }
 
-    const unsubscribe = adapter.handleData(newData => {
+    const unsubscribe = adapter.handleData((newData) => {
       dataRef.current = newData;
     });
 
