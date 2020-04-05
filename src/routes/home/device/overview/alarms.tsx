@@ -28,6 +28,11 @@ const checkAlarms = ({
 
   characteristics.forEach((characteristic) => {
     const value = telemetry[characteristic];
+
+    if (value === undefined || value == null) {
+      return;
+    }
+
     const alarms = alarmConfiguration.list[characteristic].map(
       (id) => alarmConfiguration.alarm[id],
     );

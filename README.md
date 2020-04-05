@@ -33,6 +33,10 @@ In order to develop for Pebble, you can use the `./run-pebble` command which wil
 pebble build && pebble install --phone IP
 ```
 
+## Known issues
+
+- <https://github.com/Polidea/react-native-ble-plx/issues/426>
+
 ## License
 
 MIT

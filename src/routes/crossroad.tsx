@@ -76,9 +76,9 @@ export const Crossroad: React.FC = () => {
       <Root.Screen
         name="Home"
         component={routes.Home}
-        initialParams={{
-          device: state.phase === 'auto-connect' ? state.device : undefined,
-        }}
+        initialParams={
+          state.phase === 'auto-connect' ? { device: state.device } : undefined
+        }
       />
       <Root.Screen name="Register" component={routes.Register} />
     </Root.Navigator>

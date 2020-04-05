@@ -2,13 +2,24 @@ import { Device as BleDevice } from 'react-native-ble-plx';
 
 import { defaultAdapter } from './default-adapter';
 
-export type DeviceData = {
+/**
+ * @TODO this is not entirely true, it's more like {speed: number} | {currentDistance: number}
+ * It would be nice to revisit it
+ */
+export type DeviceData = Partial<{
   speed: number;
   voltage: number;
   current: number;
   temperature: number;
   battery: number;
-};
+  totalDistance: number;
+  currentDistance: number;
+}>;
+
+export type MeasurableData = Exclude<
+  keyof DeviceData,
+  'totalDistance' | 'currentDistance'
+>;
 
 export const readableDeviceDataKeys: Record<keyof DeviceData, string> = {
   battery: 'Battery',
@@ -16,6 +27,8 @@ export const readableDeviceDataKeys: Record<keyof DeviceData, string> = {
   speed: 'Speed',
   temperature: 'Temperature',
   voltage: 'Voltage',
+  totalDistance: 'Total Distance',
+  currentDistance: 'Current Distance',
 } as const;
 
 export type AdapterID = string;

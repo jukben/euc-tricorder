@@ -1,4 +1,4 @@
-import { DeviceData } from '@euc-tricorder/adapters';
+import { MeasurableData } from '@euc-tricorder/adapters';
 import { useAdapter, useTelemetry } from '@euc-tricorder/providers';
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator } from 'react-native';
@@ -40,13 +40,13 @@ const SubHeader = styled.Text`
 `;
 
 type Props = {
-  Icon: () => React.ReactElement;
+  icon: () => React.ReactElement;
   description: string;
-  name: keyof DeviceData;
+  name: MeasurableData;
   onPress: () => void;
 };
 
-export const Characteristic = ({ Icon, description, onPress, name }: Props) => {
+export const Characteristic = ({ icon, description, onPress, name }: Props) => {
   const { data } = useTelemetry();
 
   const [value, setValue] = useState<number | null>(null);
@@ -60,6 +60,10 @@ export const Characteristic = ({ Icon, description, onPress, name }: Props) => {
 
     const unsubscribe = adapter.handleData((newData) => {
       const characteristic = newData[name];
+
+      if (characteristic === undefined) {
+        return;
+      }
 
       setValue(characteristic);
     });
@@ -75,7 +79,7 @@ export const Characteristic = ({ Icon, description, onPress, name }: Props) => {
         <TouchableOpacity onPress={onPress}>
           <Section>
             <Header>
-              <Icon />
+              {icon()}
               <SubHeader>{description}</SubHeader>
             </Header>
             {value === null ? (

@@ -8,6 +8,8 @@ let dummyData = {
   temperature: 10,
   current: 10,
   voltage: 72,
+  totalDistance: 300000,
+  currentDistance: 123,
 };
 
 const maxSpeed = 10;
@@ -41,8 +43,6 @@ export const dummyEUC = createAdapter(name, {
     service: '',
   },
   getData: () => {
-    dummyData = updateData(dummyData);
-
-    return dummyData;
+    return updateData(dummyData);
   },
 });

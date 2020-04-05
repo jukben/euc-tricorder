@@ -9,7 +9,8 @@
     "test": "jest",
     "lint": "eslint .",
     "format": "prettier . --write",
-    "postversion": "react-native-version --target ios"
+    "postversion": "react-native-version --target ios",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@react-native-community/async-storage": "1.7.1",
@@ -27,7 +28,7 @@
     "nanoid": "2.1.11",
     "react": "16.9.0",
     "react-native": "0.61.5",
-    "react-native-ble-plx": "1.1.0",
+    "react-native-ble-plx": "1.1.1",
     "react-native-device-info": "5.5.3",
     "react-native-gesture-handler": "1.5.3",
     "react-native-paper": "3.4.0",
@@ -64,6 +65,7 @@
     "eslint-plugin-simple-import-sort": "5.0.0",
     "jest": "24.9.0",
     "metro-react-native-babel-preset": "0.56.4",
+    "patch-package": "6.2.2",
     "prettier": "2.0.2",
     "react-dom": "16.9.0",
     "react-native-version": "3.2.0",

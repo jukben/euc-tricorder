@@ -14,6 +14,8 @@ test('can reduce state correctly', () => {
     current: [],
     temperature: [],
     battery: [],
+    currentDistance: [],
+    totalDistance: [],
   };
 
   const action = {

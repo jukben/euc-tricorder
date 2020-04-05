@@ -12,15 +12,26 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		64FD69BEB5DF8088CD9C9463 /* libPods-euctricorder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1FBB3760B902F4D649A447 /* libPods-euctricorder.a */; };
 		67AC8FA6B68C95C365B9922D /* libPods-euctricorderTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4EF4D02D220EC8AB8325F5 /* libPods-euctricorderTests.a */; };
 		772726EC389903A9291AA6B6 /* libPods-euctricorder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1FBB3760B902F4D649A447 /* libPods-euctricorder.a */; };
+		790FC6712439EC73003C85D5 /* bridge-me.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F96E4F23CD006000AFAE6E /* bridge-me.swift */; };
+		790FC6722439EC73003C85D5 /* SCLFlicButtonSimulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 795CD75423FC79F300A91FBC /* SCLFlicButtonSimulator.m */; };
+		790FC6732439EC73003C85D5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
+		790FC6742439EC73003C85D5 /* SCLFlicManagerSimulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 795CD75723FC79F300A91FBC /* SCLFlicManagerSimulator.m */; };
+		790FC6752439EC73003C85D5 /* PebbleClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 798260C423D466920067C3C2 /* PebbleClient.m */; };
+		790FC6762439EC73003C85D5 /* FlicClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AC7A2C23DC7097004A6FF6 /* FlicClient.m */; };
+		790FC6772439EC73003C85D5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		790FC67C2439EC73003C85D5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		790FC67D2439EC73003C85D5 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
+		790FC67E2439EC73003C85D5 /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7968BC5B23E74BC100D2BA60 /* AppCenter-Config.plist */; };
 		795CD75923FC79F300A91FBC /* SCLFlicButtonSimulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 795CD75423FC79F300A91FBC /* SCLFlicButtonSimulator.m */; };
 		795CD75A23FC79F300A91FBC /* SCLFlicManagerSimulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 795CD75723FC79F300A91FBC /* SCLFlicManagerSimulator.m */; };
 		7968BC5C23E74BC100D2BA60 /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7968BC5B23E74BC100D2BA60 /* AppCenter-Config.plist */; };
 		798260C523D466920067C3C2 /* PebbleClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 798260C423D466920067C3C2 /* PebbleClient.m */; };
+		799E3E5D243924C6002693EA /* fliclib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79AC7A3923DC717F004A6FF6 /* fliclib.framework */; };
+		799E3E5E243924C6002693EA /* fliclib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 79AC7A3923DC717F004A6FF6 /* fliclib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		79AC7A2D23DC7097004A6FF6 /* FlicClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AC7A2C23DC7097004A6FF6 /* FlicClient.m */; };
-		79AC7A4123DC7AF8004A6FF6 /* fliclib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79AC7A3923DC717F004A6FF6 /* fliclib.framework */; };
-		79AC7A4223DC7AF8004A6FF6 /* fliclib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 79AC7A3923DC717F004A6FF6 /* fliclib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		79F96E5023CD006000AFAE6E /* bridge-me.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F96E4F23CD006000AFAE6E /* bridge-me.swift */; };
 		79F96E5123CD006000AFAE6E /* bridge-me.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F96E4F23CD006000AFAE6E /* bridge-me.swift */; };
 /* End PBXBuildFile section */
@@ -36,13 +47,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		79AC7A4323DC7AF8004A6FF6 /* Embed Frameworks */ = {
+		799E3E5F243924C6002693EA /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				79AC7A4223DC7AF8004A6FF6 /* fliclib.framework in Embed Frameworks */,
+				799E3E5E243924C6002693EA /* fliclib.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -62,8 +73,10 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = euctricorder/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = euctricorder/main.m; sourceTree = "<group>"; };
 		3D1FBB3760B902F4D649A447 /* libPods-euctricorder.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-euctricorder.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F842F4AF263DD8D4A315677 /* Pods-euctricorder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-euctricorder.debug.xcconfig"; path = "Target Support Files/Pods-euctricorder/Pods-euctricorder.debug.xcconfig"; sourceTree = "<group>"; };
 		56FFBFD6606653E7E1FDE737 /* Pods-euctricorderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-euctricorderTests.release.xcconfig"; path = "Target Support Files/Pods-euctricorderTests/Pods-euctricorderTests.release.xcconfig"; sourceTree = "<group>"; };
 		7491974F9FD7B71CFC28281D /* Pods-euctricorderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-euctricorderTests.debug.xcconfig"; path = "Target Support Files/Pods-euctricorderTests/Pods-euctricorderTests.debug.xcconfig"; sourceTree = "<group>"; };
+		790FC6872439EC73003C85D5 /* EUC Tricorder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EUC Tricorder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		795CD75423FC79F300A91FBC /* SCLFlicButtonSimulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLFlicButtonSimulator.m; sourceTree = "<group>"; };
 		795CD75623FC79F300A91FBC /* SCLFlicManagerSimulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLFlicManagerSimulator.h; sourceTree = "<group>"; };
 		795CD75723FC79F300A91FBC /* SCLFlicManagerSimulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLFlicManagerSimulator.m; sourceTree = "<group>"; };
@@ -77,9 +90,8 @@
 		79F96E4B23CD006000AFAE6E /* euctricorder-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "euctricorder-Bridging-Header.h"; sourceTree = "<group>"; };
 		79F96E4C23CD006000AFAE6E /* euctricorderTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "euctricorderTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		79F96E4F23CD006000AFAE6E /* bridge-me.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "bridge-me.swift"; sourceTree = "<group>"; };
-		8B298032D9639415997BF4B2 /* Pods-euctricorder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-euctricorder.release.xcconfig"; path = "Target Support Files/Pods-euctricorder/Pods-euctricorder.release.xcconfig"; sourceTree = "<group>"; };
 		9E4EF4D02D220EC8AB8325F5 /* libPods-euctricorderTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-euctricorderTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA7596EEEC770A933DEC1C7A /* Pods-euctricorder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-euctricorder.debug.xcconfig"; path = "Target Support Files/Pods-euctricorder/Pods-euctricorder.debug.xcconfig"; sourceTree = "<group>"; };
+		C569055442F1477A19044B14 /* Pods-euctricorder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-euctricorder.release.xcconfig"; path = "Target Support Files/Pods-euctricorder/Pods-euctricorder.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
@@ -97,8 +109,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79AC7A4123DC7AF8004A6FF6 /* fliclib.framework in Frameworks */,
+				799E3E5D243924C6002693EA /* fliclib.framework in Frameworks */,
 				772726EC389903A9291AA6B6 /* libPods-euctricorder.a in Frameworks */,
+				64FD69BEB5DF8088CD9C9463 /* libPods-euctricorder.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		790FC6782439EC73003C85D5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,6 +215,7 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* EUC Tricorder.app */,
 				00E356EE1AD99517003FC87E /* euctricorderTests.xctest */,
+				790FC6872439EC73003C85D5 /* EUC Tricorder.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -202,10 +223,10 @@
 		9DF024BDF526183F5A68026C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				AA7596EEEC770A933DEC1C7A /* Pods-euctricorder.debug.xcconfig */,
-				8B298032D9639415997BF4B2 /* Pods-euctricorder.release.xcconfig */,
 				7491974F9FD7B71CFC28281D /* Pods-euctricorderTests.debug.xcconfig */,
 				56FFBFD6606653E7E1FDE737 /* Pods-euctricorderTests.release.xcconfig */,
+				3F842F4AF263DD8D4A315677 /* Pods-euctricorder.debug.xcconfig */,
+				C569055442F1477A19044B14 /* Pods-euctricorder.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -244,7 +265,7 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				5CF94A100FFB2E71559ABBEA /* [CP] Copy Pods Resources */,
 				A7461D812A496FC357097D5E /* [CP] Embed Pods Frameworks */,
-				79AC7A4323DC7AF8004A6FF6 /* Embed Frameworks */,
+				799E3E5F243924C6002693EA /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -253,6 +274,25 @@
 			name = euctricorder;
 			productName = euctricorder;
 			productReference = 13B07F961A680F5B00A75B9A /* EUC Tricorder.app */;
+			productType = "com.apple.product-type.application";
+		};
+		790FC66D2439EC73003C85D5 /* ecutricorder-simulator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 790FC6842439EC73003C85D5 /* Build configuration list for PBXNativeTarget "ecutricorder-simulator" */;
+			buildPhases = (
+				790FC66F2439EC73003C85D5 /* Start Packager */,
+				790FC6702439EC73003C85D5 /* Sources */,
+				790FC6782439EC73003C85D5 /* Frameworks */,
+				790FC67B2439EC73003C85D5 /* Resources */,
+				790FC67F2439EC73003C85D5 /* Bundle React Native code and images */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ecutricorder-simulator";
+			productName = euctricorder;
+			productReference = 790FC6872439EC73003C85D5 /* EUC Tricorder.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -275,6 +315,10 @@
 						LastSwiftMigration = 1130;
 						ProvisioningStyle = Automatic;
 					};
+					790FC66D2439EC73003C85D5 = {
+						DevelopmentTeam = U2HL3HZ5TZ;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "euctricorder" */;
@@ -292,6 +336,7 @@
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* euctricorder */,
+				790FC66D2439EC73003C85D5 /* ecutricorder-simulator */,
 				00E356ED1AD99517003FC87E /* euctricorderTests */,
 			);
 		};
@@ -312,6 +357,16 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				7968BC5C23E74BC100D2BA60 /* AppCenter-Config.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		790FC67B2439EC73003C85D5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				790FC67C2439EC73003C85D5 /* Images.xcassets in Resources */,
+				790FC67D2439EC73003C85D5 /* LaunchScreen.xib in Resources */,
+				790FC67E2439EC73003C85D5 /* AppCenter-Config.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,6 +457,39 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		790FC66F2439EC73003C85D5 /* Start Packager */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Start Packager";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		790FC67F2439EC73003C85D5 /* Bundle React Native code and images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle React Native code and images";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+		};
 		850ADA48FDFAD2650508765E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -487,6 +575,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		790FC6702439EC73003C85D5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				790FC6712439EC73003C85D5 /* bridge-me.swift in Sources */,
+				790FC6722439EC73003C85D5 /* SCLFlicButtonSimulator.m in Sources */,
+				790FC6732439EC73003C85D5 /* AppDelegate.m in Sources */,
+				790FC6742439EC73003C85D5 /* SCLFlicManagerSimulator.m in Sources */,
+				790FC6752439EC73003C85D5 /* PebbleClient.m in Sources */,
+				790FC6762439EC73003C85D5 /* FlicClient.m in Sources */,
+				790FC6772439EC73003C85D5 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -566,7 +668,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AA7596EEEC770A933DEC1C7A /* Pods-euctricorder.debug.xcconfig */;
+			baseConfigurationReference = 3F842F4AF263DD8D4A315677 /* Pods-euctricorder.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -598,7 +700,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8B298032D9639415997BF4B2 /* Pods-euctricorder.release.xcconfig */;
+			baseConfigurationReference = C569055442F1477A19044B14 /* Pods-euctricorder.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -611,6 +713,66 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = euctricorder/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.jukben.euctricorder;
+				PRODUCT_NAME = "EUC Tricorder";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "euctricorder-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		790FC6852439EC73003C85D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = U2HL3HZ5TZ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/euctricorder/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.jukben.euctricorder;
+				PRODUCT_NAME = "EUC Tricorder";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "euctricorder-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		790FC6862439EC73003C85D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U2HL3HZ5TZ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/euctricorder/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -744,6 +906,15 @@
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
 				13B07F951A680F5B00A75B9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		790FC6842439EC73003C85D5 /* Build configuration list for PBXNativeTarget "ecutricorder-simulator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				790FC6852439EC73003C85D5 /* Debug */,
+				790FC6862439EC73003C85D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -78,6 +78,8 @@ test('add', () => {
       speed: ['3467rtyuhjk-I'],
       temperature: [],
       voltage: [],
+      totalDistance: [],
+      currentDistance: [],
     },
   });
 });
@@ -120,6 +122,8 @@ test('remove', () => {
       speed: [],
       temperature: [],
       voltage: [],
+      totalDistance: [],
+      currentDistance: [],
     },
   });
 });
@@ -167,6 +171,8 @@ test('update', () => {
       speed: ['3467rtyuhjk-I'],
       temperature: [],
       voltage: [],
+      totalDistance: [],
+      currentDistance: [],
     },
   });
 });

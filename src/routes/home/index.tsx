@@ -66,7 +66,7 @@ export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
       return;
     }
 
-    console.log('attempt to auto-connect...');
+    console.log(`attempt to auto-connect... (${device.adapter}, ${state})`);
     let timeout: ReturnType<typeof setTimeout>;
 
     if (state === 'PoweredOn') {
@@ -100,10 +100,12 @@ export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
       manager.stopDeviceScan();
       timeout && clearTimeout(timeout);
     };
-  }, [adapter, manager, state, connectToDevice, device.id]);
+  }, [adapter, manager, state, connectToDevice, device]);
 
   useEffect(() => {
     const unsubscribe = registerRestoreStateListener((restoredState) => {
+      console.log('...restoring connection...');
+
       const bleDevice = restoredState.connectedPeripherals.find(
         ({ id }) => id === device.id,
       );
@@ -111,7 +113,13 @@ export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
       if (!bleDevice) {
         return;
       }
-      connectToDevice(bleDevice);
+
+      console.log(bleDevice);
+
+      setTimeout(() => {
+        connectToDevice(bleDevice);
+      }, 100);
+      console.log('...connected!');
     });
 
     return unsubscribe;

@@ -6,6 +6,7 @@ import styled from 'styled-components/native';
 import { Stack as DeviceNavigatorStack } from '..';
 import { Alarms } from './alarms';
 import { Characteristic } from './characteristic';
+import { Distance } from './distance';
 import { FlicButton } from './flic-button';
 import { Pebble } from './pebble';
 
@@ -28,7 +29,7 @@ export const Metrics = () => {
 
       <Container>
         <Characteristic
-          Icon={() => <Icon name="thermometer" size={40} />}
+          icon={() => <Icon name="thermometer" size={40} />}
           onPress={() =>
             navigation.navigate('Detail', { characteristic: 'temperature' })
           }
@@ -36,7 +37,7 @@ export const Metrics = () => {
           name="temperature"
         />
         <Characteristic
-          Icon={() => <Icon name="speedometer" size={40} />}
+          icon={() => <Icon name="speedometer" size={40} />}
           onPress={() =>
             navigation.navigate('Detail', { characteristic: 'speed' })
           }
@@ -44,7 +45,7 @@ export const Metrics = () => {
           name="speed"
         />
         <Characteristic
-          Icon={() => <Icon name="battery-outline" size={40} />}
+          icon={() => <Icon name="battery-outline" size={40} />}
           onPress={() =>
             navigation.navigate('Detail', { characteristic: 'battery' })
           }
@@ -52,13 +53,14 @@ export const Metrics = () => {
           name="battery"
         />
         <Characteristic
-          Icon={() => <Icon name="alert" size={40} />}
+          icon={() => <Icon name="alert" size={40} />}
           onPress={() =>
             navigation.navigate('Detail', { characteristic: 'voltage' })
           }
           description="V"
           name="voltage"
         />
+        <Distance />
       </Container>
     </>
   );
