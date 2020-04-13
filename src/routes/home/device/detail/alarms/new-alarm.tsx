@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useCallback, useEffect, useReducer } from 'react';
 import { Button, TextInput } from 'react-native';
 
-import { Alarm, AlarmDirection, Value } from './alarms';
+import { Alarm, AlarmDirection, Value } from './ui';
 
 const initialState = {
   isEditing: false,
