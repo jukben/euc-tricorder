@@ -17,14 +17,20 @@ export const useDeviceScan = ({
     }
 
     console.log(`attempt to auto-connect... (${state})`);
-    let timeout: ReturnType<typeof setTimeout>;
+    let timeout: ReturnType<typeof setTimeout> | null = null;
+    let timeoutUnsupported: ReturnType<typeof setTimeout> | null = null;
 
-    if (state === 'Unsupported' || state === 'Unknown') {
-      Alert.alert("BLE doesn't respond", 'Please restart the application');
-      trackEvent('ble state unsupported');
+    if (state === 'Unsupported') {
+      timeoutUnsupported = setTimeout(() => {
+        Alert.alert("BLE doesn't respond", 'Please restart the application');
+        trackEvent('ble state unsupported');
+      }, 3000);
     }
 
     if (state === 'PoweredOn') {
+      // don't report unsupported state since we have been able to connect
+      timeoutUnsupported && clearTimeout(timeoutUnsupported);
+
       console.log('...auto-connecting...');
       /**
        * react-native-ble-plx has some problem if I call startDeviceScan
