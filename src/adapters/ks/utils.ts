@@ -66,8 +66,12 @@ export const decodeData = (buffer: ArrayBuffer): DeviceData | null => {
       view.getUint8(5),
     );
 
+    // I have no idea why there have to be "2". I just measured the difference. 🤷
+    const deviceUptime = byteArrayInt2(view.getUint8(6), view.getUint8(7)) * 2;
+
     return {
       currentDistance,
+      deviceUptime,
     };
   }
 

@@ -53,6 +53,7 @@ export const useDeviceScan = ({
     return () => {
       manager.stopDeviceScan();
       timeout && clearTimeout(timeout);
+      timeoutUnsupported && clearTimeout(timeoutUnsupported);
     };
   }, [manager, state, onDeviceFound]);
 };

@@ -16,6 +16,7 @@ test('can reduce state correctly', () => {
     battery: [],
     currentDistance: [],
     totalDistance: [],
+    deviceUptime: [],
   };
 
   const action = {
