@@ -12,13 +12,13 @@ import { BleManager, BleRestoredState, State } from 'react-native-ble-plx';
 import { BleManagerMock } from './mock';
 
 export type BleAPI = {
-  manager: BleManager;
+  manager: BleManager | null;
   state: State;
   registerRestoreStateListener: (listener: Listener) => () => void;
 };
 
 const BleContext = React.createContext<BleAPI>({
-  manager: (null as unknown) as BleManager,
+  manager: null,
   state: 'Unknown' as State,
   registerRestoreStateListener: () => () => undefined,
 });

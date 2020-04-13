@@ -2,7 +2,9 @@ import { AdapterFactory, adapters } from '@euc-tricorder/adapters';
 import { RegisterNavigatorProps } from '@euc-tricorder/routes/register';
 import React from 'react';
 import { ScrollView } from 'react-native';
-import { List } from 'react-native-paper';
+import styled from 'styled-components/native';
+
+const Item = styled.Button``;
 
 export const PickAdapterScreen = ({
   route,
@@ -20,17 +22,15 @@ export const PickAdapterScreen = ({
 
   return (
     <ScrollView>
-      <List.Section>
-        {adapters.map((adapter) => (
-          <List.Item
-            key={adapter.adapterName}
-            title={adapter.adapterName}
-            onPress={() => {
-              handlePress(adapter);
-            }}
-          />
-        ))}
-      </List.Section>
+      {adapters.map((adapter) => (
+        <Item
+          key={adapter.adapterName}
+          title={adapter.adapterName}
+          onPress={() => {
+            handlePress(adapter);
+          }}
+        />
+      ))}
     </ScrollView>
   );
 };

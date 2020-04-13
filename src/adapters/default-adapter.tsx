@@ -51,6 +51,7 @@ export const defaultAdapter = (
       } catch (e) {
         trackEvent('adapter listening exception', {
           buffer: value,
+          error: e,
         });
         console.error(e);
         return;
