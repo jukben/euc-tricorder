@@ -121,8 +121,19 @@ export const PebbleClientProvider: React.FC = ({ children }) => {
         return Promise.resolve();
       }
 
+      const cleanedData = { ...data };
+
+      (Object.keys(cleanedData) as Array<keyof Data>).forEach((key) =>
+        cleanedData[key] === undefined ? delete cleanedData[key] : {},
+      );
+
+      // if we don't have something to send, don't send it :)
+      if (!Object.keys(cleanedData).length) {
+        return;
+      }
+
       try {
-        PebbleClient.sendUpdate(data);
+        PebbleClient.sendUpdate(cleanedData);
       } catch (e) {
         console.warn('Pebble: update failed. Are Pebble watch online?');
       }

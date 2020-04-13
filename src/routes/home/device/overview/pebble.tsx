@@ -30,20 +30,15 @@ export const Pebble = () => {
     return unsubscribe;
   }, [adapter]);
 
-  const updatePebble = useCallback(
-    (d) => {
+  useThrottle({
+    callback: (d) => {
       sendUpdate({
-        speed: Math.round(d.speed),
-        battery: Math.round(d.battery),
-        temperature: Math.round(d.temperature),
-        voltage: Math.round(d.voltage),
+        speed: d.speed ? Math.round(d.speed) : undefined,
+        battery: d.battery ? Math.round(d.battery) : undefined,
+        temperature: d.temperature ? Math.round(d.temperature) : undefined,
+        voltage: d.voltage ? Math.round(d.voltage) : undefined,
       });
     },
-    [sendUpdate],
-  );
-
-  useThrottle({
-    callback: updatePebble,
     value: data,
     threshold: 1000,
   });
