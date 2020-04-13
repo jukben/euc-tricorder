@@ -1,43 +1,15 @@
 import { DeviceData } from '@euc-tricorder/adapters';
 import { TAlarm, useAlarm } from '@euc-tricorder/providers';
 import React, { useCallback } from 'react';
-import { Alert, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Alert } from 'react-native';
 import styled from 'styled-components/native';
 
 import { NewAlarm } from './new-alarm';
+import { Alarm, AlarmDirection, Value } from './ui';
 
 const Container = styled.View``;
 
-export const Alarm = styled.View`
-  margin: 10px;
-  flex-direction: row;
-  justify-content: space-between;
-`;
-
-export const Value = styled.Text`
-  font-size: 30px;
-  flex: 1;
-`;
-
 const AlarmRemove = styled.Button``;
-
-type TAlarmDirection = {
-  direction: TAlarm['direction'];
-  onToggle?: () => void;
-};
-
-export const AlarmDirection = ({ direction, onToggle }: TAlarmDirection) => {
-  const icon = (
-    <Icon name={direction === 'down' ? 'arrow-down' : 'arrow-up'} size={40} />
-  );
-
-  if (onToggle) {
-    return <TouchableOpacity onPress={onToggle}>{icon}</TouchableOpacity>;
-  }
-
-  return icon;
-};
 
 type Props = {
   characteristic: keyof DeviceData;

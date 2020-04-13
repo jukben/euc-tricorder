@@ -14,11 +14,12 @@ export type DeviceData = Partial<{
   battery: number;
   totalDistance: number;
   currentDistance: number;
+  deviceUptime: number;
 }>;
 
 export type MeasurableData = Exclude<
   keyof DeviceData,
-  'totalDistance' | 'currentDistance'
+  'totalDistance' | 'currentDistance' | 'deviceUptime'
 >;
 
 export const readableDeviceDataKeys: Record<keyof DeviceData, string> = {
@@ -29,6 +30,7 @@ export const readableDeviceDataKeys: Record<keyof DeviceData, string> = {
   voltage: 'Voltage',
   totalDistance: 'Total Distance',
   currentDistance: 'Current Distance',
+  deviceUptime: 'Device Uptime',
 } as const;
 
 export type AdapterID = string;

@@ -80,6 +80,7 @@ test('add', () => {
       voltage: [],
       totalDistance: [],
       currentDistance: [],
+      deviceUptime: [],
     },
   });
 });
@@ -124,6 +125,7 @@ test('remove', () => {
       voltage: [],
       totalDistance: [],
       currentDistance: [],
+      deviceUptime: [],
     },
   });
 });
@@ -173,6 +175,7 @@ test('update', () => {
       voltage: [],
       totalDistance: [],
       currentDistance: [],
+      deviceUptime: [],
     },
   });
 });

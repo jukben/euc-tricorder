@@ -1,8 +1,11 @@
 import { adapters } from '@euc-tricorder/adapters';
+import { useDeviceScan } from '@euc-tricorder/core/shared';
 import { CustomNavigatorProps } from '@euc-tricorder/types';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { trackEvent } from 'appcenter-analytics';
 import React, { useCallback, useEffect } from 'react';
+import { Alert } from 'react-native';
 import { Device } from 'react-native-ble-plx';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -28,7 +31,7 @@ export type HomeNavigatorProps<
 const Tab = createBottomTabNavigator<HomeStack>();
 
 export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
-  const { setAdapter, adapter } = useAdapter();
+  const { setAdapter } = useAdapter();
   const { state, manager, registerRestoreStateListener } = useBle();
 
   const {
@@ -44,7 +47,7 @@ export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
   }, [setAdapter]);
 
   const connectToDevice = useCallback(
-    (bleDevice: Device) => {
+    async (bleDevice: Device) => {
       const adapterFactory = adapters.find(
         ({ adapterName }) => adapterName === device.adapter,
       );
@@ -54,53 +57,20 @@ export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
       }
 
       const configuredAdapter = adapterFactory(bleDevice);
-      configuredAdapter.connect(handleDisconnect);
+      await configuredAdapter.connect(handleDisconnect);
       setAdapter(configuredAdapter);
     },
     [device.adapter, handleDisconnect, setAdapter],
   );
 
-  useEffect(() => {
-    // we are already connected, so no needs to reconnect :)
-    if (adapter) {
-      return;
-    }
-
-    console.log(`attempt to auto-connect... (${device.adapter}, ${state})`);
-    let timeout: ReturnType<typeof setTimeout>;
-
-    if (state === 'PoweredOn') {
-      console.log('...auto-connecting...');
-      /**
-       * react-native-ble-plx has some problem if I call startDeviceScan
-       * right in the moment Ble is ready (weird right?) so let's artificially
-       * slow down a bit.
-       *
-       * This should be considered as hot fix, ideally it should be simply without
-       * the timeout.
-       */
-      timeout = setTimeout(
-        () =>
-          manager.startDeviceScan(null, null, (error, bleDevice) => {
-            if (error) {
-              console.log(error);
-              return;
-            }
-
-            if (bleDevice && bleDevice.id === device.id) {
-              connectToDevice(bleDevice);
-              console.log('...connected!');
-            }
-          }),
-        1000,
-      );
-    }
-
-    return () => {
-      manager.stopDeviceScan();
-      timeout && clearTimeout(timeout);
-    };
-  }, [adapter, manager, state, connectToDevice, device]);
+  useDeviceScan({
+    onDeviceFound: (bleDevice) => {
+      if (bleDevice.id === device.id) {
+        connectToDevice(bleDevice);
+        console.log('...connected!');
+      }
+    },
+  });
 
   useEffect(() => {
     const unsubscribe = registerRestoreStateListener((restoredState) => {
@@ -114,11 +84,7 @@ export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
         return;
       }
 
-      console.log(bleDevice);
-
-      setTimeout(() => {
-        connectToDevice(bleDevice);
-      }, 100);
+      connectToDevice(bleDevice);
       console.log('...connected!');
     });
 

@@ -46,6 +46,7 @@ const initialState = {
     voltage: [],
     currentDistance: [],
     totalDistance: [],
+    deviceUptime: [],
   } as Record<AlarmTypes, Array<TAlarm['id']>>,
   alarm: {} as Record<TAlarm['id'], TAlarm>,
 };

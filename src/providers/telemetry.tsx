@@ -17,6 +17,7 @@ const initialData = {
   battery: [] as TTelemetryData,
   totalDistance: [] as TTelemetryData,
   currentDistance: [] as TTelemetryData,
+  deviceUptime: [] as TTelemetryData,
 };
 
 type State = typeof initialData;
