@@ -3,9 +3,7 @@ import { useDeviceScan } from '@euc-tricorder/core/shared';
 import { CustomNavigatorProps } from '@euc-tricorder/types';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { trackEvent } from 'appcenter-analytics';
 import React, { useCallback, useEffect } from 'react';
-import { Alert } from 'react-native';
 import { Device } from 'react-native-ble-plx';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -32,7 +30,7 @@ const Tab = createBottomTabNavigator<HomeStack>();
 
 export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
   const { setAdapter } = useAdapter();
-  const { state, manager, registerRestoreStateListener } = useBle();
+  const { registerRestoreStateListener } = useBle();
 
   const {
     params: { device },
@@ -63,13 +61,18 @@ export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
     [device.adapter, handleDisconnect, setAdapter],
   );
 
-  useDeviceScan({
-    onDeviceFound: (bleDevice) => {
+  const onDeviceFound = useCallback(
+    (bleDevice: Device) => {
       if (bleDevice.id === device.id) {
         connectToDevice(bleDevice);
         console.log('...connected!');
       }
     },
+    [connectToDevice, device.id],
+  );
+
+  useDeviceScan({
+    onDeviceFound,
   });
 
   useEffect(() => {

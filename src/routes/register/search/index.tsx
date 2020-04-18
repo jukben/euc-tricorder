@@ -1,5 +1,5 @@
 import { useDeviceScan } from '@euc-tricorder/core/shared';
-import React, { useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { ScrollView } from 'react-native';
 import { Device } from 'react-native-ble-plx';
 import styled from 'styled-components/native';
@@ -14,13 +14,18 @@ export const SearchScreen = ({
   const DevicesMapRef = useRef<Map<Device['id'], Device>>(new Map());
   const [devices, setDevices] = useState<Array<Device>>([]);
 
-  useDeviceScan({
-    onDeviceFound: (bleDevice) => {
+  const onDeviceFound = useCallback(
+    (bleDevice: Device) => {
       if (!DevicesMapRef.current.has(bleDevice.id)) {
         DevicesMapRef.current.set(bleDevice.id, bleDevice);
         setDevices((allDevices) => [bleDevice, ...allDevices]);
       }
     },
+    [setDevices],
+  );
+
+  useDeviceScan({
+    onDeviceFound,
   });
 
   const handlePress = (device: Device) => {
