@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* euctricorderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* euctricorderTests.m */; };
+		0A863A812A33C6A7F96D5D5C /* libPods-euctricorder-ecutricorder-simulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D7804D24676F84B4204569C /* libPods-euctricorder-ecutricorder-simulator.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		64FD69BEB5DF8088CD9C9463 /* libPods-euctricorder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1FBB3760B902F4D649A447 /* libPods-euctricorder.a */; };
-		67AC8FA6B68C95C365B9922D /* libPods-euctricorderTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4EF4D02D220EC8AB8325F5 /* libPods-euctricorderTests.a */; };
 		772726EC389903A9291AA6B6 /* libPods-euctricorder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1FBB3760B902F4D649A447 /* libPods-euctricorder.a */; };
 		790FC6712439EC73003C85D5 /* bridge-me.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F96E4F23CD006000AFAE6E /* bridge-me.swift */; };
 		790FC6722439EC73003C85D5 /* SCLFlicButtonSimulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 795CD75423FC79F300A91FBC /* SCLFlicButtonSimulator.m */; };
@@ -34,6 +34,7 @@
 		79AC7A2D23DC7097004A6FF6 /* FlicClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AC7A2C23DC7097004A6FF6 /* FlicClient.m */; };
 		79F96E5023CD006000AFAE6E /* bridge-me.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F96E4F23CD006000AFAE6E /* bridge-me.swift */; };
 		79F96E5123CD006000AFAE6E /* bridge-me.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F96E4F23CD006000AFAE6E /* bridge-me.swift */; };
+		D1A0DDED4B4B8319BD7CCADF /* libPods-euctricorder-euctricorderTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F251B86E2337CC2B1ECB386 /* libPods-euctricorder-euctricorderTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,9 +73,14 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = euctricorder/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = euctricorder/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = euctricorder/main.m; sourceTree = "<group>"; };
+		183CA80565CAD84E4BC0D9DC /* Pods-euctricorder-euctricorderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-euctricorder-euctricorderTests.debug.xcconfig"; path = "Target Support Files/Pods-euctricorder-euctricorderTests/Pods-euctricorder-euctricorderTests.debug.xcconfig"; sourceTree = "<group>"; };
+		20BAB51025B69CE3BDC68C9A /* Pods-euctricorder-euctricorderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-euctricorder-euctricorderTests.release.xcconfig"; path = "Target Support Files/Pods-euctricorder-euctricorderTests/Pods-euctricorder-euctricorderTests.release.xcconfig"; sourceTree = "<group>"; };
+		2D7804D24676F84B4204569C /* libPods-euctricorder-ecutricorder-simulator.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-euctricorder-ecutricorder-simulator.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D1FBB3760B902F4D649A447 /* libPods-euctricorder.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-euctricorder.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F842F4AF263DD8D4A315677 /* Pods-euctricorder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-euctricorder.debug.xcconfig"; path = "Target Support Files/Pods-euctricorder/Pods-euctricorder.debug.xcconfig"; sourceTree = "<group>"; };
+		4F251B86E2337CC2B1ECB386 /* libPods-euctricorder-euctricorderTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-euctricorder-euctricorderTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		56FFBFD6606653E7E1FDE737 /* Pods-euctricorderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-euctricorderTests.release.xcconfig"; path = "Target Support Files/Pods-euctricorderTests/Pods-euctricorderTests.release.xcconfig"; sourceTree = "<group>"; };
+		7335926F393F26713C588BE2 /* Pods-euctricorder-ecutricorder-simulator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-euctricorder-ecutricorder-simulator.debug.xcconfig"; path = "Target Support Files/Pods-euctricorder-ecutricorder-simulator/Pods-euctricorder-ecutricorder-simulator.debug.xcconfig"; sourceTree = "<group>"; };
 		7491974F9FD7B71CFC28281D /* Pods-euctricorderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-euctricorderTests.debug.xcconfig"; path = "Target Support Files/Pods-euctricorderTests/Pods-euctricorderTests.debug.xcconfig"; sourceTree = "<group>"; };
 		790FC6872439EC73003C85D5 /* EUC Tricorder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EUC Tricorder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		795CD75423FC79F300A91FBC /* SCLFlicButtonSimulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLFlicButtonSimulator.m; sourceTree = "<group>"; };
@@ -90,7 +96,7 @@
 		79F96E4B23CD006000AFAE6E /* euctricorder-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "euctricorder-Bridging-Header.h"; sourceTree = "<group>"; };
 		79F96E4C23CD006000AFAE6E /* euctricorderTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "euctricorderTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		79F96E4F23CD006000AFAE6E /* bridge-me.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "bridge-me.swift"; sourceTree = "<group>"; };
-		9E4EF4D02D220EC8AB8325F5 /* libPods-euctricorderTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-euctricorderTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9814CF9CBFE64FD6B4D321CE /* Pods-euctricorder-ecutricorder-simulator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-euctricorder-ecutricorder-simulator.release.xcconfig"; path = "Target Support Files/Pods-euctricorder-ecutricorder-simulator/Pods-euctricorder-ecutricorder-simulator.release.xcconfig"; sourceTree = "<group>"; };
 		C569055442F1477A19044B14 /* Pods-euctricorder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-euctricorder.release.xcconfig"; path = "Target Support Files/Pods-euctricorder/Pods-euctricorder.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -101,7 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67AC8FA6B68C95C365B9922D /* libPods-euctricorderTests.a in Frameworks */,
+				D1A0DDED4B4B8319BD7CCADF /* libPods-euctricorder-euctricorderTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A863A812A33C6A7F96D5D5C /* libPods-euctricorder-ecutricorder-simulator.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,7 +170,8 @@
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				3D1FBB3760B902F4D649A447 /* libPods-euctricorder.a */,
-				9E4EF4D02D220EC8AB8325F5 /* libPods-euctricorderTests.a */,
+				4F251B86E2337CC2B1ECB386 /* libPods-euctricorder-euctricorderTests.a */,
+				2D7804D24676F84B4204569C /* libPods-euctricorder-ecutricorder-simulator.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -227,6 +235,10 @@
 				56FFBFD6606653E7E1FDE737 /* Pods-euctricorderTests.release.xcconfig */,
 				3F842F4AF263DD8D4A315677 /* Pods-euctricorder.debug.xcconfig */,
 				C569055442F1477A19044B14 /* Pods-euctricorder.release.xcconfig */,
+				183CA80565CAD84E4BC0D9DC /* Pods-euctricorder-euctricorderTests.debug.xcconfig */,
+				20BAB51025B69CE3BDC68C9A /* Pods-euctricorder-euctricorderTests.release.xcconfig */,
+				7335926F393F26713C588BE2 /* Pods-euctricorder-ecutricorder-simulator.debug.xcconfig */,
+				9814CF9CBFE64FD6B4D321CE /* Pods-euctricorder-ecutricorder-simulator.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -242,6 +254,8 @@
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
+				45B462E5728527298B4593D4 /* [CP] Embed Pods Frameworks */,
+				BA93EE8D4D44379ABCDEF02E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -280,11 +294,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 790FC6842439EC73003C85D5 /* Build configuration list for PBXNativeTarget "ecutricorder-simulator" */;
 			buildPhases = (
+				FB825EB0397061D3A6A78FD9 /* [CP] Check Pods Manifest.lock */,
 				790FC66F2439EC73003C85D5 /* Start Packager */,
 				790FC6702439EC73003C85D5 /* Sources */,
 				790FC6782439EC73003C85D5 /* Frameworks */,
 				790FC67B2439EC73003C85D5 /* Resources */,
 				790FC67F2439EC73003C85D5 /* Bundle React Native code and images */,
+				51C15EF4092EDCF7BC9BF8F3 /* [CP] Embed Pods Frameworks */,
+				C6EAA1907BFC489AFDD90396 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -387,6 +404,42 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
+		45B462E5728527298B4593D4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-euctricorder-euctricorderTests/Pods-euctricorder-euctricorderTests-frameworks.sh",
+				"${PODS_ROOT}/PebbleKit/PebbleKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PebbleKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-euctricorder-euctricorderTests/Pods-euctricorder-euctricorderTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		51C15EF4092EDCF7BC9BF8F3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-euctricorder-ecutricorder-simulator/Pods-euctricorder-ecutricorder-simulator-frameworks.sh",
+				"${PODS_ROOT}/PebbleKit/PebbleKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PebbleKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-euctricorder-ecutricorder-simulator/Pods-euctricorder-ecutricorder-simulator-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		5CF94A100FFB2E71559ABBEA /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -450,7 +503,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-euctricorderTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-euctricorder-euctricorderTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -528,6 +581,124 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-euctricorder/Pods-euctricorder-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BA93EE8D4D44379ABCDEF02E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-euctricorder-euctricorderTests/Pods-euctricorder-euctricorderTests-resources.sh",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-euctricorder-euctricorderTests/Pods-euctricorder-euctricorderTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C6EAA1907BFC489AFDD90396 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-euctricorder-ecutricorder-simulator/Pods-euctricorder-ecutricorder-simulator-resources.sh",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-euctricorder-ecutricorder-simulator/Pods-euctricorder-ecutricorder-simulator-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FB825EB0397061D3A6A78FD9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-euctricorder-ecutricorder-simulator-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -614,9 +785,9 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7491974F9FD7B71CFC28281D /* Pods-euctricorderTests.debug.xcconfig */;
+			baseConfigurationReference = 183CA80565CAD84E4BC0D9DC /* Pods-euctricorder-euctricorderTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = U2HL3HZ5TZ;
@@ -643,9 +814,9 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 56FFBFD6606653E7E1FDE737 /* Pods-euctricorderTests.release.xcconfig */;
+			baseConfigurationReference = 20BAB51025B69CE3BDC68C9A /* Pods-euctricorder-euctricorderTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				COPY_PHASE_STRIP = NO;
@@ -675,7 +846,11 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = NO;
+				ENABLE_BITCODE = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"FB_SONARKIT_ENABLED=1",
+				);
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -730,19 +905,24 @@
 		};
 		790FC6852439EC73003C85D5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7335926F393F26713C588BE2 /* Pods-euctricorder-ecutricorder-simulator.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = NO;
+				ENABLE_BITCODE = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"FB_SONARKIT_ENABLED=1",
+				);
 				DEVELOPMENT_TEAM = U2HL3HZ5TZ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				INFOPLIST_FILE = "euctricorder/Info.plist";
+				INFOPLIST_FILE = euctricorder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -761,6 +941,7 @@
 		};
 		790FC6862439EC73003C85D5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9814CF9CBFE64FD6B4D321CE /* Pods-euctricorder-ecutricorder-simulator.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -772,7 +953,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				INFOPLIST_FILE = "euctricorder/Info.plist";
+				INFOPLIST_FILE = euctricorder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -793,6 +974,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -836,6 +1018,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -847,6 +1035,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -883,6 +1072,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

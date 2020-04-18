@@ -1,5 +1,5 @@
 import { fireEvent, render } from '@testing-library/react-native';
-import nanoid from 'nanoid/non-secure';
+import { nanoid } from 'nanoid/non-secure';
 import React, { useEffect } from 'react';
 import { TouchableOpacity } from 'react-native';
 

@@ -1,6 +1,6 @@
 import { DeviceData } from '@euc-tricorder/adapters';
 import produce from 'immer';
-import nanoid from 'nanoid/non-secure';
+import { nanoid } from 'nanoid/non-secure';
 import React, { useContext, useEffect, useReducer } from 'react';
 import styled from 'styled-components/native';
 

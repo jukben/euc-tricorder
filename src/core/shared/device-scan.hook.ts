@@ -61,5 +61,5 @@ export const useDeviceScan = ({
       timeout && clearTimeout(timeout);
       timeoutUnsupported && clearTimeout(timeoutUnsupported);
     };
-  }, [manager, state, onDeviceFound]);
+  }, [manager, onDeviceFound, state]);
 };
