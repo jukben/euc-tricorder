@@ -1,7 +1,7 @@
-import { fireEvent, render } from '@testing-library/react-native';
 import { nanoid } from 'nanoid/non-secure';
 import React, { useEffect } from 'react';
 import { TouchableOpacity } from 'react-native';
+import { fireEvent, render } from 'react-native-testing-library';
 
 import { AlarmContext, AlarmProvider, useAlarm } from './alarm';
 
@@ -41,7 +41,7 @@ const TestComponent = ({ onData, onAdd, onRemove, onUpdate }: Props) => {
   );
 };
 
-test('add', () => {
+test.only('add', () => {
   (nanoid as jest.Mock).mockImplementation(() => '3467rtyuhjk-I');
 
   const handleData = jest.fn();
@@ -50,12 +50,13 @@ test('add', () => {
     <AlarmProvider>
       <TestComponent
         onData={handleData}
-        onAdd={(add) =>
+        onAdd={(add) => {
+          console.log('on add');
           add({
             characteristic: 'speed',
             alarm: { active: true, direction: 'up', value: 20 },
-          })
-        }
+          });
+        }}
       />
     </AlarmProvider>,
   );
