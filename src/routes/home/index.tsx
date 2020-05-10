@@ -3,7 +3,7 @@ import { useDeviceScan } from '@euc-tricorder/core/shared';
 import { CustomNavigatorProps } from '@euc-tricorder/types';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import { Device } from 'react-native-ble-plx';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -11,7 +11,6 @@ import {
   FlicClientProvider,
   PebbleClientProvider,
   useAdapter,
-  useBle,
 } from '../../providers';
 import { CrossroadNavigatorProps, Stack as CrossroadStack } from '../crossroad';
 import { DeviceScreen } from './device';
@@ -30,7 +29,6 @@ const Tab = createBottomTabNavigator<HomeStack>();
 
 export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
   const { setAdapter } = useAdapter();
-  const { registerRestoreStateListener } = useBle();
 
   const {
     params: { device },
@@ -74,25 +72,6 @@ export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
   useDeviceScan({
     onDeviceFound,
   });
-
-  useEffect(() => {
-    const unsubscribe = registerRestoreStateListener((restoredState) => {
-      console.log('...restoring connection...');
-
-      const bleDevice = restoredState.connectedPeripherals.find(
-        ({ id }) => id === device.id,
-      );
-
-      if (!bleDevice) {
-        return;
-      }
-
-      connectToDevice(bleDevice);
-      console.log('...connected!');
-    });
-
-    return unsubscribe;
-  }, [device.id, connectToDevice, registerRestoreStateListener]);
 
   return (
     <PebbleClientProvider>
