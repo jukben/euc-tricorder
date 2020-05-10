@@ -1,7 +1,7 @@
-import { useBle } from '@euc-tricorder/providers';
+import { useAdapter, useBle } from '@euc-tricorder/providers';
 import { trackEvent } from 'appcenter-analytics';
-import { useEffect } from 'react';
-import { Alert } from 'react-native';
+import { useEffect, useState } from 'react';
+import { Alert, AppState, AppStateStatus } from 'react-native';
 import { Device } from 'react-native-ble-plx';
 
 export const useDeviceScan = ({
@@ -10,9 +10,37 @@ export const useDeviceScan = ({
   onDeviceFound: (device: Device) => void;
 }) => {
   const { state, manager } = useBle();
+  const { adapter } = useAdapter();
+  const [appState, setAppState] = useState(AppState.currentState);
+
+  const handleAppStateChange = (nextAppState: AppStateStatus) => {
+    setAppState(nextAppState);
+  };
 
   useEffect(() => {
+    AppState.addEventListener('change', handleAppStateChange);
+
+    return () => {
+      AppState.removeEventListener('change', handleAppStateChange);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (appState !== 'active') {
+      /**
+       * startDeviceScan works only in foreground
+       *
+       * @see
+       * https://github.com/Polidea/react-native-ble-plx/issues/669
+       */
+      return;
+    }
+
     if (!manager) {
+      return;
+    }
+
+    if (adapter?.isConnected()) {
       return;
     }
 
@@ -40,20 +68,18 @@ export const useDeviceScan = ({
        * This should be considered as hot fix, ideally it should be simply without
        * the timeout.
        */
-      timeout = setTimeout(
-        () =>
-          manager.startDeviceScan(null, null, (error, bleDevice) => {
-            if (error) {
-              console.log(error);
-              return;
-            }
+      timeout = setTimeout(() => {
+        manager.startDeviceScan(null, null, (error, bleDevice) => {
+          if (error) {
+            console.log(error);
+            return;
+          }
 
-            if (bleDevice) {
-              onDeviceFound(bleDevice);
-            }
-          }),
-        1000,
-      );
+          if (bleDevice) {
+            onDeviceFound(bleDevice);
+          }
+        });
+      }, 1000);
     }
 
     return () => {
@@ -61,5 +87,5 @@ export const useDeviceScan = ({
       timeout && clearTimeout(timeout);
       timeoutUnsupported && clearTimeout(timeoutUnsupported);
     };
-  }, [manager, onDeviceFound, state]);
+  }, [manager, onDeviceFound, state, adapter, appState]);
 };
