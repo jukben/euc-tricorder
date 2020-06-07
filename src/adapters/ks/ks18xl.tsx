@@ -4,6 +4,8 @@ import { createAdapter } from '../api';
 import { KS_CHAR, KS_COMMANDS, KS_SERVICE } from './constants';
 import { decodeData } from './utils';
 
+export { KS_OBSERVABLE_SERVICE } from './constants';
+
 const name = 'KingSong 18-XL';
 
 const bleConfiguration = {
@@ -16,11 +18,10 @@ export const ks18xl = createAdapter(name, {
   getData: (bufferValue: ArrayBuffer) => {
     return decodeData(bufferValue);
   },
-  afterConnect: (device: BleDevice) => {
+  afterConnect: (device: BleDevice) =>
     device.writeCharacteristicWithoutResponseForService(
       bleConfiguration.service,
       bleConfiguration.characteristic,
       KS_COMMANDS.REQUEST_NAME,
-    );
-  },
+    ),
 });

@@ -92,24 +92,24 @@ export const defaultAdapter = (
       if (configuration.afterConnect) {
         await configuration.afterConnect(device);
       }
+
+      onDisconnectSubscription = device.onDisconnected(
+        handleDisconnect(onDisconnect),
+      );
+
+      monitorSubscription = device.monitorCharacteristicForService(
+        service,
+        characteristic,
+        handleListening,
+      );
     } catch (e) {
-      await device.cancelConnection();
+      device.cancelConnection();
       trackEvent('adapter connect exception', {
-        error: e,
+        error: e.toString(),
       });
       console.error(e);
       return;
     }
-
-    onDisconnectSubscription = device.onDisconnected(
-      handleDisconnect(onDisconnect),
-    );
-
-    monitorSubscription = device.monitorCharacteristicForService(
-      service,
-      characteristic,
-      handleListening,
-    );
   };
 
   const disconnect: AdapterService['disconnect'] = async () => {
