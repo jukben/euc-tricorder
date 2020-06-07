@@ -1,7 +1,8 @@
+import { observableServices } from '@euc-tricorder/adapters';
 import { useAdapter, useBle } from '@euc-tricorder/providers';
 import { trackEvent } from 'appcenter-analytics';
-import { useEffect, useState } from 'react';
-import { Alert, AppState, AppStateStatus } from 'react-native';
+import { useEffect } from 'react';
+import { Alert } from 'react-native';
 import { Device } from 'react-native-ble-plx';
 
 export const useDeviceScan = ({
@@ -11,31 +12,8 @@ export const useDeviceScan = ({
 }) => {
   const { state, manager } = useBle();
   const { adapter } = useAdapter();
-  const [appState, setAppState] = useState(AppState.currentState);
-
-  const handleAppStateChange = (nextAppState: AppStateStatus) => {
-    setAppState(nextAppState);
-  };
 
   useEffect(() => {
-    AppState.addEventListener('change', handleAppStateChange);
-
-    return () => {
-      AppState.removeEventListener('change', handleAppStateChange);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (appState !== 'active') {
-      /**
-       * startDeviceScan works only in foreground
-       *
-       * @see
-       * https://github.com/Polidea/react-native-ble-plx/issues/669
-       */
-      return;
-    }
-
     if (!manager) {
       return;
     }
@@ -69,16 +47,20 @@ export const useDeviceScan = ({
        * the timeout.
        */
       timeout = setTimeout(() => {
-        manager.startDeviceScan(null, null, (error, bleDevice) => {
-          if (error) {
-            console.log(error);
-            return;
-          }
+        manager.startDeviceScan(
+          observableServices,
+          null,
+          (error, bleDevice) => {
+            if (error) {
+              console.log(error);
+              return;
+            }
 
-          if (bleDevice) {
-            onDeviceFound(bleDevice);
-          }
-        });
+            if (bleDevice) {
+              onDeviceFound(bleDevice);
+            }
+          },
+        );
       }, 1000);
     }
 
@@ -87,5 +69,5 @@ export const useDeviceScan = ({
       timeout && clearTimeout(timeout);
       timeoutUnsupported && clearTimeout(timeoutUnsupported);
     };
-  }, [manager, onDeviceFound, state, adapter, appState]);
+  }, [manager, onDeviceFound, state, adapter]);
 };

@@ -1,5 +1,6 @@
 import { Buffer } from 'buffer';
 
+export const KS_OBSERVABLE_SERVICE = '0000fff0-0000-1000-8000-00805f9b34fb';
 export const KS_SERVICE = '0000ffe0-0000-1000-8000-00805f9b34fb';
 export const KS_CHAR = '0000ffe1-0000-1000-8000-00805f9b34fb';
 

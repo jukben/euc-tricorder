@@ -4,6 +4,7 @@ import { CustomNavigatorProps } from '@euc-tricorder/types';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React, { useCallback } from 'react';
+import { AppState } from 'react-native';
 import { Device } from 'react-native-ble-plx';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -64,6 +65,11 @@ export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
       if (bleDevice.id === device.id) {
         connectToDevice(bleDevice);
         console.log('...connected!');
+        PushNotificationIOS.presentLocalNotification({
+          alertBody: 'Connected to the device',
+          alertAction: 'view',
+          isSilent: AppState.currentState === 'active',
+        });
       }
     },
     [connectToDevice, device.id],

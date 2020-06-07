@@ -1,4 +1,4 @@
-import { Device as BleDevice } from 'react-native-ble-plx';
+import { Characteristic, Device as BleDevice } from 'react-native-ble-plx';
 
 import { defaultAdapter } from './default-adapter';
 
@@ -41,7 +41,7 @@ export type AdapterApi = {
     characteristic: string;
   };
   getData: (buffer: ArrayBuffer) => DeviceData | null; // or null? Does it make sense?
-  afterConnect?: (device: BleDevice) => void | Promise<void>;
+  afterConnect?: (device: BleDevice) => void | Promise<Characteristic>;
 };
 
 export type AdapterFactory = ReturnType<typeof createAdapter>;
