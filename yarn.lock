@@ -1873,13 +1873,6 @@ babel-jest@26.1.0, babel-jest@^26.1.0:
     graceful-fs "^4.2.4"
     slash "^3.0.0"
 
-babel-plugin-dotenv@0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/babel-plugin-dotenv/-/babel-plugin-dotenv-0.1.1.tgz#9c8faea67a7c034fe7e94099187ab2e7573400bc"
-  integrity sha1-nI+upnp8A0/n6UCZGHqy51c0ALw=
-  dependencies:
-    dotenv "^2.0.0"
-
 babel-plugin-dynamic-import-node@^2.3.3:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/babel-plugin-dynamic-import-node/-/babel-plugin-dynamic-import-node-2.3.3.tgz#84fda19c976ec5c6defef57f9427b3def66e17a3"
@@ -2841,11 +2834,6 @@ domutils@^1.7.0:
   dependencies:
     dom-serializer "0"
     domelementtype "1"
-
-dotenv@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-2.0.0.tgz#bd759c357aaa70365e01c96b7b0bec08a6e0d949"
-  integrity sha1-vXWcNXqqcDZeAclrewvsCKbg2Uk=
 
 dottie@^2.0.0:
   version "2.0.2"
@@ -6251,6 +6239,11 @@ react-native-ble-plx@2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/react-native-ble-plx/-/react-native-ble-plx-2.0.1.tgz#0131a8c0b92be3f0bca51012715ac7814e08e022"
   integrity sha512-dd4IubwGu6CZoDMrZoSUb0zGmb/bSOXkB+5sYxKhaHANjem/9yPx6mifaLM13M+DJ6P+PNoLn0bPKItTYzsZiA==
+
+react-native-config@1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/react-native-config/-/react-native-config-1.3.1.tgz#d1e86031c49b2b1b968ebb158ac02a293acce0b8"
+  integrity sha512-Wmkn6WjCc1P0k77FiYQdRTU3AE9fR01vbkETLp9u5OK6+6kfsTbmFZwjMPE0Ao8LbRQP3mStK7niheKCFyIENA==
 
 react-native-device-info@5.6.2:
   version "5.6.2"
