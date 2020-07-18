@@ -97,7 +97,7 @@ export const Home = ({ route }: CrossroadNavigatorProps<'Home'>) => {
             component={SettingsScreen}
             options={{
               tabBarIcon: ({ color, size }) => (
-                <Icon name={'settings'} color={color} size={size} />
+                <Icon name={'wrench'} color={color} size={size} />
               ),
             }}
           />
