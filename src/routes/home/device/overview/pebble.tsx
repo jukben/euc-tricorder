@@ -1,6 +1,6 @@
 import { DeviceData } from '@euc-tricorder/adapters';
 import { useAdapter, usePebbleClient } from '@euc-tricorder/providers';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useThrottle } from '../throttle.hook';
 

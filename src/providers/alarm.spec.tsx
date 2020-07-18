@@ -41,7 +41,7 @@ const TestComponent = ({ onData, onAdd, onRemove, onUpdate }: Props) => {
   );
 };
 
-test.only('add', () => {
+test('add', () => {
   (nanoid as jest.Mock).mockImplementation(() => '3467rtyuhjk-I');
 
   const handleData = jest.fn();
@@ -51,7 +51,6 @@ test.only('add', () => {
       <TestComponent
         onData={handleData}
         onAdd={(add) => {
-          console.log('on add');
           add({
             characteristic: 'speed',
             alarm: { active: true, direction: 'up', value: 20 },
