@@ -1,7 +1,9 @@
 import { useAdapter } from '@euc-tricorder/providers';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import { ActivityIndicator } from 'react-native';
 import styled from 'styled-components/native';
+
+import { Trip } from './trip';
 
 const Container = styled.View`
   flex: 1;
@@ -21,11 +23,44 @@ const DeviceUptime = styled.Text`
   font-size: 16px;
 `;
 
+const initialState = {
+  loaded: false,
+  currentDistance: 0,
+  totalDistance: 0,
+  deviceUptime: '00:00:00',
+};
+
+type State = typeof initialState;
+
+type Action = {
+  type: 'UPDATE';
+  currentDistance?: number;
+  totalDistance?: number;
+  deviceUptime?: string;
+};
+
+function reducer(state: State, action: Action): State {
+  switch (action.type) {
+    case 'UPDATE': {
+      const { currentDistance, totalDistance, deviceUptime } = action;
+      return {
+        ...state,
+        loaded: true,
+        ...(currentDistance && { currentDistance }),
+        ...(totalDistance && { totalDistance }),
+        ...(deviceUptime && { deviceUptime }),
+      };
+    }
+
+    default: {
+      return state;
+    }
+  }
+}
+
 export const Distance = () => {
   const { adapter } = useAdapter();
-  const [currentDistance, setCurrentDistance] = useState<string>('0.0');
-  const [deviceUptime, setDeviceUptime] = useState<string>('00:00:00');
-  const [totalDistance, setTotalDistance] = useState<string | null>(null);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
     if (!adapter) {
@@ -34,11 +69,17 @@ export const Distance = () => {
 
     const unsubscribe = adapter.handleData((newData) => {
       if (newData.currentDistance) {
-        setCurrentDistance((newData.currentDistance / 1000).toFixed(1));
+        dispatch({
+          type: 'UPDATE',
+          currentDistance: newData.currentDistance / 1000,
+        });
       }
 
       if (newData.totalDistance) {
-        setTotalDistance((newData.totalDistance / 1000).toFixed(1));
+        dispatch({
+          type: 'UPDATE',
+          totalDistance: newData.totalDistance / 1000,
+        });
       }
 
       if (newData.deviceUptime) {
@@ -56,22 +97,27 @@ export const Distance = () => {
           .map(format)
           .join(':');
 
-        setDeviceUptime(formattedUptime);
+        dispatch({
+          type: 'UPDATE',
+          deviceUptime: formattedUptime,
+        });
       }
     });
 
     return unsubscribe;
   }, [adapter]);
 
+  const { loaded, currentDistance, deviceUptime, totalDistance } = state;
   return (
     <Container>
-      {!currentDistance || !totalDistance ? (
+      {!loaded ? (
         <ActivityIndicator />
       ) : (
         <>
-          <CurrentDistance>{currentDistance} Km</CurrentDistance>
-          <TotalDistance>{totalDistance} Km</TotalDistance>
+          <CurrentDistance>{currentDistance.toFixed(1)} Km</CurrentDistance>
+          <TotalDistance>{totalDistance.toFixed(1)} Km</TotalDistance>
           <DeviceUptime>{deviceUptime}</DeviceUptime>
+          <Trip distance={totalDistance} />
         </>
       )}
     </Container>
