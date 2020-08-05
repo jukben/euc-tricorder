@@ -1,5 +1,5 @@
 import { useSettings } from '@euc-tricorder/providers';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Pressable, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styled from 'styled-components/native';
@@ -30,21 +30,24 @@ export type TTrip = typeof initialState;
 
 export const Trip = ({ distance }: Props) => {
   const [trip, setTrip] = useState(initialState);
+  const isRehydrated = useRef(false);
   const { getSettingsForKey, setSettingsForKey } = useSettings();
 
   useEffect(() => {
     const rehydrateState = async () => {
       const data = await getSettingsForKey('trip');
-      if (!data) {
-        return;
-      }
-      setTrip(data);
+      setTrip({ ...initialState, ...data });
+      isRehydrated.current = true;
     };
 
     rehydrateState();
   }, [getSettingsForKey]);
 
   useEffect(() => {
+    if (isRehydrated.current === false) {
+      return;
+    }
+
     const saveState = () => {
       setSettingsForKey('trip', trip);
     };
@@ -54,7 +57,7 @@ export const Trip = ({ distance }: Props) => {
 
   const { running, initialDistance } = trip;
 
-  const handleTripStart = () => {
+  const handleTrip = () => {
     setTrip((prev) => ({
       running: !prev.running,
       initialDistance: distance,
@@ -68,7 +71,7 @@ export const Trip = ({ distance }: Props) => {
       ) : (
         <Text>To start measuring your trip, press the arrow...</Text>
       )}
-      <Pressable onPress={handleTripStart}>
+      <Pressable onPress={handleTrip}>
         <Icon name={running ? 'check' : 'play'} size={26} />
       </Pressable>
     </Container>
