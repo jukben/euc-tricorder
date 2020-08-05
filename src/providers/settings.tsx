@@ -1,16 +1,19 @@
 import { AdapterID } from '@euc-tricorder/adapters';
 import { useAlarm } from '@euc-tricorder/providers';
+import { TTrip } from '@euc-tricorder/routes/home/device/overview/trip';
 import AsyncStorage from '@react-native-community/async-storage';
 import React, { useContext } from 'react';
+import { Device } from 'react-native-ble-plx';
 
 type AlarmsSettings = ReturnType<typeof useAlarm>['data'];
 
 export type TSettings = {
   device?: {
-    id: string;
+    id: Device['id'];
     adapter: AdapterID;
   };
   alarms?: AlarmsSettings;
+  trip?: TTrip;
 };
 
 const api = {

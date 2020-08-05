@@ -9,31 +9,23 @@ let dummyData = {
   current: 10,
   voltage: 72,
   totalDistance: 300000,
-  currentDistance: 123,
+  currentDistance: 0,
 };
 
 const maxSpeed = 10;
-const minSpeed = 0;
 let curSpeed = 0;
-let direction: 'up' | 'down' = 'up';
 
 function updateData(prevData: DeviceData): DeviceData {
   // speed mock, kinda lol
-  if (direction === 'up') {
-    curSpeed++;
-    if (curSpeed === maxSpeed) {
-      direction = 'down';
-    }
-  } else if (direction === 'down') {
-    curSpeed--;
-    if (curSpeed === minSpeed) {
-      direction = 'up';
-    }
-  }
+  curSpeed += 0.1;
+
+  const addDistance = (number?: number) => (number ? number + 100 : 100);
 
   return {
     ...prevData,
-    speed: curSpeed,
+    speed: Math.round(Math.sin(curSpeed % 1) * maxSpeed),
+    currentDistance: addDistance(prevData.currentDistance),
+    totalDistance: addDistance(prevData.totalDistance),
   };
 }
 
@@ -43,6 +35,8 @@ export const dummyEUC = createAdapter(name, {
     service: '',
   },
   getData: () => {
-    return updateData(dummyData);
+    dummyData = { ...dummyData, ...updateData(dummyData) };
+
+    return dummyData;
   },
 });
