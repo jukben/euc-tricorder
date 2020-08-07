@@ -18,11 +18,8 @@ To be honest, I built this primarily to for myself. However I do own Apple Devel
 - Possible to connect with Flic Button to trigger voice information
 
 ## Screenshots
-
 <div>
-  <img src="https://user-images.githubusercontent.com/8135252/89432722-bb184f00-d741-11ea-86b3-658a9ecb8e3a.PNG" width="200" align="center"/>
-  <img src="https://user-images.githubusercontent.com/8135252/89434364-c1a7c600-d743-11ea-9a3e-ac99bf03e0c9.PNG" width="200" align="center"/>
-  <img src="https://user-images.githubusercontent.com/8135252/89432820-daaf7780-d741-11ea-9ae5-f259ac6584d2.jpg" width="200" align="center"/>
+  <img src="https://user-images.githubusercontent.com/8135252/89616654-0b4df900-d889-11ea-8687-f1a09b7738dc.jpg" width="100%" align="center"/>
 </div>
 
 ## Contribution
